@@ -16,6 +16,10 @@ module.exports = {
 				semiLight: "#51C4D3",
 				light: "#D8E3E7",
 			},
+			fontSize: {
+				large: ["61px", "83px"],
+				semiLarge: ["29px", "40px"],
+			},
 		},
 	},
 };

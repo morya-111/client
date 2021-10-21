@@ -1,23 +1,32 @@
 import React from "react";
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
-import About from "components/GoToButtons/About";
-import Catalogue from "components/GoToButtons/Catalogue";
-import Contact from "components/GoToButtons/Contact";
 import SignUp from "components/GoToButtons/SignUp";
+import { NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
 	return (
-		<div className="fixed top-0 z-50 flex justify-between md:justify-evenly px-4 py-2 xl:px-3">
-			<div className=" transform scale-75">
+		<div className="relative py-2 w-screen mx-auto  sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+			<div className="block mx-auto h-24 sm:mx-0 sm:flex-shrink-0 ">
 				<LogoDark />
 			</div>
-			<div className=" object-none object-right-top flex flex-row content-evenly space-x-4 container px-4 py-2 ">
-				<About />
-				<Catalogue />
-				<Contact />
+			<div className="absolute right-10 bottom-1/2 text-dark flex flex-row  space-x-10 items-center sm:mx-0 sm:flex-shrink-0 ">
+				<NavLink className="motion-safe:hover:scale-110" to="/about">
+					About
+				</NavLink>
+				<NavLink
+					className="motion-safe:hover:scale-110"
+					to="/catalogue"
+				>
+					Catalogue
+				</NavLink>
+				<NavLink className="motion-safe:hover:scale-110" to="/contact">
+					Contact
+				</NavLink>
 				<SignUp />
 			</div>
 		</div>
 	);
 };
 export default NavigationBar;
+//
+//
