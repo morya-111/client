@@ -8,4 +8,4 @@ const SignUp = () => {
 	);
 };
 export default SignUp;
-// flex  items-center bg-semiLight container  w-full h-auto rounded-lg px-8 py-2 align-text-top
+
