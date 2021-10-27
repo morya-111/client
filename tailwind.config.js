@@ -22,6 +22,9 @@ module.exports = {
 				"scale-reveal": "scale 0.5s ease-in-out ",
 			},
 		},
+		fontFamily: {
+			sans: ["Nunito", "sans-serif"],
+		},
 	},
 	variants: {
 		extend: {},
