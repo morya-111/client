@@ -11,7 +11,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
 					ref={ref}
 					{...rest}
 					type="checkbox"
-					className="w-6 h-6 transition-colors border-4 rounded-lg appearance-none cursor-pointer peer border-semiDark checked:bg-semiDark hover:shadow-lg"
+					style={{ borderWidth: "3px" }}
+					className="w-6 h-6 transition-colors rounded-lg appearance-none cursor-pointer peer border-semiDark checked:bg-semiDark hover:shadow-lg"
 				/>
 				<FaCheck
 					className="absolute hidden transition-all transform top-1 left-1 peer-checked:block animate-scale-reveal text-light"
