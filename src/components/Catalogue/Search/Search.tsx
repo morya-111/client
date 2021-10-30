@@ -4,7 +4,7 @@ import { FaFilter } from "react-icons/fa";
 import Sidebar from "../Sidebar";
 
 const Search: React.FC = () => {
-	const [isDrawerOpen, setDrawerOpen] = useState(true);
+	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
 	return (
 		<div className="flex w-full">
