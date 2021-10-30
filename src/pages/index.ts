@@ -1,3 +1,3 @@
 import Homepage from "./Homepage";
-
-export { Homepage };
+import Authpage from "./Authpage";
+export { Homepage, Authpage };
