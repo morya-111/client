@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "components/Catalogue/Sidebar";
 import Search from "components/Catalogue/Search";
 import Card from "components/Catalogue/Card";
+import Pagination from "components/Pagination";
 
 const Catalogue: React.FC = () => {
 	return (
@@ -29,6 +30,11 @@ const Catalogue: React.FC = () => {
 					<Card />
 					<Card />
 					<Card />
+					<Card />
+					<Card />
+				</div>
+				<div className="flex justify-center md:justify-end">
+					<Pagination />
 				</div>
 			</div>
 		</div>
