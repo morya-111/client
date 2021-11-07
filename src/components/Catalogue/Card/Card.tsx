@@ -1,25 +1,34 @@
+import classNames from "classnames";
 import Badge from "components/Badge";
 import React from "react";
 import BookIndicator from "../BookIndicator";
 
-const Card: React.FC = () => {
+interface Props {
+	title: string;
+	description: string;
+	genre: string;
+	imgUrl: string;
+}
+
+const Card: React.FC<Props> = ({ title, description, genre, imgUrl }) => {
 	return (
-		<div className="col-span-2 p-3 transition-all bg-white rounded-lg shadow hover:shadow-lg">
-			<img
-				src="https://via.placeholder.com/1080x1620/eee?text=1.5:1"
-				alt=""
-				className="w-full px-6"
-			/>
-			<div className="mt-1 overflow-hidden text-lg font-bold text-dark whitespace-nowrap overflow-ellipsis">
-				Book Title
+		<div className="flex flex-col col-span-2 p-3 transition-all bg-white rounded-lg shadow hover:shadow-lg">
+			<div className="flex flex-col justify-center flex-grow w-full px-6">
+				<img src={imgUrl} alt="" className="" />
+			</div>
+			<div
+				className={classNames(
+					"mt-1 overflow-hidden text-lg font-bold text-dark  overflow-ellipsis line-clamp-1",
+					{ "line-clamp-2": description === null }
+				)}
+			>
+				{title}
 			</div>
 			<div className="text-sm font-light text-dark line-clamp-2">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Pariatur iure minima facilis sequi voluptatem totam quae enim id
-				laborum et.
+				{description}
 			</div>
 			<div className="flex justify-between">
-				<Badge label="Mystery" />
+				<Badge label={genre} />
 				<BookIndicator borrow={true} sell={true} />
 			</div>
 		</div>

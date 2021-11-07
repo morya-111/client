@@ -19,7 +19,7 @@ const Search: React.FC = () => {
 				Search Goes here
 			</div>
 			<Drawer isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
-				<div className="h-full px-8 py-4 rounded-r-lg bg-light">
+				<div className="h-full px-8 py-4 overflow-auto rounded-r-lg bg-light">
 					<Sidebar />
 				</div>
 			</Drawer>
