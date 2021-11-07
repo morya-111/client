@@ -26,6 +26,13 @@ const Sidebar: React.FC = () => {
 		return parsed["genre"] || [];
 	}, [search]);
 
+	const page = useMemo(() => {
+		const parsed = parse(search, { arrayFormat: "comma" });
+		if (Array.isArray(parsed["page"]) || parsed["page"] === null) return 1;
+
+		return parseInt(parsed["page"]) || 1;
+	}, [search]);
+
 	return (
 		<div className="flex flex-col ">
 			<div className="sidebar-element">
@@ -56,7 +63,7 @@ const Sidebar: React.FC = () => {
 								genre
 							);
 							const queryParam = stringify(
-								{ genre: newSelectedGenre },
+								{ genre: newSelectedGenre, page },
 								{ arrayFormat: "comma" }
 							);
 							history.push({

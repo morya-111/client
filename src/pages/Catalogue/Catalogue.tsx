@@ -3,8 +3,8 @@ import Sidebar from "components/Catalogue/Sidebar";
 import Search from "components/Catalogue/Search";
 import Card from "components/Catalogue/Card";
 import Pagination from "components/Pagination";
-import { useLocation } from "react-router";
-import { parse } from "query-string";
+import { useHistory, useLocation } from "react-router";
+import { parse, stringify } from "query-string";
 import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
@@ -12,20 +12,44 @@ import Loader from "components/Loader";
 const Catalogue: React.FC = () => {
 	const { search } = useLocation();
 
+	const history = useHistory();
+
+	const setPage = (page: number) => {
+		const queryParam = stringify(
+			{ page, genre: selectedGenre },
+			{ arrayFormat: "comma" }
+		);
+		history.push({
+			pathname: `/catalogue`,
+			search: `?${queryParam}`,
+		});
+	};
+
 	const selectedGenre = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
 		if (typeof parsed["genre"] === "string") return [parsed["genre"]];
 		return parsed["genre"] || [];
 	}, [search]);
 
-	const { data, isLoading } = useQuery(
-		["books", selectedGenre.join(",")],
+	const page = useMemo(() => {
+		const parsed = parse(search, { arrayFormat: "comma" });
+		if (Array.isArray(parsed["page"]) || parsed["page"] === null) return 1;
+
+		return parseInt(parsed["page"]) || 1;
+	}, [search]);
+
+	const { data, isLoading, isPreviousData } = useQuery(
+		["books", selectedGenre.join(","), page],
 		() =>
 			api.get("/books", {
-				params: { genre__in: selectedGenre.join(",") || undefined },
+				params: {
+					genre__in: selectedGenre.join(",") || undefined,
+					page,
+				},
 			}),
 		{
 			select: (data) => data.data.data,
+			keepPreviousData: true,
 		}
 	);
 
@@ -59,9 +83,20 @@ const Catalogue: React.FC = () => {
 								/>
 							))}
 						</div>
-						<div className="flex justify-center md:justify-end">
-							<Pagination />
-						</div>
+						{data.pagination.pages > 1 && (
+							<div className="flex justify-center md:justify-end">
+								<Pagination
+									count={data.pagination.pages}
+									page={page}
+									onPageChange={(page) => setPage(page)}
+									previousDisabled={!data.isPrevious}
+									nextDisabled={
+										!data.pagination.isNext &&
+										isPreviousData
+									}
+								/>
+							</div>
+						)}
 					</div>
 				</>
 			)}
