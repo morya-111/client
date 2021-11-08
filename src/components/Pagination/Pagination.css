@@ -1,0 +1,15 @@
+.active-page {
+	@apply bg-semiDark hover:bg-semiDark;
+}
+
+.inactive-page {
+	@apply bg-semiLight hover:bg-semiDark;
+}
+
+.page {
+	@apply px-3 py-1 rounded-lg text-light font-bold mx-1 cursor-pointer transition-colors;
+}
+
+.btn {
+	@apply cursor-pointer transform hover:scale-110 transition-transform;
+}
