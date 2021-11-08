@@ -15,7 +15,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
 					className="flex-shrink-0 w-6 h-6 transition-colors rounded-lg appearance-none cursor-pointer peer border-semiDark checked:bg-semiDark hover:shadow-lg"
 				/>
 				<FaCheck
-					className="absolute hidden transition-all transform top-1 left-1 peer-checked:block animate-scale-reveal text-light"
+					className="absolute hidden transition-all transform left-1 peer-checked:block animate-scale-reveal text-light"
 					size={16}
 				/>
 				{label && (
