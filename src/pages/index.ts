@@ -1,3 +1,4 @@
 import Homepage from "./Homepage";
-import Authpage from "./Authpage";
-export { Homepage, Authpage };
+import SignInpage from "./SignInpage";
+import SignUppage from "./SignUppage";
+export { Homepage, SignInpage, SignUppage };

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 const Homepage: React.FC = () => {
 	return (
 		<div>
-			<Link to="/auth">Auth Page</Link>
+			<Link to="/signup">Sign Up</Link>
+			<br />
+			<Link to="/signin">Sign In</Link>
 		</div>
 	);
 };
