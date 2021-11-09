@@ -11,12 +11,7 @@ import { useMutation } from "react-query";
 import { formMsgsTypeEnum } from "components/SignUpForm/types";
 import { FormMessageType } from "components/SignUpForm/types";
 import authService from "utils/AuthService";
-import {
-	validateEmailId,
-	validateFirstName,
-	validateLastName,
-	validatePassword,
-} from "./validators";
+import { validateEmailId, validatePassword } from "./validators";
 
 const SignInForm: React.FC = () => {
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
@@ -34,7 +29,7 @@ const SignInForm: React.FC = () => {
 	};
 	const signInMutation = useMutation(
 		(formData: SignInFormData) => {
-			return authService.login(formData.email, formData.password);
+			return authService.login(formData.emailId, formData.password);
 		},
 		{
 			onError: (err: any) => {
@@ -60,11 +55,15 @@ const SignInForm: React.FC = () => {
 					});
 				}
 			},
-			onSuccess: () => {
+			onSuccess: (data) => {
+				console.log(data.data.data.user);
+
+				authService.logInSuccessful(data.data.data.user);
 				setFormMsg({
 					msg: `Sign In Successful. Redirecting To Home Page...`,
 					type: formMsgsTypeEnum.Success,
 				});
+				authService.isUserLoggedIn();
 			},
 			onSettled: (error: any) => {
 				console.log("Request Settled. Relax Boyys");
@@ -97,62 +96,20 @@ const SignInForm: React.FC = () => {
 			</div>
 			<Formik
 				initialValues={{
-					firstName: "",
-					lastName: "",
 					emailId: "",
 					password: "",
-					confirmPassword: "",
 				}}
-				onSubmit={() => {
+				onSubmit={(values: SignInFormData) => {
 					// console.log("running submit");
-					// const res = signUpMutation.mutate(values);
-					// console.log("submit done");
+					const res = signInMutation.mutate(values);
+					// console.log("");
 					// console.log(res);
 				}}
 				// validate={validateSignUpForm}
 			>
 				{({ errors, touched, isSubmitting }) => (
 					<Form>
-						<div className="flex">
-							<div className="mx-4  mr-0.5">
-								<label
-									htmlFor="firstName"
-									className="std-label"
-								>
-									First Name :
-								</label>
-								<Field
-									id="firstName"
-									name="firstName"
-									type="text"
-									placeholder="First Name"
-									className="std-input"
-									validate={validateFirstName}
-								/>
-								<div className="validation-msg">
-									<ErrorMessage
-										className="validation-msg"
-										name="firstName"
-									/>
-								</div>
-							</div>
-							<div className="mx-4 ">
-								<label htmlFor="lastName" className="std-label">
-									Last Name :
-								</label>
-								<Field
-									id="lastName"
-									name="lastName"
-									type="text"
-									placeholder="Last Name"
-									className="std-input"
-									validate={validateLastName}
-								/>
-								<div className="validation-msg">
-									<ErrorMessage name="lastName" />
-								</div>
-							</div>
-						</div>
+						<div className="flex"></div>
 						<div className="mx-4 ">
 							<label htmlFor="emailid" className="std-label">
 								Email :
@@ -226,7 +183,7 @@ const SignInForm: React.FC = () => {
 };
 
 type SignInFormData = {
-	email: string;
+	emailId: string;
 	password: string;
 };
 
