@@ -15,3 +15,8 @@ export type SignUpFormData = {
 	password: string;
 	confirmPassword: string;
 };
+
+export type SignInFormData = {
+	emailId: string;
+	password: string;
+};

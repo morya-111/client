@@ -4,18 +4,21 @@ import React from "react";
 import "./SignUpForm.css";
 import { useMutation } from "react-query";
 
-import { FcGoogle } from "react-icons/fc";
-import { AiFillFacebook } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import axiosClient from "utils/axiosClient";
 import {
 	validateEmailId,
 	validateFirstName,
 	validateLastName,
 	validatePassword,
 	validateSignUpForm,
-} from "./validators";
+} from "utils/authFormsValidators";
 
-import { FormMessageType, SignUpFormData, formMsgsTypeEnum } from "./types";
+import {
+	FormMessageType,
+	SignUpFormData,
+	formMsgsTypeEnum,
+} from "types/formTypes";
 
 const SignUpForm: React.FC = () => {
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
@@ -28,7 +31,7 @@ const SignUpForm: React.FC = () => {
 		};
 		console.log("sending axios req");
 
-		return axios.post("http://localhost:4000/v1/user/register", {
+		return axiosClient.post("/user/register", {
 			first_name: options.firstName,
 			last_name: options.lastName,
 			email: options.emailId,
@@ -68,26 +71,6 @@ const SignUpForm: React.FC = () => {
 
 	return (
 		<div className="signupform-main">
-			<div className="m-50">
-				<div className="flex justify-center m-auto text-xl font-bold ">
-					Sign Up To BookEx
-				</div>
-				<div className="flex justify-center">
-					<div className="std-icon-wrapper">
-						<FcGoogle className="w-12 h-12 " />
-					</div>
-					<div className="std-icon-wrapper">
-						<AiFillFacebook className="w-12 h-12 " />
-					</div>
-				</div>
-				<div className="flex justify-center my-2">
-					<div className="">
-						<span className="line-span">xxxxxxxxxxx</span>
-						<span className="">or do it via E-mail</span>
-						<span className="line-span">xxxxxxxxxxx</span>
-					</div>
-				</div>
-			</div>
 			<Formik
 				initialValues={{
 					firstName: "",

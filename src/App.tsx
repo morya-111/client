@@ -1,12 +1,7 @@
 import Navigation from "Navigation";
 import React, { useReducer } from "react";
-import { QueryClient } from "react-query";
-import {
-	AuthDataType,
-	initialAuthData,
-	AuthDataActions,
-	AuthDataActionsTypeEnum,
-} from "types/authTypes";
+import authDataReducer from "reducers/authDataReducer";
+import { initialAuthData } from "types/authTypes";
 
 import AuthDataContext from "contexts/AuthDataContext";
 
@@ -22,18 +17,5 @@ function App() {
 		</AuthDataContext.Provider>
 	);
 }
-
-const authDataReducer = (
-	state: AuthDataType,
-	action: AuthDataActions
-): AuthDataType => {
-	switch (action.type) {
-		case AuthDataActionsTypeEnum.LOGIN_SUCCESS:
-			return action.payload as AuthDataType;
-
-		default:
-			return state;
-	}
-};
 
 export default App;

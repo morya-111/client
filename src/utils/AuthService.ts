@@ -1,13 +1,14 @@
 import axios from "axios";
 import { AuthDataType } from "types/authTypes";
+import axiosClient from "./axiosClient";
 class AuthService {
 	private _isLoggedIn: boolean = false;
 	constructor() {
 		console.log("authservice initiated");
 	}
 	public login = (email: string, password: string) => {
-		return axios.post(
-			"http://localhost:4000/v1/user/login",
+		return axiosClient.post(
+			"/user/login",
 			{
 				email: email,
 				password: password,

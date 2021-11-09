@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "./../SignUpForm/SignUpForm.css";
 import "./SignInForm.css";
-import { FcGoogle } from "react-icons/fc";
-import { AiFillFacebook } from "react-icons/ai";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useMutation } from "react-query";
-import { formMsgsTypeEnum } from "components/SignUpForm/types";
-import { FormMessageType } from "components/SignUpForm/types";
+
+import { FormMessageType, formMsgsTypeEnum } from "types/formTypes";
 import authService from "utils/AuthService";
-import { validateEmailId, validatePassword } from "./validators";
+import { validateEmailId, validatePassword } from "utils/authFormsValidators";
+import AuthDataContext from "contexts/AuthDataContext";
+import { AuthDataActionsTypeEnum } from "types/authTypes";
+import axiosClient from "utils/axiosClient";
+import { SignInFormData } from "types/formTypes";
+import OAuthLinks from "components/OAuthLinks";
 
 const SignInForm: React.FC = () => {
+	const { authData, authDataDispatch } = useContext(AuthDataContext);
+
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
 		type: formMsgsTypeEnum.None,
@@ -63,49 +70,28 @@ const SignInForm: React.FC = () => {
 					msg: `Sign In Successful. Redirecting To Home Page...`,
 					type: formMsgsTypeEnum.Success,
 				});
-				authService.isUserLoggedIn();
+				authDataDispatch({
+					payload: data.data.data.user,
+					type: AuthDataActionsTypeEnum.LOGIN_SUCCESS,
+				});
 			},
 			onSettled: (error: any) => {
-				console.log("Request Settled. Relax Boyys");
-				console.log();
+				console.log("Request Settled.");
 			},
 		}
 	);
 
 	return (
 		<div className="signupform-main">
-			<div className="m-50">
-				<div className="flex justify-center m-auto text-xl font-bold ">
-					Sign In To BookEx
-				</div>
-				<div className="flex justify-center">
-					<div className="std-icon-wrapper">
-						<FcGoogle className="w-12 h-12 " />
-					</div>
-					<div className="std-icon-wrapper">
-						<AiFillFacebook className="w-12 h-12 " />
-					</div>
-				</div>
-				<div className="flex justify-center my-2">
-					<div className="">
-						<span className="line-span">xxxxxxxxxxx</span>
-						<span className="">or do it via E-mail</span>
-						<span className="line-span">xxxxxxxxxxx</span>
-					</div>
-				</div>
-			</div>
+			<OAuthLinks />
 			<Formik
 				initialValues={{
 					emailId: "",
 					password: "",
 				}}
 				onSubmit={(values: SignInFormData) => {
-					// console.log("running submit");
-					const res = signInMutation.mutate(values);
-					// console.log("");
-					// console.log(res);
+					signInMutation.mutate(values);
 				}}
-				// validate={validateSignUpForm}
 			>
 				{({ errors, touched, isSubmitting }) => (
 					<Form>
@@ -147,17 +133,6 @@ const SignInForm: React.FC = () => {
 							<div className=" validation-msg pass-validation-msg">
 								<ErrorMessage name="password" />
 							</div>
-							{/* <div className="flex justify-center mt-2">
-								<input
-									type="checkbox"
-									name="showpassword"
-									id="showpassword"
-									className="w-5 h-5 "
-								/>
-								<label className="m-1 mt-0 text-sm">
-									Show Password
-								</label>
-							</div> */}
 						</div>
 
 						<div className="flex justify-center mt-0">
@@ -180,11 +155,6 @@ const SignInForm: React.FC = () => {
 			</Formik>
 		</div>
 	);
-};
-
-type SignInFormData = {
-	emailId: string;
-	password: string;
 };
 
 export default SignInForm;
