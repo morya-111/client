@@ -1,0 +1,9 @@
+.eye-span {
+	@apply relative  inline-block  bottom-9;
+
+	left: 19.5rem;
+}
+
+.pass-validation-msg {
+	@apply relative bottom-5;
+}
