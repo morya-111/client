@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
 	return (
-		<div className="relative py-2 px-4 w-full mx-auto sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 bg-dark">
-			<LogoLight />
-			<div className="absolute right-32 bottom-50 text-light flex flex-row  space-x-14  items-center sm:mx-0 sm:flex-shrink-0 ">
+		<div className="relative w-full px-4 py-2 mx-auto sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 bg-dark">
+			<LogoLight className="w-auto h-16" />
+			<div className="absolute flex flex-row items-center right-32 bottom-50 text-light space-x-14 sm:mx-0 sm:flex-shrink-0 ">
 				<NavLink className="motion-safe:hover:scale-110 " to="/about">
 					About
 				</NavLink>
@@ -16,10 +16,7 @@ const Footer = () => {
 				>
 					Privacy Policy
 				</NavLink>
-				<NavLink
-					className="motion-safe:hover:scale-110  "
-					to="/contact"
-				>
+				<NavLink className="motion-safe:hover:scale-110 " to="/contact">
 					Contact
 				</NavLink>
 			</div>

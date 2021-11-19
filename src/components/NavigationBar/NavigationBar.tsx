@@ -1,32 +1,47 @@
-import React from "react";
+import React, { FC, Props } from "react";
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
+import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
 import SignUp from "components/GoToButtons/SignUp";
 import { NavLink } from "react-router-dom";
 
-const NavigationBar = () => {
+const NavigationBar = (
+	{ toggle }: { toggle: any },
+	{ isOpen }: { isOpen: boolean }
+) => {
 	return (
-		<div className="relative py-2 w-screen mx-auto  sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-			<div className="block mx-auto h-24 sm:mx-0 sm:flex-shrink-0 ">
-				<LogoDark />
+		<nav
+			className={
+				isOpen
+					? "relative flex items-center justify-between h-24 bg-semiDark"
+					: "relative flex items-center justify-between h-24 bg-light"
+			}
+		>
+			<LogoDark className="w-auto h-24 p-3" />
+			<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
+				<MenuIcon />
 			</div>
-			<div className="absolute right-10 bottom-1/2 text-dark flex flex-row  space-x-10 items-center sm:mx-0 sm:flex-shrink-0 ">
-				<NavLink className="motion-safe:hover:scale-110" to="/about">
+			<div className="hidden pr-8 md:block">
+				<NavLink
+					to="/about"
+					className="p-4 motion-safe:hover:scale-110"
+				>
 					About
 				</NavLink>
 				<NavLink
-					className="motion-safe:hover:scale-110"
 					to="/catalogue"
+					className="p-4 motion-safe:hover:scale-110 "
 				>
 					Catalogue
 				</NavLink>
-				<NavLink className="motion-safe:hover:scale-110" to="/contact">
+				<NavLink
+					to="/contact"
+					className="p-4 motion-safe:hover:scale-110"
+				>
 					Contact
 				</NavLink>
 				<SignUp />
 			</div>
-		</div>
+		</nav>
 	);
 };
 export default NavigationBar;
-//
-//
