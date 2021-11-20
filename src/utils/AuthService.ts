@@ -7,7 +7,7 @@ class AuthService {
 		console.log("authservice initiated");
 	}
 	public login = (email: string, password: string) => {
-		return axiosClient.post(
+		return axiosClient.post<any>(
 			"/user/login",
 			{
 				email: email,
@@ -24,6 +24,7 @@ class AuthService {
 		this._isLoggedIn = true;
 	};
 
+	// this is useless rn
 	public isUserLoggedIn = () => {
 		if (localStorage.getItem("user") && this._isLoggedIn) {
 			console.log(JSON.parse(localStorage.getItem("user")!));

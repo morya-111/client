@@ -12,6 +12,8 @@ const authDataReducer = (
 		case AuthDataActionsTypeEnum.LOGIN_SUCCESS:
 			return action.payload as AuthDataType;
 
+		case AuthDataActionsTypeEnum.ALREADY_LOGGED_IN:
+			return action.payload as AuthDataType;
 		default:
 			return state;
 	}

@@ -14,11 +14,14 @@ import {
 	validateSignUpForm,
 } from "utils/authFormsValidators";
 
+import { RiLoader2Fill } from "react-icons/ri";
+
 import {
 	FormMessageType,
 	SignUpFormData,
 	formMsgsTypeEnum,
 } from "types/formTypes";
+import OAuthLinks from "components/OAuthLinks";
 
 const SignUpForm: React.FC = () => {
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
@@ -29,7 +32,7 @@ const SignUpForm: React.FC = () => {
 		const options = {
 			...formData,
 		};
-		console.log("sending axios req");
+		// console.log("sending axios req");
 
 		return axiosClient.post("/user/register", {
 			first_name: options.firstName,
@@ -71,6 +74,7 @@ const SignUpForm: React.FC = () => {
 
 	return (
 		<div className="signupform-main">
+			<OAuthLinks />
 			<Formik
 				initialValues={{
 					firstName: "",
@@ -186,6 +190,10 @@ const SignUpForm: React.FC = () => {
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
+							{signUpMutation.isLoading ? (
+								<RiLoader2Fill />
+							) : null}
+							<div className={formMsg.type}>{}</div>
 							<span className="mr-1">
 								Already Have An Account ?
 							</span>

@@ -18,6 +18,8 @@ import axiosClient from "utils/axiosClient";
 import { SignInFormData } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
 
+import { AiOutlineReload } from "react-icons/ai";
+
 const SignInForm: React.FC = () => {
 	const { authData, authDataDispatch } = useContext(AuthDataContext);
 
@@ -64,7 +66,6 @@ const SignInForm: React.FC = () => {
 			},
 			onSuccess: (data) => {
 				console.log(data.data.data.user);
-
 				authService.logInSuccessful(data.data.data.user);
 				setFormMsg({
 					msg: `Sign In Successful. Redirecting To Home Page...`,
@@ -142,6 +143,9 @@ const SignInForm: React.FC = () => {
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
+							{signInMutation.isLoading ? (
+								<AiOutlineReload className="spinning" />
+							) : null}
 							<span className="mr-1">
 								Don't Have An Account ?
 							</span>
