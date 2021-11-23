@@ -9,13 +9,7 @@ const NavigationBar = (
 	{ isOpen }: { isOpen: boolean }
 ) => {
 	return (
-		<nav
-			className={
-				isOpen
-					? "relative flex items-center justify-between h-24 bg-semiDark"
-					: "relative flex items-center justify-between h-24 bg-light"
-			}
-		>
+		<nav className="relative flex items-center justify-between h-24 md:pl-14 bg-light">
 			<LogoDark className="w-auto h-24 p-3" />
 			<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
 				<MenuIcon />

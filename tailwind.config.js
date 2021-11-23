@@ -20,6 +20,9 @@ module.exports = {
 				large: ["61px", "83px"],
 				semiLarge: ["29px", "40px"],
 			},
+			screens: {
+				bigMonitor: "1600px",
+			},
 		},
 	},
 };

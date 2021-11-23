@@ -33,8 +33,8 @@ const Landing = () => {
 
 			<Dropdown isOpen={isOpen} />
 
-			<div className="container min-w-full min-h-screen overflow-hidden bg-light">
-				<div className="top-0 flex pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
+			<div className="flex min-w-full min-h-screen overflow-hidden bg-light bigMonitor:items-center">
+				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
 					<div className="">
 						<h1 className="text-4xl md:text-6xl text-dark">
 							Trying To Find Your Favorite book?
