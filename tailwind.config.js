@@ -2,11 +2,6 @@ module.exports = {
 	mode: "jit",
 	purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
 	darkMode: false, // or 'media' or 'class'
-	variants: {
-		extend: {},
-	},
-	plugins: [],
-
 	theme: {
 		extend: {
 			colors: {
@@ -16,9 +11,27 @@ module.exports = {
 				semiLight: "#51C4D3",
 				light: "#D8E3E7",
 			},
-			screens: {
+      screens: {
 				bigMonitor: "1600px",
 			},
+			keyframes: {
+				scale: {
+					"0%, 100%": { transform: "scale(1)" },
+
+					"70%": { transform: "scale(1.1)" },
+				},
+			},
+			animation: {
+				"scale-reveal": "scale 0.5s ease-in-out ",
+			},
+		},
+		fontFamily: {
+			sans: ["Nunito", "sans-serif"],
 		},
 	},
+	variants: {
+		extend: {},
+	},
+	plugins: [require("@tailwindcss/line-clamp")],
+
 };
