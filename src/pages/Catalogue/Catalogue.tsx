@@ -16,7 +16,7 @@ const Catalogue: React.FC = () => {
 
 	const setPage = (page: number) => {
 		const queryParam = stringify(
-			{ page, genre: selectedGenre },
+			{ page, genre: selectedGenre, language: selectedLanguages },
 			{ arrayFormat: "comma" }
 		);
 		history.push({
@@ -31,6 +31,12 @@ const Catalogue: React.FC = () => {
 		return parsed["genre"] || [];
 	}, [search]);
 
+	const selectedLanguages = useMemo(() => {
+		const parsed = parse(search, { arrayFormat: "comma" });
+		if (typeof parsed["language"] === "string") return [parsed["language"]];
+		return parsed["language"] || [];
+	}, [search]);
+
 	const page = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
 		if (Array.isArray(parsed["page"]) || parsed["page"] === null) return 1;
@@ -39,17 +45,19 @@ const Catalogue: React.FC = () => {
 	}, [search]);
 
 	const { data, isLoading, isPreviousData } = useQuery(
-		["books", selectedGenre.join(","), page],
+		["books", selectedGenre.join(","), page, selectedLanguages.join(",")],
 		() =>
 			api.get("/books", {
 				params: {
 					genre__in: selectedGenre.join(",") || undefined,
 					page,
+					language__in: selectedLanguages.join(",") || undefined,
 				},
 			}),
 		{
 			select: (data) => data.data.data,
 			keepPreviousData: true,
+			refetchOnWindowFocus: false,
 		}
 	);
 
@@ -89,9 +97,11 @@ const Catalogue: React.FC = () => {
 									count={data.pagination.pages}
 									page={page}
 									onPageChange={(page) => setPage(page)}
-									previousDisabled={!data.isPrevious}
+									previousDisabled={
+										!data.pagination.isPrevious
+									}
 									nextDisabled={
-										!data.pagination.isNext &&
+										!data.pagination.isNext ||
 										isPreviousData
 									}
 								/>
