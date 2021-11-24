@@ -1,4 +1,4 @@
-import React, { FC, Props } from "react";
+import React from "react";
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
 import SignUp from "components/GoToButtons/SignUp";

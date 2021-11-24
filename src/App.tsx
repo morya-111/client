@@ -1,5 +1,5 @@
 import Navigation from "Navigation";
-import React, { useState } from "react";
+import React from "react";
 
 function App() {
 	return <Navigation />;

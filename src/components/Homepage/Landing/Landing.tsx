@@ -6,7 +6,6 @@ import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
 import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
 import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
 import Footer from "components/Footer";
-import InfoText from "../InfoText";
 import { NavLink } from "react-router-dom";
 
 const Landing = () => {
@@ -33,13 +32,13 @@ const Landing = () => {
 
 			<Dropdown isOpen={isOpen} />
 
-			<div className="flex min-w-full min-h-screen overflow-hidden bg-light bigMonitor:items-center">
+			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
-					<div className="">
-						<h1 className="text-4xl md:text-6xl text-dark">
+					<div className="w-[23ch] md:w-[30ch] lg:w-full">
+						<h1 className="text-3xl font-semibold md:text-4xl lg:text-6xl text-dark">
 							Trying To Find Your Favorite book?
 						</h1>
-						<h2 className="mt-2 text-2xl md:text-3xl text-dark">
+						<h2 className="mt-2 text-base md:text-xl lg:text-3xl text-dark">
 							Browse large catalogue of books to rent or buy from
 							people close to you!
 						</h2>
@@ -63,7 +62,7 @@ const Landing = () => {
 			<div className="w-auto min-h-screen bg-clip-padding bg-semiDark">
 				<div className="flex justify-center">
 					<div className="w-screen mt-10 md:mt-36">
-						<h1 className="text-5xl text-center text-light ">
+						<h1 className="text-5xl font-bold text-center text-light">
 							What Can I Do Here?
 						</h1>
 
@@ -71,7 +70,7 @@ const Landing = () => {
 							<div className="h-auto w-72">
 								<First className="h-auto w-72" />
 								<div className="mt-3">
-									<h1 className="text-lg text-light">
+									<h1 className="text-lg font-bold text-light">
 										Books Catalogue
 									</h1>
 									<h2 className="text-base text-light">
@@ -84,7 +83,7 @@ const Landing = () => {
 							<div className="h-auto mt-8 md:mt-0 w-72">
 								<Second className="h-auto w-72" />
 								<div className="mt-3">
-									<h1 className="text-lg text-light">
+									<h1 className="text-lg font-bold text-light">
 										Books Listing
 									</h1>
 									<h2 className="text-base text-light">
@@ -96,7 +95,7 @@ const Landing = () => {
 							<div className="h-auto mt-8 mb-8 md:mt-0 w-72">
 								<Third className="h-auto w-72" />
 								<div className="mt-3">
-									<h1 className="text-lg text-light">
+									<h1 className="text-lg font-bold text-light">
 										Join Community
 									</h1>
 									<h2 className="text-base text-light">

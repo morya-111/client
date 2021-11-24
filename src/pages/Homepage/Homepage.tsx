@@ -1,4 +1,3 @@
-import InfoText from "components/Homepage/InfoText";
 import Landing from "components/Homepage/Landing";
 import React from "react";
 
