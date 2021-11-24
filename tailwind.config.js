@@ -11,6 +11,9 @@ module.exports = {
 				semiLight: "#51C4D3",
 				light: "#D8E3E7",
 			},
+      screens: {
+				bigMonitor: "1600px",
+			},
 			keyframes: {
 				scale: {
 					"0%, 100%": { transform: "scale(1)" },
@@ -30,4 +33,5 @@ module.exports = {
 		extend: {},
 	},
 	plugins: [require("@tailwindcss/line-clamp")],
+
 };
