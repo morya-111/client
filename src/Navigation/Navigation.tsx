@@ -8,9 +8,10 @@ const Navigation = () => {
 			<Switch>
 				<Route path="/" exact component={Homepage} />
 				<Route path="/catalogue" exact component={Catalogue} />
+				<Route path="/book"
 			</Switch>
 		</BrowserRouter>
-	);
+		);
 };
 
 export default Navigation;
