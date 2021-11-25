@@ -1,10 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Checkbox from "components/Inputs/Checkbox";
 import { stringify, parse } from "query-string";
 
 import GENRES from "./genres";
 import "./Sidebar.css";
 import { useLocation, useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import api from "api";
+import Loader from "components/Loader";
 
 function toggleValueInArray<T>(arr: T[] | T, value: T) {
 	if (!Array.isArray(arr)) {
@@ -21,6 +24,10 @@ const Sidebar: React.FC = () => {
 	const { search } = useLocation();
 	const history = useHistory();
 
+	const [expanded, setExpanded] = useState(false);
+
+	const MIN_LANGUAGE_ITEMS = 3;
+
 	const selectedGenre = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
 		return parsed["genre"] || [];
@@ -33,6 +40,20 @@ const Sidebar: React.FC = () => {
 		return parseInt(parsed["page"]) || 1;
 	}, [search]);
 
+	const selectedLanguages = useMemo(() => {
+		const parsed = parse(search, { arrayFormat: "comma" });
+		return parsed["language"] || [];
+	}, [search]);
+
+	const { data, isLoading, isSuccess } = useQuery(
+		["languages"],
+		() => api.get("/languages", { params: { order: "-priority" } }),
+		{
+			select: (data) => data.data.data,
+			refetchOnWindowFocus: false,
+		}
+	);
+
 	return (
 		<div className="flex flex-col ">
 			<div className="sidebar-element">
@@ -42,15 +63,49 @@ const Sidebar: React.FC = () => {
 				<Checkbox label="For Rent" />
 			</div>
 			<span className="title">Language</span>
-			<div className="sidebar-element">
-				<Checkbox label="English" />
-			</div>
-			<div className="sidebar-element">
-				<Checkbox label="Hindi" />
-			</div>
-			<div className="sidebar-element">
-				<Checkbox label="Marathi" />
-			</div>
+			{isLoading && !isSuccess ? (
+				<Loader size="sm" />
+			) : (
+				<>
+					{(data.languages as Array<any>)
+						.slice(0, expanded ? undefined : MIN_LANGUAGE_ITEMS)
+						.map((language, idx) => (
+							<div className="sidebar-element" key={idx}>
+								<Checkbox
+									label={language.name}
+									checked={selectedLanguages.includes(
+										language.id.toString()
+									)}
+									onChange={() => {
+										const newSelectedLanguage =
+											toggleValueInArray<string>(
+												selectedLanguages,
+												language.id.toString()
+											);
+										const queryParam = stringify(
+											{
+												language: newSelectedLanguage,
+												page,
+												genre: selectedGenre,
+											},
+											{ arrayFormat: "comma" }
+										);
+										history.push({
+											pathname: `/catalogue`,
+											search: `?${queryParam}`,
+										});
+									}}
+								/>
+							</div>
+						))}
+					<div
+						className="text-sm cursor-pointer text-dark hover:text-semiDark"
+						onClick={() => setExpanded(!expanded)}
+					>
+						{expanded ? "Show Less" : "Show More"}
+					</div>
+				</>
+			)}
 			<span className="title">Genre</span>
 			{GENRES.map((genre, idx) => (
 				<div className="sidebar-element" key={idx}>
@@ -63,7 +118,11 @@ const Sidebar: React.FC = () => {
 								genre
 							);
 							const queryParam = stringify(
-								{ genre: newSelectedGenre, page },
+								{
+									genre: newSelectedGenre,
+									page,
+									language: selectedLanguages,
+								},
 								{ arrayFormat: "comma" }
 							);
 							history.push({
