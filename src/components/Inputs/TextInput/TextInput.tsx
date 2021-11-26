@@ -29,7 +29,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 				{...rest}
 				{...field}
 				ref={ref}
-				className={`disabled:opacity-50 w-full px-2 py-2 text-xl font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid rounded-lg outline-none  focus:border-opacity-100 focus:shadow-md hover:shadow-md ${inputErrorClass}`}
+				className={`disabled:opacity-50 w-full focus:ring-2 ring-semiLight ring-opacity-50 px-2 py-2 text-xl font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid rounded-lg outline-none text-dark  focus:border-opacity-100 focus:shadow-md hover:shadow-md ${inputErrorClass}`}
 			/>
 			<div className="absolute right-2 top-8">{right}</div>
 			{isError && (

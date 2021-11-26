@@ -1,3 +1,4 @@
+import Select from "components/Inputs/Select";
 import TextArea from "components/Inputs/TextArea";
 import TextInput from "components/Inputs/TextInput";
 import { Formik, Form } from "formik";
@@ -11,7 +12,7 @@ const AddBook = () => {
 					<div style={{ flex: 1 }} className="hidden md:block" />
 					<div
 						style={{ flex: 2 }}
-						className="text-5xl font-bold text-center"
+						className="text-5xl font-bold text-center text-dark"
 					>
 						Create Book
 					</div>
@@ -24,6 +25,8 @@ const AddBook = () => {
 							author: "",
 							publisher: "",
 							description: "",
+							genre: "b",
+							language: "a",
 						}}
 						onSubmit={() => {}}
 					>
@@ -50,6 +53,26 @@ const AddBook = () => {
 										label="Publisher"
 										required
 									/>
+								</div>
+							</div>
+							<div className="flex ">
+								<div className="flex-grow mt-2 mr-2">
+									<Select name="genre" label="Genre" required>
+										<option>a</option>
+										<option>b</option>
+										<option>Select Option</option>
+									</Select>
+								</div>
+								<div className="flex-grow mt-2 ml-2">
+									<Select
+										name="language"
+										label="Language"
+										required
+									>
+										<option>a</option>
+										<option>b</option>
+										<option>Select Option</option>
+									</Select>
 								</div>
 							</div>
 						</Form>
