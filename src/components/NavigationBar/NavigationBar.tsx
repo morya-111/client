@@ -11,7 +11,7 @@ const NavigationBar = (
 	return (
 		<nav className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
 			<NavLink to="/">
-				<LogoDark className="w-auto h-24 p-3" />
+				<LogoDark className="w-auto h-24 p-2" />
 			</NavLink>
 			<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
 				<MenuIcon />

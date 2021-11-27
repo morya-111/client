@@ -25,10 +25,10 @@ const BookDisplay: React.FC = () => {
 		<div>
 			<NavigationBar toggle={toggle} />
 			<Dropdown isOpen={isOpen} />
-			<section className="overflow-hidden text-gray-600 body-font">
-				<div className="container min-w-full min-h-screen px-5 mx-auto bg-light">
-					<div className="flex flex-wrap mx-auto lg:w-4/5">
-						<div className="w-full mb-6 lg:w-1/2 lg:pr-10 lg:py-6 lg:mb-0">
+			<section className="bg-light body-font">
+				<div className="container h-full min-w-full mx-auto bg-light">
+					<div className="flex flex-wrap px-2 py-3 lg:ml-16 lg:w-full">
+						<div className="w-full mb-6 lg:w-4/6 lg:pr-10 lg:py-6 lg:mb-0">
 							<h1 className="relative text-3xl font-bold text-dark">
 								Book Title
 								<h2 className="absolute right-0 inline-block px-2 text-sm rounded-full bottom-1/4 bg-semiLight text-light">
@@ -38,6 +38,11 @@ const BookDisplay: React.FC = () => {
 							<h2 className="text-sm font-semibold text-dark">
 								Uploaded by --Username--
 							</h2>
+							<img
+								alt="ecommerce"
+								className="w-1/2 h-auto mx-auto my-10 shadow-md lg:hidden md:w-1/3 md:h-auto"
+								src="https://via.placeholder.com/400x513"
+							/>
 							<div className="flex mt-4">
 								<h1 className="flex-grow text-lg underline text-semiDark">
 									Description:
@@ -104,13 +109,13 @@ const BookDisplay: React.FC = () => {
 						</div>
 						<img
 							alt="ecommerce"
-							className="object-cover object-center w-1/2 h-64 rounded lg:w-1/4 lg:h-1/4"
+							className="hidden object-cover object-center mt-4 ml-16 rounded lg:inline-flex lg:w-1/5 lg:h-1/4"
 							src="https://via.placeholder.com/400x513"
 						/>
 					</div>
 				</div>
+				<Footer />
 			</section>
-			<Footer />
 		</div>
 	);
 };
