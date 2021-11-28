@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
 	baseURL: "http://localhost:4000/v1",
-	// TODO: now every request is default using credentails
+	// NOTE: now every request is by default using credentails
 	withCredentials: true,
 });
 

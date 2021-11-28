@@ -32,8 +32,6 @@ const SignUpForm: React.FC = () => {
 		const options = {
 			...formData,
 		};
-		// console.log("sending axios req");
-
 		return axiosClient.post("/user/register", {
 			first_name: options.firstName,
 			last_name: options.lastName,
