@@ -8,6 +8,8 @@ const authDataReducer = (
 	state: AuthDataType,
 	action: AuthDataActions
 ): AuthDataType => {
+	console.log("Auth Data Reducer Called !");
+
 	switch (action.type) {
 		case AuthDataActionsTypeEnum.LOGIN_SUCCESS:
 			return action.payload as AuthDataType;

@@ -33,10 +33,10 @@
 }
 
 .formMsgs-success {
-	@apply text-green-600 bg-gray-200;
+	@apply text-green-600 bg-bookex-light;
 }
 .formMsgs-fail {
-	@apply text-red-500 bg-gray-200;
+	@apply text-red-500 bg-bookex-light;
 }
 
 .validation-msg {

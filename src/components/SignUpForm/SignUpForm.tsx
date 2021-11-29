@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import "./SignUpForm.css";
@@ -6,15 +5,7 @@ import { useMutation } from "react-query";
 
 import { Link } from "react-router-dom";
 import axiosClient from "utils/axiosClient";
-import {
-	validateEmailId,
-	validateFirstName,
-	validateLastName,
-	validatePassword,
-	validateSignUpForm,
-} from "utils/authFormsValidators";
-
-import { RiLoader2Fill } from "react-icons/ri";
+import { SignUpSchema } from "utils/authFormsValidators";
 
 import {
 	FormMessageType,
@@ -22,27 +13,18 @@ import {
 	formMsgsTypeEnum,
 } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
+import Loader from "components/Loader";
+import authService from "utils/AuthService";
 
 const SignUpForm: React.FC = () => {
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
 		type: formMsgsTypeEnum.None,
 	});
-	const registerUser = (formData: SignUpFormData) => {
-		const options = {
-			...formData,
-		};
-		return axiosClient.post("/user/register", {
-			first_name: options.firstName,
-			last_name: options.lastName,
-			email: options.emailId,
-			password: options.password,
-		});
-	};
 
 	const signUpMutation = useMutation(
 		(formData: SignUpFormData) => {
-			return registerUser(formData);
+			return authService.registerUser(formData);
 		},
 		{
 			onError: (err: any) => {
@@ -64,15 +46,12 @@ const SignUpForm: React.FC = () => {
 					type: formMsgsTypeEnum.Success,
 				});
 			},
-			onSettled: (error: any) => {
-				console.log("Request Settled. Relax Boyys");
-			},
 		}
 	);
 
 	return (
 		<div className="signupform-main">
-			<OAuthLinks />
+			<OAuthLinks titleText="Sign Up To BookEx" />
 			<Formik
 				initialValues={{
 					firstName: "",
@@ -82,12 +61,9 @@ const SignUpForm: React.FC = () => {
 					confirmPassword: "",
 				}}
 				onSubmit={(values: SignUpFormData) => {
-					console.log("running submit");
-					const res = signUpMutation.mutate(values);
-					console.log("submit done");
-					console.log(res);
+					signUpMutation.mutate(values);
 				}}
-				validate={validateSignUpForm}
+				validationSchema={SignUpSchema}
 			>
 				{({ errors, touched, isSubmitting }) => (
 					<Form>
@@ -105,7 +81,7 @@ const SignUpForm: React.FC = () => {
 									type="text"
 									placeholder="First Name"
 									className="std-input"
-									validate={validateFirstName}
+									// validate={validateFirstName}
 								/>
 								<div className="validation-msg">
 									<ErrorMessage
@@ -124,7 +100,6 @@ const SignUpForm: React.FC = () => {
 									type="text"
 									placeholder="Last Name"
 									className="std-input"
-									validate={validateLastName}
 								/>
 								<div className="validation-msg">
 									<ErrorMessage name="lastName" />
@@ -141,7 +116,6 @@ const SignUpForm: React.FC = () => {
 								type="text"
 								placeholder="Email ID"
 								className="std-input"
-								validate={validateEmailId}
 							/>
 							<div className="validation-msg">
 								<ErrorMessage name="emailId" />
@@ -157,7 +131,6 @@ const SignUpForm: React.FC = () => {
 								type="password"
 								placeholder="Password"
 								className="std-input"
-								validate={validatePassword}
 							/>
 							<div className="validation-msg">
 								<ErrorMessage name="password" />
@@ -181,16 +154,18 @@ const SignUpForm: React.FC = () => {
 								<ErrorMessage name="confirmPassword" />
 							</div>
 						</div>
-						<div className="flex justify-center mt-5">
-							<button type="submit" className="std-btn">
-								Join BookEx
-							</button>
+						<div className="flex justify-center mt-5 ">
+							{signUpMutation.isLoading ? (
+								//TODO: this is not rotating  @athhb
+								<Loader size="md" />
+							) : (
+								<button type="submit" className="std-btn">
+									Join BookEx
+								</button>
+							)}
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
-							{signUpMutation.isLoading ? (
-								<RiLoader2Fill />
-							) : null}
 							<div className={formMsg.type}>{}</div>
 							<span className="mr-1">
 								Already Have An Account ?

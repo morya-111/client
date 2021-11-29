@@ -1,5 +1,5 @@
-import axios from "axios";
 import { AuthDataType } from "types/authTypes";
+import { SignUpFormData } from "types/formTypes";
 import axiosClient from "./axiosClient";
 class AuthService {
 	private _isLoggedIn: boolean = false;
@@ -22,6 +22,18 @@ class AuthService {
 		const userDataCopy = { ...userData };
 		localStorage.setItem("user", JSON.stringify(userDataCopy));
 		this._isLoggedIn = true;
+	};
+
+	public registerUser = (formData: SignUpFormData) => {
+		const options = {
+			...formData,
+		};
+		return axiosClient.post("/user/register", {
+			first_name: options.firstName,
+			last_name: options.lastName,
+			email: options.emailId,
+			password: options.password,
+		});
 	};
 
 	// this is useless rn

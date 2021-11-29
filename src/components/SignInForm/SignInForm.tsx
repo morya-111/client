@@ -11,17 +11,16 @@ import { useMutation } from "react-query";
 
 import { FormMessageType, formMsgsTypeEnum } from "types/formTypes";
 import authService from "utils/AuthService";
-import { validateEmailId, validatePassword } from "utils/authFormsValidators";
+import { SignInSchema } from "utils/authFormsValidators";
 import AuthDataContext from "contexts/AuthDataContext";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
-import axiosClient from "utils/axiosClient";
 import { SignInFormData } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
 
-import { AiOutlineReload } from "react-icons/ai";
+import Loader from "components/Loader";
 
 const SignInForm: React.FC = () => {
-	const { authData, authDataDispatch } = useContext(AuthDataContext);
+	const { authDataDispatch } = useContext(AuthDataContext);
 
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
@@ -84,7 +83,7 @@ const SignInForm: React.FC = () => {
 
 	return (
 		<div className="signupform-main">
-			<OAuthLinks />
+			<OAuthLinks titleText="Sign In to BookEx" />
 			<Formik
 				initialValues={{
 					emailId: "",
@@ -93,6 +92,7 @@ const SignInForm: React.FC = () => {
 				onSubmit={(values: SignInFormData) => {
 					signInMutation.mutate(values);
 				}}
+				validationSchema={SignInSchema}
 			>
 				{({ errors, touched, isSubmitting }) => (
 					<Form>
@@ -107,7 +107,6 @@ const SignInForm: React.FC = () => {
 								type="text"
 								placeholder="Email ID"
 								className="std-input"
-								validate={validateEmailId}
 							/>
 							<div className="validation-msg">
 								<ErrorMessage name="emailId" />
@@ -123,13 +122,12 @@ const SignInForm: React.FC = () => {
 								type={showPassword ? "text" : "password"}
 								placeholder="Password"
 								className="std-input"
-								validate={validatePassword}
 							/>
 							<span
 								className="cursor-pointer eye-span"
 								onClick={handleShowPassClick}
 							>
-								{showPassword ? <FaEyeSlash /> : <FaEye />}
+								{showPassword ? <FaEye /> : <FaEyeSlash />}
 							</span>
 							<div className=" validation-msg pass-validation-msg">
 								<ErrorMessage name="password" />
@@ -137,20 +135,23 @@ const SignInForm: React.FC = () => {
 						</div>
 
 						<div className="flex justify-center mt-0">
-							<button type="submit" className="std-btn">
-								Log In
-							</button>
+							{signInMutation.isLoading ? (
+								//TODO: this is not rotating  @athhb
+								<Loader size="sm" />
+							) : (
+								<button type="submit" className="std-btn">
+									Log In
+								</button>
+							)}
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
-							{signInMutation.isLoading ? (
-								<AiOutlineReload className="spinning" />
-							) : null}
+
 							<span className="mr-1">
 								Don't Have An Account ?
 							</span>
 							<span className="font-bold underline">
-								<Link to="/signin">Sign Up</Link>
+								<Link to="/signup">Sign Up</Link>
 							</span>
 							<br />
 						</div>
