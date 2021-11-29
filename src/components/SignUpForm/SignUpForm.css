@@ -4,11 +4,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
 
 .std-input {
-	@apply w-full px-2 py-2 mb-2 mt-0 text-sm h-9 bg-white border-0 rounded shadow outline-none placeholder-bookex-light text-bookex-grey-text focus:outline-none focus:ring;
+	@apply w-full px-2 py-2 mb-2 mt-0 text-sm h-9 bg-white border-0 rounded shadow outline-none placeholder-light text-greyText focus:outline-none focus:ring;
 }
 
 .std-btn {
-	@apply bg-bookex-semi-dark text-white active:bg-bookex-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+	@apply bg-semiDark text-white active:bg-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
 }
 
 .std-label {
@@ -16,7 +16,7 @@
 }
 
 .signupform-main {
-	@apply flex flex-col m-auto h-3/4 bg-bookex-semi-light rounded;
+	@apply flex flex-col m-auto h-3/4 bg-semiLight rounded;
 	width: 23rem;
 	font-family: "Nunito", sans-serif;
 }
@@ -33,10 +33,10 @@
 }
 
 .formMsgs-success {
-	@apply text-green-600 bg-bookex-light;
+	@apply text-green-600 bg-light;
 }
 .formMsgs-fail {
-	@apply text-red-500 bg-bookex-light;
+	@apply text-red-500 bg-light;
 }
 
 .validation-msg {
