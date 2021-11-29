@@ -1,3 +1,6 @@
+import RentInformation from "components/Book/Create/RentInformation";
+import SellInformation from "components/Book/Create/SellInformation";
+import { FMCheckbox } from "components/Inputs/Checkbox";
 import Select from "components/Inputs/Select";
 import TextArea from "components/Inputs/TextArea";
 import TextInput from "components/Inputs/TextInput";
@@ -27,6 +30,13 @@ const AddBook = () => {
 							description: "",
 							genre: "b",
 							language: "a",
+							sell: true,
+							rent: true,
+							sellPrice: "0",
+							rentDeposit: "0",
+							rentDuration: "0",
+							rentDurationUnit: "",
+							rentFees: "0",
 						}}
 						onSubmit={() => {}}
 					>
@@ -75,6 +85,19 @@ const AddBook = () => {
 									</Select>
 								</div>
 							</div>
+							<div className="flex mt-3 ">
+								<span className="mr-4 text-[#4E4E4E] text-sm font-bold opacity-80">
+									Mode
+								</span>
+								<div className="mr-4">
+									<FMCheckbox name="sell" label="For Sell" />
+								</div>
+								<div>
+									<FMCheckbox name="rent" label="For Rent" />
+								</div>
+							</div>
+							<SellInformation />
+							<RentInformation />
 						</Form>
 					</Formik>
 				</div>
