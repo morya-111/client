@@ -15,8 +15,8 @@ const RentInformation: React.FC = () => {
 			className="mt-2 border-opacity-50 border-dark"
 		>
 			<div className="mt-2 text-lg text-dark">Rent Information</div>
-			<div className="flex ">
-				<div className="flex-1 mr-2">
+			<div className="flex flex-col xl:flex-row">
+				<div className="flex-1 xl:mr-2">
 					<TextInput
 						name="rentDeposit"
 						label="Deposit"
@@ -30,7 +30,7 @@ const RentInformation: React.FC = () => {
 						}
 					/>
 				</div>
-				<div className="flex flex-1 ml-2">
+				<div className="flex flex-1 xl:ml-2">
 					<div className="flex-grow mr-2">
 						<TextInput
 							name="rentDuration"

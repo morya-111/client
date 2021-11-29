@@ -8,9 +8,9 @@ type Props = Omit<React.ComponentPropsWithoutRef<"input">, "name"> & {
 };
 
 const FMCheckbox = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
-	const [field, meta] = useField(props.name);
+	const [field] = useField(props.name);
 
-	const isError = (meta.error && meta.touched) as boolean;
+	// const isError = (meta.error && meta.touched) as boolean;
 
 	return <Checkbox ref={ref} {...props} {...field} checked={field.value} />;
 });

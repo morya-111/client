@@ -38,7 +38,7 @@ const Select = React.forwardRef<HTMLSelectElement, Props>((props, ref) => {
 				{...rest}
 				{...field}
 				ref={ref}
-				className={`pr-7 appearance-none disabled:opacity-50 w-full focus:ring-2 ring-semiLight ring-opacity-50 px-2 py-2 text-xl font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid rounded-lg outline-none  focus:border-opacity-100 focus:shadow-md hover:shadow-md text-dark ${inputErrorClass}`}
+				className={`pr-7 appearance-none disabled:opacity-50 w-full focus:ring-2 ring-semiLight ring-opacity-50 px-2 py-2 text-lg sm:text-xl font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid rounded-lg outline-none  focus:border-opacity-100 focus:shadow-md hover:shadow-md text-dark ${inputErrorClass}`}
 			>
 				{children}
 			</select>
