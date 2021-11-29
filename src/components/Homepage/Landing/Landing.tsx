@@ -28,7 +28,7 @@ const Landing = () => {
 
 	return (
 		<div>
-			<NavigationBar toggle={toggle} />
+			<NavigationBar />
 
 			<Dropdown isOpen={isOpen} />
 			<button className="items-center px-4 font-bold text-white bg-red-700 rounded-full">
@@ -48,12 +48,12 @@ const Landing = () => {
 
 						<div className="grid grid-rows-2 gap-2 mt-5 place-content-start">
 							<button className="px-4 py-1 rounded bg-semiLight text-light">
-								<NavLink to="/goToCatalogue">
+								<NavLink to="/catalogue">
 									Go To Catalogue
 								</NavLink>
 							</button>
 							<button className="px-4 py-1 rounded text-light bg-semiLight">
-								<NavLink to="/signUp">Sign Up</NavLink>
+								<NavLink to="/sign-up">Sign Up</NavLink>
 							</button>
 						</div>
 					</div>
