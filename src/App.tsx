@@ -1,4 +1,5 @@
 import Navigation from "Navigation";
+import { QueryClient, QueryClientProvider } from "react-query";
 import React, { useReducer, useEffect, useState } from "react";
 import authDataReducer from "reducers/authDataReducer";
 import { AuthDataActionsTypeEnum, initialAuthData } from "types/authTypes";
@@ -9,6 +10,7 @@ import AuthDataContext from "contexts/AuthDataContext";
 import { useQuery } from "react-query";
 import axiosClient from "utils/axiosClient";
 
+const queryClient = new QueryClient();
 function App() {
 	const [shouldAuthDataFetch, setShouldAuthDataFetch] =
 		useState<Boolean>(true);
@@ -54,9 +56,11 @@ function App() {
 	}, [shouldAuthDataFetch, authData, isLoggedInQuery]);
 
 	return (
+    <QueryClientProvider client={queryClient}>
 		<AuthDataContext.Provider value={{ authData, authDataDispatch }}>
 			<Navigation />
 		</AuthDataContext.Provider>
+      </QueryClientProvider>
 	);
 }
 

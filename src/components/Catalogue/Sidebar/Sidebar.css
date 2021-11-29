@@ -1,0 +1,7 @@
+.title {
+	@apply text-dark font-bold text-xl my-2;
+}
+
+.sidebar-element {
+	@apply my-1;
+}

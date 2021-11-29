@@ -1,6 +1,8 @@
+import Landing from "components/Homepage/Landing";
 import React from "react";
 const Homepage: React.FC = () => {
-	return <div>Home Page</div>;
+	return <Landing />;
+
 };
 
 export default Homepage;

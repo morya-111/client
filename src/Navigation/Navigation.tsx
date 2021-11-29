@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Homepage, SignInpage, SignUppage } from "pages";
+
+import { Homepage, SignInpage, SignUppage, Catalogue } from "pages";
 
 const Navigation = () => {
 	return (
@@ -9,6 +10,7 @@ const Navigation = () => {
 				<Route path="/" exact component={Homepage} />
 				<Route path="/signup" exact component={SignUppage} />
 				<Route path="/signin" exact component={SignInpage} />
+				<Route path="/catalogue" exact component={Catalogue} />
 			</Switch>
 		</BrowserRouter>
 	);

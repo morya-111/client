@@ -5,16 +5,33 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				"bookex-light": "#D8E3E7",
-				"bookex-semi-light": "#51C4D3",
-				"bookex-semi-dark": "#126E82",
-				"bookex-dark": "#132C33",
-				"bookex-grey-text": "#132C33",
+				transparent: "transparent",
+				dark: "#132C33",
+				semiDark: "#126E82",
+				semiLight: "#51C4D3",
+				light: "#D8E3E7",
 			},
+      screens: {
+				bigMonitor: "1600px",
+			},
+			keyframes: {
+				scale: {
+					"0%, 100%": { transform: "scale(1)" },
+
+					"70%": { transform: "scale(1.1)" },
+				},
+			},
+			animation: {
+				"scale-reveal": "scale 0.5s ease-in-out ",
+			},
+		},
+		fontFamily: {
+			sans: ["Nunito", "sans-serif"],
 		},
 	},
 	variants: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/line-clamp")],
+
 };
