@@ -3,8 +3,7 @@ import React from "react";
 import "./SignUpForm.css";
 import { useMutation } from "react-query";
 
-import { Link } from "react-router-dom";
-import axiosClient from "utils/axiosClient";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { SignUpSchema } from "utils/authFormsValidators";
 
 import {
@@ -15,8 +14,11 @@ import {
 import OAuthLinks from "components/OAuthLinks";
 import Loader from "components/Loader";
 import authService from "utils/AuthService";
+import AuthDataContext from "contexts/AuthDataContext";
 
 const SignUpForm: React.FC = () => {
+	const { authData } = React.useContext(AuthDataContext);
+	const history = useHistory();
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
 		type: formMsgsTypeEnum.None,
@@ -41,14 +43,15 @@ const SignUpForm: React.FC = () => {
 				}
 			},
 			onSuccess: () => {
-				setFormMsg({
-					msg: `Sign Up Successful. You may now Sign In.`,
-					type: formMsgsTypeEnum.Success,
-				});
+				// NOTE: Redirecting to sign in
+				history.push("/signin");
 			},
 		}
 	);
 
+	if (authService.checkIfLoggedIn(authData)) {
+		return <Redirect to="/protroute" />;
+	}
 	return (
 		<div className="signupform-main">
 			<OAuthLinks titleText="Sign Up To BookEx" />
