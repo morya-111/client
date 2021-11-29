@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "components/NavigationBar";
-import Dropdown from "components/NavigationBar/Dropdown";
 import Footer from "components/Footer";
-import { NavLink } from "react-router-dom";
 
 const BookDisplay: React.FC = () => {
 	return (
