@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
+
+.std-input {
+	@apply w-full px-2 py-2 mb-2 mt-0 text-sm h-9 bg-white border-0 rounded shadow outline-none placeholder-bookex-light text-bookex-grey-text focus:outline-none focus:ring;
+}
+
+.std-btn {
+	@apply bg-bookex-semi-dark text-white active:bg-bookex-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+}
+
+.std-label {
+	@apply text-sm font-medium text-gray-700;
+}
+
+.signupform-main {
+	@apply flex flex-col m-auto h-3/4 bg-bookex-semi-light rounded;
+	width: 23rem;
+	font-family: "Nunito", sans-serif;
+}
+
+.line-span {
+	@apply mx-3;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	-o-user-select: none; /*think this is Opera*/
+	user-select: none; /* Likely future */
+	text-decoration: line-through solid #424242;
+	color: #51c4d3;
+}
+
+.formMsgs-success {
+	@apply text-green-600 bg-bookex-light;
+}
+.formMsgs-fail {
+	@apply text-red-500 bg-bookex-light;
+}
+
+.validation-msg {
+	@apply text-red-900 text-sm;
+}
+
+.std-icon-wrapper {
+	@apply w-14 h-14 p-1 mx-6 my-3 rounded bg-blue-50 bg-opacity-60;
+}

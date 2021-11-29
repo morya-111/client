@@ -1,4 +1,5 @@
 import Homepage from "./Homepage";
-import Catalogue from "./Catalogue";
 
-export { Homepage, Catalogue };
+import SignInpage from "./SignInpage";
+import SignUppage from "./SignUppage";
+export { Homepage, SignInpage, SignUppage, Catalogue };
