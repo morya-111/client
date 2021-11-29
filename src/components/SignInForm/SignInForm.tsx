@@ -6,7 +6,7 @@ import "./SignInForm.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useMutation } from "react-query";
 
 import { FormMessageType, formMsgsTypeEnum } from "types/formTypes";
@@ -20,7 +20,7 @@ import OAuthLinks from "components/OAuthLinks";
 import Loader from "components/Loader";
 
 const SignInForm: React.FC = () => {
-	const { authDataDispatch } = useContext(AuthDataContext);
+	const { authData, authDataDispatch } = useContext(AuthDataContext);
 
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
@@ -81,6 +81,9 @@ const SignInForm: React.FC = () => {
 		}
 	);
 
+	if (authService.checkIfLoggedIn(authData)) {
+		return <Redirect to="/protroute" />;
+	}
 	return (
 		<div className="signupform-main">
 			<OAuthLinks titleText="Sign In to BookEx" />

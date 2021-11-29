@@ -1,6 +1,7 @@
 import { AuthDataType } from "types/authTypes";
 import { SignUpFormData } from "types/formTypes";
 import axiosClient from "./axiosClient";
+import * as yup from "yup";
 class AuthService {
 	private _isLoggedIn: boolean = false;
 	constructor() {
@@ -34,6 +35,26 @@ class AuthService {
 			email: options.emailId,
 			password: options.password,
 		});
+	};
+
+	public checkIfLoggedIn = (authData: AuthDataType) => {
+		const authDataSchema = yup.object().shape({
+			email: yup.string().email().required(),
+			first_name: yup.string().required(),
+			last_name: yup.string().required(),
+			id: yup.number().required(),
+			role: yup.string().required(),
+		});
+
+		const isLoggedIn = authDataSchema.isValidSync(authData);
+		console.log(
+			"checking isloggedin from cached data...result is",
+			isLoggedIn,
+			"authdata is",
+			authData
+		);
+
+		return isLoggedIn;
 	};
 
 	// this is useless rn
