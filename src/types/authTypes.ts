@@ -23,6 +23,7 @@ export type AuthDataType = {
 export enum AuthDataActionsTypeEnum {
 	LOGIN_SUCCESS = "LOGIN_SUCCESS",
 	ALREADY_LOGGED_IN = "ALREADY_LOGGED_IN",
+	LOGOUT_SUCCESS = "LOGOUT_SUCCESS",
 }
 
 export type AuthDataContextType = {

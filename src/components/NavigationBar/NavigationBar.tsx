@@ -5,7 +5,9 @@ import SignUp from "components/GoToButtons/SignUp";
 import { NavLink } from "react-router-dom";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import Dropdown from "./Dropdown";
-import UserLogo from "../../assets/common/user-solid.svg";
+
+import MyProfile from "./MyProfile";
+import LogOutButton from "components/LogOutButton";
 
 const NavigationBar: React.FC = () => {
 	const isLoggedIn = useCachedLoginStatus();
@@ -54,6 +56,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 
 								<MyProfile />
+								<LogOutButton />
 							</>
 						</>
 					) : (
@@ -83,19 +86,6 @@ const NavigationBar: React.FC = () => {
 			</div>
 			{isOpen ? <Dropdown /> : null}
 		</>
-	);
-};
-
-const MyProfile: React.FC = () => {
-	return (
-		<button className="relative font-bold text-white rounded-full top-3 bg-light">
-			<img
-				src="https://i.ibb.co/svPq37Q/62c39aa27b5f.png"
-				alt="P"
-				className="bg-light "
-				style={{ height: "40px" }}
-			/>
-		</button>
 	);
 };
 
