@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Homepage, SignInpage, SignUppage, Catalogue } from "pages";
+
+import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay } from "pages";
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
@@ -9,6 +10,7 @@ import { AuthDataActionsTypeEnum } from "types/authTypes";
 import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
+
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
 	const [isServerDown, setIsServerDown] = React.useState(false);
@@ -43,11 +45,13 @@ const Navigation = () => {
 				<Route path="/signup" exact component={SignUppage} />
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
+				<Route path="/books/:id" exact component={BookDisplay} />
 				<ProtectedRoute
 					path="/protroute"
 					component={ProtectedComponent}
 				/>
 				<Route component={NotFound} />
+
 			</Switch>
 		</BrowserRouter>
 	);

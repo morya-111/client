@@ -17,7 +17,7 @@ const Dropdown = ({ isOpen }: { isOpen: boolean }) => {
 			<NavLink to="/contact" className="p-4 font-semibold text-light">
 				Contact
 			</NavLink>
-			<NavLink to="/signUp" className="p-4 font-semibold text-light">
+			<NavLink to="/signup" className="p-4 font-semibold text-light">
 				Sign Up
 			</NavLink>
 		</div>
