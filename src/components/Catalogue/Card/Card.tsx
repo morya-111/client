@@ -3,16 +3,19 @@ import Badge from "components/Badge";
 import React from "react";
 import BookIndicator from "../BookIndicator";
 
-interface Props {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
 	title: string;
 	description: string;
 	genre: string;
 	imgUrl: string;
-}
-
-const Card: React.FC<Props> = ({ title, description, genre, imgUrl }) => {
+};
+const Card: React.FC<Props> = (props) => {
+	const { title, description, genre, imgUrl, ...rest } = props;
 	return (
-		<div className="flex flex-col col-span-2 p-3 transition-all bg-white rounded-lg shadow hover:shadow-lg">
+		<div
+			{...rest}
+			className="flex flex-col col-span-2 p-3 transition-all bg-white rounded-lg shadow cursor-pointer hover:shadow-2xl"
+		>
 			<div className="flex flex-col justify-center flex-grow w-full px-6">
 				<img src={imgUrl} alt="" className="" />
 			</div>

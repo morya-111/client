@@ -29,11 +29,7 @@ const Landing = () => {
 	return (
 		<div>
 			<NavigationBar />
-
 			<Dropdown isOpen={isOpen} />
-			<button className="items-center px-4 font-bold text-white bg-red-700 rounded-full">
-				<NavLink to="/bookDisplay">BUTTON FOR BOOK-DISPLAY</NavLink>
-			</button>
 
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
@@ -53,7 +49,7 @@ const Landing = () => {
 								</NavLink>
 							</button>
 							<button className="px-4 py-1 rounded text-light bg-semiLight">
-								<NavLink to="/sign-up">Sign Up</NavLink>
+								<NavLink to="/signup">Sign Up</NavLink>
 							</button>
 						</div>
 					</div>

@@ -9,7 +9,7 @@ const Navigation = () => {
 			<Switch>
 				<Route path="/" exact component={Homepage} />
 				<Route path="/catalogue" exact component={Catalogue} />
-				<Route path="/bookDisplay" exact component={BookDisplay} />
+				<Route path="/books/:id" exact component={BookDisplay} />
 			</Switch>
 		</BrowserRouter>
 	);
