@@ -8,8 +8,7 @@ import Dropdown from "./Dropdown";
 
 import MyProfile from "./MyProfile";
 import LogOutButton from "components/LogOutButton";
-import { ListFormat } from "typescript";
-
+import ProfilePopUp from "./ProfilePopUp";
 const NavigationBar: React.FC = () => {
 	const isLoggedIn = useCachedLoginStatus();
 	const [isOpen, setIsOpen] = useState(false);
@@ -120,39 +119,4 @@ const NavigationBar: React.FC = () => {
 	);
 };
 
-const ProfilePopUp: React.FC<
-	React.ComponentPropsWithoutRef<"div"> & { closerFunc: Function }
-> = ({ className, closerFunc }) => {
-	const selfRef = useRef(null);
-	useOutsideAlerter(selfRef, closerFunc);
-	return (
-		<div
-			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col`}
-			ref={selfRef}
-		>
-			<NavLink to="/catalogue" className="p-4 hover:text-greyText ">
-				Catalogue
-			</NavLink>
-			<NavLink to="/mybooks" className="p-4 mr-2 ">
-				My Books
-			</NavLink>
-
-			<LogOutButton />
-		</div>
-	);
-};
-
-function useOutsideAlerter(ref: any, effectFunction: Function) {
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (ref.current && !ref.current.contains(event.target)) {
-				effectFunction();
-			}
-		}
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	});
-}
 export default NavigationBar;
