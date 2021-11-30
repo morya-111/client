@@ -8,23 +8,6 @@ import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
 
 const Landing = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggle = () => {
-		setIsOpen(!isOpen);
-	};
-
-	useEffect(() => {
-		const hideMenu = () => {
-			if (window.innerWidth < 768 && isOpen) {
-				setIsOpen(false);
-			}
-		};
-		window.addEventListener("resize", hideMenu);
-		return () => {
-			window.removeEventListener("resize", hideMenu);
-		};
-	});
-
 	return (
 		<div>
 			<NavigationBar />
