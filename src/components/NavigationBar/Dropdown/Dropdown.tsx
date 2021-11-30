@@ -1,3 +1,4 @@
+import LogOutButton from "components/LogOutButton";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -10,7 +11,7 @@ const Dropdown = () => {
 		<>
 			{isLoggedIn ? (
 				<>
-					<div className="grid grid-rows-3 text-center bg-semiDark ">
+					<div className="grid grid-rows-4 text-center bg-semiDark ">
 						<NavLink
 							to="/catalogue"
 							className="p-4 font-semibold text-light"
@@ -29,6 +30,7 @@ const Dropdown = () => {
 						>
 							My Profile
 						</NavLink>
+						<LogOutButton className="p-4 font-semibold cursor-pointer text-light" />
 					</div>
 				</>
 			) : (

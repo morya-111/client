@@ -54,7 +54,9 @@ class AuthService {
 			"checking isloggedin from cached data...result is",
 			isLoggedIn,
 			"authdata is",
-			authData
+			authData,
+			"current time - ",
+			new Date()
 		);
 
 		return isLoggedIn;

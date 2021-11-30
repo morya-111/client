@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
 import SignUp from "components/GoToButtons/SignUp";
@@ -8,13 +8,25 @@ import Dropdown from "./Dropdown";
 
 import MyProfile from "./MyProfile";
 import LogOutButton from "components/LogOutButton";
+import { ListFormat } from "typescript";
 
 const NavigationBar: React.FC = () => {
 	const isLoggedIn = useCachedLoginStatus();
 	const [isOpen, setIsOpen] = useState(false);
+	const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
 	const toggle = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const openPopUp = () => {
+		setIsPopUpOpen(true);
+	};
+	const closePopUp = () => {
+		setIsPopUpOpen(false);
+	};
+	const togglePopUp = () => {
+		setIsPopUpOpen(!isPopUpOpen);
 	};
 
 	useEffect(() => {
@@ -23,9 +35,22 @@ const NavigationBar: React.FC = () => {
 				setIsOpen(false);
 			}
 		};
-		window.addEventListener("resize", hideMenu);
+
+		window.addEventListener("resize", () => {
+			closePopUp();
+			hideMenu();
+		});
+		window.addEventListener("scroll", () => {
+			closePopUp();
+		});
 		return () => {
-			window.removeEventListener("resize", hideMenu);
+			window.removeEventListener("resize", () => {
+				closePopUp();
+				hideMenu();
+			});
+			window.removeEventListener("scroll", () => {
+				closePopUp();
+			});
 		};
 	});
 
@@ -55,7 +80,7 @@ const NavigationBar: React.FC = () => {
 									My Books
 								</NavLink>
 
-								<MyProfile />
+								<MyProfile onClick={openPopUp} />
 								<LogOutButton />
 							</>
 						</>
@@ -84,9 +109,50 @@ const NavigationBar: React.FC = () => {
 					)}
 				</div>
 			</div>
+			{isPopUpOpen ? (
+				<ProfilePopUp
+					className="fixed z-50 mr-16 top-8 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
+					closerFunc={closePopUp}
+				/>
+			) : null}
 			{isOpen ? <Dropdown /> : null}
 		</>
 	);
 };
 
+const ProfilePopUp: React.FC<
+	React.ComponentPropsWithoutRef<"div"> & { closerFunc: Function }
+> = ({ className, closerFunc }) => {
+	const selfRef = useRef(null);
+	useOutsideAlerter(selfRef, closerFunc);
+	return (
+		<div
+			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col`}
+			ref={selfRef}
+		>
+			<NavLink to="/catalogue" className="p-4 hover:text-greyText ">
+				Catalogue
+			</NavLink>
+			<NavLink to="/mybooks" className="p-4 mr-2 ">
+				My Books
+			</NavLink>
+
+			<LogOutButton />
+		</div>
+	);
+};
+
+function useOutsideAlerter(ref: any, effectFunction: Function) {
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (ref.current && !ref.current.contains(event.target)) {
+				effectFunction();
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	});
+}
 export default NavigationBar;

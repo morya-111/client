@@ -8,10 +8,14 @@ import { useHistory } from "react-router";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import authService from "utils/AuthService";
 
-const LogOutButton: React.FC = () => {
+type props = React.ComponentPropsWithoutRef<"div">;
+
+const LogOutButton: React.FC<props> = ({
+	className = "p-4 font-semibold cursor-pointer text-light",
+}) => {
 	const { authDataDispatch } = useContext(AuthDataContext);
 	const history = useHistory();
-	const { status, isLoading, isError, mutate } = useMutation(
+	const { isLoading, mutate } = useMutation(
 		"logoutUser",
 		authService.logout,
 		{
@@ -32,10 +36,18 @@ const LogOutButton: React.FC = () => {
 	};
 
 	if (isLoading) {
-		return <Loader />;
+		return (
+			<div className="flex justify-center align-middle bg-semiLight">
+				<Loader size="sm" />
+			</div>
+		);
 	}
 
-	return <div onClick={queryFetch}>Logout</div>;
+	return (
+		<div onClick={queryFetch} className={className}>
+			Logout
+		</div>
+	);
 };
 
 export default LogOutButton;
