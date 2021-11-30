@@ -1,7 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay } from "pages";
+import {
+	Homepage,
+	SignInpage,
+	SignUppage,
+	Catalogue,
+	BookDisplay,
+	About,
+	Contact,
+} from "pages";
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
@@ -46,12 +54,13 @@ const Navigation = () => {
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
 				<Route path="/books/:id" exact component={BookDisplay} />
+				<Route path="/about" exact component={About} />
+				<Route path="/contact" exact component={Contact} />
 				<ProtectedRoute
 					path="/protroute"
 					component={ProtectedComponent}
 				/>
 				<Route component={NotFound} />
-
 			</Switch>
 		</BrowserRouter>
 	);
