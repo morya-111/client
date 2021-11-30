@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
-import Dropdown from "components/NavigationBar/Dropdown";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
 import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
 import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
@@ -29,7 +28,6 @@ const Landing = () => {
 	return (
 		<div>
 			<NavigationBar />
-			<Dropdown isOpen={isOpen} />
 
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
