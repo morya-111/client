@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect, useRef } from "react";
+
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
 import SignUp from "components/GoToButtons/SignUp";
 import { NavLink } from "react-router-dom";
+
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import Dropdown from "./Dropdown";
 
@@ -53,6 +56,7 @@ const NavigationBar: React.FC = () => {
 		};
 	});
 
+
 	return (
 		<>
 			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
@@ -63,6 +67,7 @@ const NavigationBar: React.FC = () => {
 					<MenuIcon />
 				</div>
 				<div className="hidden pr-8 md:block">
+
 					{isLoggedIn ? (
 						<>
 							<>
@@ -115,6 +120,7 @@ const NavigationBar: React.FC = () => {
 				/>
 			) : null}
 			{isOpen ? <Dropdown /> : null}
+
 		</>
 	);
 };

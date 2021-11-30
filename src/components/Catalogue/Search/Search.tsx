@@ -11,7 +11,7 @@ const Search: React.FC = () => {
 			<div className="mr-3 md:hidden">
 				<FaFilter
 					size={30}
-					className="text-dark"
+					className="cursor-pointer text-dark"
 					onClick={() => setDrawerOpen(true)}
 				/>
 			</div>

@@ -8,6 +8,7 @@ const Dropdown = () => {
 	const isLoggedIn = useCachedLoginStatus();
 
 	return (
+
 		<>
 			{isLoggedIn ? (
 				<>
@@ -65,6 +66,7 @@ const Dropdown = () => {
 				</>
 			)}
 		</>
+
 	);
 };
 
