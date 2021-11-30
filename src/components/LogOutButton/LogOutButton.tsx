@@ -8,10 +8,13 @@ import { useHistory } from "react-router";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import authService from "utils/AuthService";
 
-type props = React.ComponentPropsWithoutRef<"div">;
+type props = React.ComponentPropsWithoutRef<"div"> & {
+	extraCleanUp?: Function;
+};
 
 const LogOutButton: React.FC<props> = ({
 	className = "p-4 font-semibold cursor-pointer text-light",
+	extraCleanUp = () => {},
 }) => {
 	const { authDataDispatch } = useContext(AuthDataContext);
 	const history = useHistory();
@@ -33,11 +36,13 @@ const LogOutButton: React.FC<props> = ({
 	);
 	const queryFetch = () => {
 		mutate();
+		// NOTE: for now this has been kept here
+		extraCleanUp();
 	};
 
 	if (isLoading) {
 		return (
-			<div className="flex justify-center align-middle bg-semiLight">
+			<div className="flex justify-center mt-5 mb-4 align-middle bg-semiLight">
 				<Loader size="sm" />
 			</div>
 		);

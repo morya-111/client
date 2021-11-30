@@ -68,7 +68,4 @@ const Dropdown = () => {
 	);
 };
 
-const MyProfileInline: React.FC = () => {
-	return <div>My Profile</div>;
-};
 export default Dropdown;

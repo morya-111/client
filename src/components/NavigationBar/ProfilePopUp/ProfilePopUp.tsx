@@ -20,7 +20,7 @@ const ProfilePopUp: React.FC<
 				My Books
 			</NavLink>
 
-			<LogOutButton />
+			<LogOutButton extraCleanUp={closerFunc} />
 		</div>
 	);
 };
