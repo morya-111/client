@@ -2,6 +2,7 @@ import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import MyBookCard from "components/MyBooks/MyBookCard";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const MyBooks = () => {
 	return (
@@ -28,7 +29,12 @@ const MyBooks = () => {
 					</div>
 
 					<div className="left-0 w-full mb-10 mr-12 border-l-2 border-gray-400">
-						<div className="m-10">
+						<div className="flex justify-center w-full">
+							<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
+								<NavLink to="/addBook">+ Add A Book</NavLink>
+							</button>
+						</div>
+						<div className="m-10 mt-4 mb-4">
 							<MyBookCard />
 						</div>
 					</div>

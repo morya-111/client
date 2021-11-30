@@ -1,8 +1,10 @@
 import React from "react";
+import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
+import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
 
 const MyBookCard = () => {
 	return (
-		<div className="p-5 bg-white rounded-lg shadow cursor-pointer hover:shadow-xl">
+		<div className="p-5 bg-white rounded-lg shadow hover:shadow-xl">
 			<div className="flex flex-row">
 				<div className="shadow">
 					<img src="https://via.placeholder.com/128x173" />
@@ -40,6 +42,14 @@ const MyBookCard = () => {
 							Amount
 						</span>
 					</div>
+				</div>
+				<div className="flex justify-center space-x-2">
+					<button className="inline-flex">
+						<EditIcon />
+					</button>
+					<button className="inline-flex">
+						<DeleteIcon />
+					</button>
 				</div>
 			</div>
 		</div>
