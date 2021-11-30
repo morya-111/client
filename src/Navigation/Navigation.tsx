@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Catalogue, Homepage } from "pages";
-import BookDisplay from "pages/BookDisplay";
+import { Catalogue, Homepage, BookDisplay } from "pages";
 
 const Navigation = () => {
 	return (
