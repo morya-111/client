@@ -83,7 +83,8 @@ const BookDisplay: React.FC = () => {
 									</div>
 									<div className="relative">
 										<h2 className="inline-block text-sm font-semibold text-dark">
-											Uploaded by --Username--
+											Uploaded by --Username--{" "}
+											{/*TODO:dynamic username*/}
 										</h2>
 										<h2 className="absolute right-0 inline-block px-2 text-sm capitalize rounded-full bg-semiLight text-light">
 											{data?.data.data.book.genre}
@@ -132,7 +133,8 @@ const BookDisplay: React.FC = () => {
 										</div>
 										<div className="flex py-2 border-t border-gray-400">
 											<span className="text-gray-500">
-												For Sell
+												For Sell{" "}
+												{/*TODO:dynamic sellInfo*/}
 											</span>
 											<span className="ml-auto text-dark">
 												(Amount)/Not Available
@@ -140,7 +142,8 @@ const BookDisplay: React.FC = () => {
 										</div>
 										<div className="flex py-2 border-t border-gray-400">
 											<span className="text-gray-500">
-												For Rent
+												For Rent{" "}
+												{/*TODO:dynamic rentInfo*/}
 											</span>
 											<span className="ml-auto text-dark">
 												(Amount)/Not Available
@@ -148,7 +151,8 @@ const BookDisplay: React.FC = () => {
 										</div>
 										<div className="flex py-2 border-t border-b border-gray-400">
 											<span className="text-gray-500">
-												Deposit
+												Deposit{" "}
+												{/*TODO:dynamic depositInfo*/}
 											</span>
 											<span className="ml-auto text-dark">
 												depositAmount
