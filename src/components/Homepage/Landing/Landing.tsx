@@ -1,36 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
-import Dropdown from "components/NavigationBar/Dropdown";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
 import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
 import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
 import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
 import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const Landing = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggle = () => {
-		setIsOpen(!isOpen);
-	};
-
-	useEffect(() => {
-		const hideMenu = () => {
-			if (window.innerWidth < 768 && isOpen) {
-				setIsOpen(false);
-			}
-		};
-		window.addEventListener("resize", hideMenu);
-		return () => {
-			window.removeEventListener("resize", hideMenu);
-		};
-	});
-
+	const isLoggedIn = useCachedLoginStatus();
 	return (
 		<div>
-			<NavigationBar toggle={toggle} />
-
-			<Dropdown isOpen={isOpen} />
+			<NavigationBar />
 
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
@@ -45,13 +27,15 @@ const Landing = () => {
 
 						<div className="grid grid-rows-2 gap-2 mt-5 place-content-start">
 							<button className="px-4 py-1 rounded bg-semiLight text-light">
-								<NavLink to="/goToCatalogue">
+								<NavLink to="/catalogue">
 									Go To Catalogue
 								</NavLink>
 							</button>
-							<button className="px-4 py-1 rounded text-light bg-semiLight">
-								<NavLink to="/signUp">Sign Up</NavLink>
-							</button>
+							{isLoggedIn ? null : (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/signup">Sign Up</NavLink>
+								</button>
+							)}
 						</div>
 					</div>
 					<div>
