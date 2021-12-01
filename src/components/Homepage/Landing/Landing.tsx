@@ -30,7 +30,7 @@ const Landing = () => {
 			<NavigationBar />
 
 			<button className="p-2 text-xl text-white bg-red-600 rounded">
-				<NavLink to="/my-books">to My Books</NavLink>
+				<NavLink to="/mybooks">to My Books</NavLink>
 			</button>
 
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">

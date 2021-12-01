@@ -81,7 +81,7 @@ const MyBooks = () => {
 							</button>
 						</div>
 						<div className="m-10 mt-4 mb-4">
-							{data!.data.data.books.map((book, idx) => (
+							{data?.data.data.books.map((book, idx) => (
 								<MyBookCard
 									key={idx}
 									title={book.name}
