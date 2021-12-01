@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
@@ -56,10 +55,9 @@ const NavigationBar: React.FC = () => {
 		};
 	});
 
-
 	return (
 		<>
-			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
+			<div className="flex items-center justify-between h-24  md:pl-14 lg:pr-14 md:pr-5 bg-light">
 				<NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
 				</NavLink>
@@ -67,7 +65,6 @@ const NavigationBar: React.FC = () => {
 					<MenuIcon />
 				</div>
 				<div className="hidden pr-8 md:block">
-
 					{isLoggedIn ? (
 						<>
 							<>
@@ -120,7 +117,6 @@ const NavigationBar: React.FC = () => {
 				/>
 			) : null}
 			{isOpen ? <Dropdown /> : null}
-
 		</>
 	);
 };
