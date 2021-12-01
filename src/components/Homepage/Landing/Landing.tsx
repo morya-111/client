@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
 import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
@@ -6,8 +6,10 @@ import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
 import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
 import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const Landing = () => {
+	const isLoggedIn = useCachedLoginStatus();
 	return (
 		<div>
 			<NavigationBar />
@@ -29,9 +31,11 @@ const Landing = () => {
 									Go To Catalogue
 								</NavLink>
 							</button>
-							<button className="px-4 py-1 rounded text-light bg-semiLight">
-								<NavLink to="/signup">Sign Up</NavLink>
-							</button>
+							{isLoggedIn ? null : (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/signup">Sign Up</NavLink>
+								</button>
+							)}
 						</div>
 					</div>
 					<div>

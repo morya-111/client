@@ -1,9 +1,8 @@
 import Loader from "components/Loader";
 import AuthDataContext from "contexts/AuthDataContext";
-import useCachedLoginStatus from "hooks/useCachedLoginStatus";
-import ServerDown from "Navigation/ServerDown";
+
 import { useContext } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import authService from "utils/AuthService";

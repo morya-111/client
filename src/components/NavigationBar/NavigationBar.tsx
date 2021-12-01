@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
@@ -27,9 +26,9 @@ const NavigationBar: React.FC = () => {
 	const closePopUp = () => {
 		setIsPopUpOpen(false);
 	};
-	const togglePopUp = () => {
-		setIsPopUpOpen(!isPopUpOpen);
-	};
+	// const togglePopUp = () => {
+	// 	setIsPopUpOpen(!isPopUpOpen);
+	// };
 
 	useEffect(() => {
 		const hideMenu = () => {
@@ -56,7 +55,6 @@ const NavigationBar: React.FC = () => {
 		};
 	});
 
-
 	return (
 		<>
 			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
@@ -67,7 +65,6 @@ const NavigationBar: React.FC = () => {
 					<MenuIcon />
 				</div>
 				<div className="hidden pr-8 md:block">
-
 					{isLoggedIn ? (
 						<>
 							<>
@@ -120,7 +117,6 @@ const NavigationBar: React.FC = () => {
 				/>
 			) : null}
 			{isOpen ? <Dropdown /> : null}
-
 		</>
 	);
 };

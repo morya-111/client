@@ -2,13 +2,11 @@ import LogOutButton from "components/LogOutButton";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import MyProfile from "../MyProfile";
 
 const Dropdown = () => {
 	const isLoggedIn = useCachedLoginStatus();
 
 	return (
-
 		<>
 			{isLoggedIn ? (
 				<>
@@ -66,7 +64,6 @@ const Dropdown = () => {
 				</>
 			)}
 		</>
-
 	);
 };
 
