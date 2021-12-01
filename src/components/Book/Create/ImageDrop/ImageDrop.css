@@ -1,0 +1,29 @@
+.dropzone {
+	@apply w-full flex-grow cursor-pointer border-4 border-dashed rounded-lg border-dark  transition;
+	@apply flex justify-center items-center;
+	@apply hover:shadow-lg;
+}
+
+.dropzone-active {
+	/* @apply border-semiLight; */
+}
+
+.dropzone-accept {
+	@apply border-green-400 bg-green-400 bg-opacity-10;
+}
+
+.dropzone-reject {
+	@apply border-red-600 bg-red-600 bg-opacity-10;
+}
+
+.dropzone-text {
+	@apply flex flex-col items-center font-thin;
+}
+
+.dropzone-text-accept {
+	@apply text-green-400;
+}
+
+.dropzone-text-reject {
+	@apply text-red-600;
+}
