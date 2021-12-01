@@ -35,7 +35,7 @@ type BookResponseType = {
 const BookDisplay: React.FC = () => {
 	const history = useHistory();
 	const params = useParams<ParamType>();
-	const { data, isLoading, isSuccess, status } = useQuery(
+	const { data, isLoading, status } = useQuery(
 		"fetchABook",
 		() => api.get<BookResponseType>(`/books/${params.id}`),
 		{
