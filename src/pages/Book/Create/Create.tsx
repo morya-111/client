@@ -8,9 +8,12 @@ import TextArea from "components/Inputs/TextArea";
 import TextInput from "components/Inputs/TextInput";
 import { BiBook } from "react-icons/bi";
 import { Formik, Form } from "formik";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "components/Modal";
 
 const AddBook = () => {
+	const [imageId, setImageId] = useState<number | null>(null);
+
 	return (
 		<div className="w-full bg-light">
 			<div className="flex flex-col min-h-screen mx-14">
@@ -28,7 +31,7 @@ const AddBook = () => {
 						style={{ flex: 1 }}
 						className="flex items-center justify-center mt-2 lg:mt-0"
 					>
-						<ImageDrop />
+						<ImageDrop setImageId={setImageId} />
 					</div>
 					<Formik
 						initialValues={{

@@ -5,7 +5,7 @@ type Props = React.ComponentPropsWithoutRef<"button"> & {
 	left?: React.ReactNode;
 	right?: React.ReactNode;
 	full?: boolean;
-	color?: "dark" | "semiDark" | "semiLight";
+	color?: "dark" | "semiDark" | "semiLight" | "error";
 };
 
 const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
@@ -20,7 +20,8 @@ const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
 				{ "w-full": full },
 				{ "bg-dark": color === "dark" },
 				{ "bg-semiDark": color === "semiDark" },
-				{ "bg-semiLight": color === "semiLight" }
+				{ "bg-semiLight": color === "semiLight" },
+				{ "bg-red-500": color === "error" }
 			)}
 		>
 			{left}
