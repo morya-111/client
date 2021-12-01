@@ -9,6 +9,7 @@ import {
 	BookDisplay,
 	About,
 	Contact,
+	PrivacyPolicy,
 } from "pages";
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
@@ -20,7 +21,6 @@ import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
 
 import Loader from "components/Loader";
-
 
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
@@ -71,6 +71,7 @@ const Navigation = () => {
 				<Route path="/books/:id" exact component={BookDisplay} />
 				<Route path="/about" exact component={About} />
 				<Route path="/contact" exact component={Contact} />
+				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
 				<ProtectedRoute
 					path="/protroute"
 					component={ProtectedComponent}

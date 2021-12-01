@@ -5,6 +5,7 @@ import SignInpage from "./SignInpage";
 import SignUppage from "./SignUppage";
 import About from "./About";
 import Contact from "./Contact";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 export {
 	Homepage,
@@ -14,4 +15,5 @@ export {
 	BookDisplay,
 	About,
 	Contact,
+	PrivacyPolicy,
 };

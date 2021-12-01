@@ -15,7 +15,7 @@ const Footer = () => {
 				</NavLink>
 				<NavLink
 					className="text-sm motion-safe:hover:scale-110 sm:text-base "
-					to="/privacyPolicy"
+					to="/privacypolicy"
 				>
 					Privacy Policy
 				</NavLink>
