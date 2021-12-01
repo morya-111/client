@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import api from "api";
+import Loader from "components/Loader";
 
 type ParamType = {
 	id: string;
@@ -28,6 +29,7 @@ type BookType = {
 		priority: number;
 	};
 	images: ImageResponseType[];
+	image: { url: string };
 };
 type BookResponseType = {
 	data: {
@@ -40,62 +42,76 @@ const MyBooks = () => {
 	const { data, isLoading, isSuccess, status } = useQuery(
 		"fetchMyBooks",
 		() => api.get<BookResponseType>(`/books/mybooks`),
+
 		{
+			retry: false,
+			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
 				console.log("succesddd");
 				console.log(data);
 			},
-			onError: () => {
+			onError: (error) => {
 				console.log("ERRROER");
+				console.log(error);
 			},
 		}
 	);
 	console.log(isLoading);
 	return (
-		<div>
+		<>
 			<NavigationBar />
-			<section className=" bg-light">
-				<div className="flex min-w-full min-h-screen">
-					<div className="container flex flex-col max-w-max">
-						<div className="mx-10 mt-10">
-							<div className="text-center">
-								<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
-									<img
-										src="https://via.placeholder.com/200x200"
-										className="rounded-full"
-									/>
+			<div className="min-w-full min-h-screen bg-light">
+				{isLoading ? (
+					<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+						<Loader />
+					</div>
+				) : (
+					<>
+						<div className="flex">
+							<div className="container flex-col hidden lg:flex max-w-max">
+								<div className="mx-10 mt-10">
+									<div className="text-center">
+										<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
+											<img
+												src="https://via.placeholder.com/200x200"
+												className="rounded-full"
+											/>
+										</div>
+										<div className="text-center">
+											<h1 className="text-2xl font-bold">
+												Usernames' Books
+											</h1>
+										</div>
+									</div>
 								</div>
-								<div className="text-center">
-									<h1 className="text-2xl font-bold">
-										Usernames' Books
-									</h1>
+							</div>
+
+							<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
+								<div className="flex justify-center w-full">
+									<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
+										<NavLink to="/addBook">
+											+ Add A Book
+										</NavLink>
+									</button>
+								</div>
+								<div className="m-10 mt-4 mb-4 space-y-10">
+									{data?.data.data.books.map((book, idx) => (
+										<MyBookCard
+											key={idx}
+											title={book.name}
+											description={book.description}
+											genre={book.genre}
+											imgUrl={book.image.url}
+										/>
+									))}
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<div className="left-0 w-full mb-10 mr-12 border-l-2 border-gray-400">
-						<div className="flex justify-center w-full">
-							<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
-								<NavLink to="/addBook">+ Add A Book</NavLink>
-							</button>
-						</div>
-						<div className="m-10 mt-4 mb-4">
-							{data?.data.data.books.map((book, idx) => (
-								<MyBookCard
-									key={idx}
-									title={book.name}
-									description={book.description}
-									genre={book.genre}
-									imgUrl={book.images[0].url}
-								/>
-							))}
-						</div>
-					</div>
-				</div>
-			</section>
+					</>
+				)}
+			</div>
 			<Footer />
-		</div>
+		</>
 	);
 };
 export default MyBooks;

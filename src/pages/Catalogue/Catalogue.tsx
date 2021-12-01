@@ -95,7 +95,7 @@ const Catalogue: React.FC = () => {
 										title={book.name}
 										description={book.description}
 										genre={book.genre}
-										imgUrl={book.images[0].url}
+										imgUrl={book.image.url}
 									/>
 								))}
 							</div>
