@@ -7,12 +7,11 @@ const MyProfile: React.FC<React.ComponentPropsWithoutRef<"button">> = ({
 			onClick={onClick}
 		>
 			<img
-				src="https://i.ibb.co/svPq37Q/62c39aa27b5f.png"
+				src="https://i.ibb.co/rt9TSY7/8740db0e7e05.png"
 				alt="P"
 				className="bg-light "
 				style={{ height: "40px" }}
 			/>
-			{/* <ProfilePopUp className=" z-100" /> */}
 		</button>
 	);
 };

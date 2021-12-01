@@ -82,7 +82,6 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 
 								<MyProfile onClick={openPopUp} />
-								<LogOutButton />
 							</>
 						</>
 					) : (
@@ -112,7 +111,8 @@ const NavigationBar: React.FC = () => {
 			</div>
 			{isPopUpOpen ? (
 				<ProfilePopUp
-					className="fixed z-50 mr-16 top-8 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
+					// NOTE: Popup position adjustments
+					className="fixed z-50 mr-16 top-14 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
 					closerFunc={closePopUp}
 				/>
 			) : null}

@@ -81,8 +81,9 @@ const SignInForm: React.FC = () => {
 		}
 	);
 
+	// NEXTCOMMIT: use custom isLoggedIn hook here
 	if (authService.checkIfLoggedIn(authData)) {
-		return <Redirect to="/" />;
+		return <Redirect exact to="/" />;
 	}
 	return (
 		<div className="signupform-main">
