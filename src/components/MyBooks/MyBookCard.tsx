@@ -2,28 +2,33 @@ import React from "react";
 import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
 import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
 
-const MyBookCard = () => {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
+	title: string;
+	description: string | null;
+	genre: string;
+	imgUrl: string;
+};
+const MyBookCard: React.FC<Props> = (props) => {
+	const { title, description, genre, imgUrl, ...rest } = props;
 	return (
-		<div className="p-5 bg-white rounded-lg shadow hover:shadow-xl">
+		<div
+			{...rest}
+			className="p-5 bg-white rounded-lg shadow hover:shadow-xl"
+		>
 			<div className="flex flex-row">
 				<div className="shadow">
-					<img src="https://via.placeholder.com/128x173" />
+					<img src={imgUrl} />
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
 						<h1 className="inline-block text-2xl font-bold text-dark">
-							Book Title
+							{title}
 						</h1>
 						<h2 className="absolute right-0 inline-block px-2 text-sm leading-relaxed capitalize rounded-full bg-semiLight text-light ">
-							Genre
+							{genre}
 						</h2>
 					</div>
-					<div className="text-base text-dark">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Itaque illo quod voluptas alias eos dolorem enim error
-						harum odio exercitationem! Voluptates, iusto eligendi
-						tenetur quod fugiat explicabo sit sunt hic.
-					</div>
+					<div className="text-base text-dark">{description}</div>
 					<div className="flex border-t border-gray-400">
 						<span className="text-gray-500">For Sell</span>
 						<span className="ml-auto capitalize text-dark">

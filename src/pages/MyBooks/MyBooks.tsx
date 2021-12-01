@@ -3,8 +3,54 @@ import Footer from "components/Footer";
 import MyBookCard from "components/MyBooks/MyBookCard";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import api from "api";
 
+type ParamType = {
+	id: string;
+};
+type ImageResponseType = {
+	id: number;
+	url: string;
+	label: string | null;
+};
+type BookType = {
+	id: number;
+	name: string;
+	description: string | null;
+	genre: string;
+	author: string;
+	publisher: string;
+	language: {
+		id: number;
+		name: string;
+		priority: number;
+	};
+	images: ImageResponseType[];
+};
+type BookResponseType = {
+	data: {
+		books: BookType[];
+	};
+};
 const MyBooks = () => {
+	const history = useHistory();
+	const params = useParams<ParamType>();
+	const { data, isLoading, isSuccess, status } = useQuery(
+		"fetchMyBooks",
+		() => api.get<BookResponseType>(`/books/mybooks`),
+		{
+			onSuccess: (data) => {
+				console.log("succesddd");
+				console.log(data);
+			},
+			onError: () => {
+				console.log("ERRROER");
+			},
+		}
+	);
+	console.log(isLoading);
 	return (
 		<div>
 			<NavigationBar />
@@ -35,7 +81,15 @@ const MyBooks = () => {
 							</button>
 						</div>
 						<div className="m-10 mt-4 mb-4">
-							<MyBookCard />
+							{data!.data.data.books.map((book, idx) => (
+								<MyBookCard
+									key={idx}
+									title={book.name}
+									description={book.description}
+									genre={book.genre}
+									imgUrl={book.images[0].url}
+								/>
+							))}
 						</div>
 					</div>
 				</div>

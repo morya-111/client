@@ -53,7 +53,7 @@ const Navigation = () => {
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
 				<Route path="/books/:id" exact component={BookDisplay} />
-				<Route path="/my-books" exact component={MyBooks} />
+				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
 				<ProtectedRoute
 					path="/protroute"
 					component={ProtectedComponent}
