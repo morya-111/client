@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationBar from "components/NavigationBar";
-import { ReactComponent as ArrowTopIcon } from "assets/common/arrow-top-icon.svg";
-import { ReactComponent as ArrowBottomIcon } from "assets/common/arrow-bottom-icon.svg";
+import { ScrollToTop } from "components/Scroll";
+import { ScrollToBottom } from "components/Scroll";
 
 const PrivacyPolicy = () => {
 	return (
@@ -319,12 +319,13 @@ const PrivacyPolicy = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="">
-					<button>
-						<ArrowTopIcon />
-					</button>
+				<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
+					<ScrollToTop />
 				</div>
 				<div className="w-full h-10 mt-4 bg-semiDark"></div>
+				<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
+					<ScrollToBottom />
+				</div>
 			</div>
 		</>
 	);
