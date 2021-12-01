@@ -5,9 +5,8 @@ import Footer from "components/Footer";
 const About = () => {
 	return (
 		<div>
-			<div className="min-h-screen bg-light">
+			<div className="min-h-screen space-y-10 bg-light">
 				<NavigationBar />
-				<div></div>
 			</div>
 			<Footer />
 		</div>
