@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import Modal from "components/Modal";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "utils/getCroppedImg";
-import Range from "components/Inputs/Range";
 import Button from "components/Buttons/Button";
 import { IoCropOutline } from "react-icons/io5";
 import { TiCancel } from "react-icons/ti";

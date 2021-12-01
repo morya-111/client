@@ -1,11 +1,12 @@
 import Select from "components/Inputs/Select";
 import TextInput from "components/Inputs/TextInput";
 import { useFormikContext } from "formik";
+import DURATION_UNIT from "pages/Book/Create/durationUnit";
 import { CreateBookFormType } from "pages/Book/Create/types";
 import React from "react";
 import { FaRupeeSign } from "react-icons/fa";
 
-const RentInformation: React.FC = () => {
+const RentInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 	const { values } = useFormikContext<CreateBookFormType>();
 	if (!values.rent) return <></>;
 
@@ -18,10 +19,11 @@ const RentInformation: React.FC = () => {
 			<div className="flex flex-col xl:flex-row">
 				<div className="flex-1 xl:mr-2">
 					<TextInput
-						name="rentDeposit"
+						name="deposit"
 						label="Deposit"
 						required
 						type="number"
+						disabled={disabled}
 						left={
 							<FaRupeeSign
 								size={20}
@@ -33,21 +35,25 @@ const RentInformation: React.FC = () => {
 				<div className="flex flex-1 xl:ml-2">
 					<div className="flex-grow mr-2">
 						<TextInput
-							name="rentDuration"
+							name="duration"
 							label="Duration"
 							required
+							disabled={disabled}
 							type="number"
 						/>
 					</div>
 					<div className="ml-2">
 						<Select
-							name="rentDurationUnit"
+							disabled={disabled}
+							name="durationUnit"
 							label="notUsed"
 							labelHidden
 						>
-							<option>Days</option>
-							<option>Months</option>
-							<option>Years</option>
+							{DURATION_UNIT.map((unit) => (
+								<option key={unit} value={unit}>
+									{unit}
+								</option>
+							))}
 						</Select>
 					</div>
 				</div>
@@ -55,8 +61,9 @@ const RentInformation: React.FC = () => {
 			<div className="flex mt-2">
 				<div>
 					<TextInput
-						name="rentFees"
-						label={`Price Per ${values.rentDurationUnit}`}
+						disabled={disabled}
+						name="fees"
+						label={`Fees Per ${values.durationUnit}`}
 						required
 						type="number"
 						left={
