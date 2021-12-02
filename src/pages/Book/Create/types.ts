@@ -7,9 +7,9 @@ export interface CreateBookFormType {
 	language: String;
 	sell: boolean;
 	rent: boolean;
-	sellPrice: String;
-	rentDeposit: String;
-	rentDuration: String;
-	rentDurationUnit: String;
-	rentFees: String;
+	price: String;
+	deposit: String;
+	duration: String;
+	durationUnit: String;
+	fees: String;
 }

@@ -4,7 +4,7 @@ import { CreateBookFormType } from "pages/Book/Create/types";
 import React from "react";
 import { FaRupeeSign } from "react-icons/fa";
 
-const SellInformation: React.FC = () => {
+const SellInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 	const { values } = useFormikContext<CreateBookFormType>();
 	if (!values.sell) return <></>;
 
@@ -17,7 +17,8 @@ const SellInformation: React.FC = () => {
 			<div className="flex ">
 				<div>
 					<TextInput
-						name="sellPrice"
+						disabled={disabled}
+						name="price"
 						label="Price"
 						required
 						type="number"
