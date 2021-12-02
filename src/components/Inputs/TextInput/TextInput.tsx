@@ -31,7 +31,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 				{label}
 				{rest.required && <span>*</span>}
 			</span>
-			<div className="absolute bottom-0">{left}</div>
+			<div className="absolute top-9">{left}</div>
 			<input
 				{...rest}
 				{...field}

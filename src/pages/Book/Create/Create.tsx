@@ -8,55 +8,127 @@ import TextArea from "components/Inputs/TextArea";
 import TextInput from "components/Inputs/TextInput";
 import { BiBook } from "react-icons/bi";
 import { Formik, Form } from "formik";
-import React, { useState } from "react";
-import Modal from "components/Modal";
+import React from "react";
+import createBookValidation from "./validation";
+import { useMutation, useQuery } from "react-query";
+import api from "api";
+import Loader from "components/Loader";
+import GENRES from "components/Catalogue/Sidebar/genres";
+import DURATION_UNIT from "./durationUnit";
+import { useHistory } from "react-router";
 
 const AddBook = () => {
-	const [imageId, setImageId] = useState<number | null>(null);
+	const history = useHistory();
+
+	const language = useQuery(
+		["languages"],
+		() =>
+			api.get("/languages", {
+				params: { order: "-priority" },
+			}),
+		{
+			select: (data) => data.data.data,
+			refetchOnWindowFocus: false,
+		}
+	);
+
+	const upload = useMutation((data: any) => api.post("/books", data), {
+		onSuccess: () => {
+			history.push("/myBooks");
+		},
+	});
+
+	if (language.isLoading) {
+		return (
+			<div className="flex items-center justify-center w-screen h-screen ite bg-light">
+				<div>
+					<Loader loading={language.isLoading} />
+				</div>
+			</div>
+		);
+	}
 
 	return (
-		<div className="w-full bg-light">
-			<div className="flex flex-col min-h-screen mx-14">
-				<div className="flex ">
-					<div style={{ flex: 1 }} className="hidden lg:block" />
-					<div
-						style={{ flex: 2 }}
-						className="text-4xl font-bold text-center md:text-5xl text-dark"
-					>
-						Create Book
+		<Formik
+			initialValues={{
+				name: "",
+				author: "",
+				publisher: "",
+				description: "",
+				genre: GENRES[0],
+				language: language.data.languages[0].id,
+				sell: false,
+				rent: false,
+				price: "0",
+				deposit: "0",
+				duration: "0",
+				durationUnit: DURATION_UNIT[0],
+				fees: "0",
+				image: "",
+			}}
+			onSubmit={(formData) => {
+				console.log(formData);
+				const {
+					name,
+					description,
+					author,
+					image,
+					genre,
+					language,
+					publisher,
+					deposit,
+					duration,
+					durationUnit,
+					fees,
+					price,
+					rent,
+					sell,
+				} = formData;
+				upload.mutate({
+					name,
+					description,
+					author,
+					image,
+					genre,
+					language,
+					publisher,
+					...(sell && { price }),
+					...(rent && { deposit, duration, durationUnit, fees }),
+				});
+			}}
+			validationSchema={createBookValidation}
+		>
+			<div className="w-full bg-light">
+				<Form className="flex flex-col min-h-screen mx-14">
+					<div className="flex ">
+						<div style={{ flex: 1 }} className="hidden lg:block" />
+						<div
+							style={{ flex: 2 }}
+							className="text-4xl font-bold text-center md:text-5xl text-dark"
+						>
+							Create Book
+						</div>
 					</div>
-				</div>
-				<div className="flex flex-col flex-grow w-full lg:flex-row">
-					<div
-						style={{ flex: 1 }}
-						className="flex items-center justify-center mt-2 lg:mt-0"
-					>
-						<ImageDrop setImageId={setImageId} />
-					</div>
-					<Formik
-						initialValues={{
-							name: "",
-							author: "",
-							publisher: "",
-							description: "",
-							genre: "b",
-							language: "a",
-							sell: true,
-							rent: true,
-							sellPrice: "0",
-							rentDeposit: "0",
-							rentDuration: "0",
-							rentDurationUnit: "",
-							rentFees: "0",
-						}}
-						onSubmit={() => {}}
-					>
-						<Form style={{ flex: 2 }}>
+					<div className="flex flex-col flex-grow w-full lg:flex-row">
+						<div
+							style={{ flex: 1 }}
+							className="flex items-center justify-center mt-2 lg:mt-0"
+						>
+							<ImageDrop />
+						</div>
+
+						<div style={{ flex: 2 }}>
 							<div className="mt-2 lg:mt-0">
-								<TextInput name="name" label="Name" required />
+								<TextInput
+									disabled={upload.isLoading}
+									name="name"
+									label="Name"
+									required
+								/>
 							</div>
 							<div className="flex-grow pt-2">
 								<TextArea
+									disabled={upload.isLoading}
 									name="description"
 									label="Description"
 									resizeable={false}
@@ -65,6 +137,7 @@ const AddBook = () => {
 							<div className="flex flex-col lg:flex-row">
 								<div className="flex-grow mt-2 lg:mr-2">
 									<TextInput
+										disabled={upload.isLoading}
 										name="author"
 										label="Author"
 										required
@@ -72,6 +145,7 @@ const AddBook = () => {
 								</div>
 								<div className="flex-grow mt-2 lg:ml-2">
 									<TextInput
+										disabled={upload.isLoading}
 										name="publisher"
 										label="Publisher"
 										required
@@ -80,10 +154,15 @@ const AddBook = () => {
 							</div>
 							<div className="flex flex-col lg:flex-row">
 								<div className="flex-grow mt-2 lg:mr-2">
-									<Select name="genre" label="Genre" required>
-										<option>a</option>
-										<option>b</option>
-										<option>Select Option</option>
+									<Select
+										disabled={upload.isLoading}
+										name="genre"
+										label="Genre"
+										required
+									>
+										{GENRES.map((genre) => (
+											<option key={genre}>{genre}</option>
+										))}
 									</Select>
 								</div>
 								<div className="flex-grow mt-2 lg:ml-2">
@@ -91,10 +170,18 @@ const AddBook = () => {
 										name="language"
 										label="Language"
 										required
+										disabled={upload.isLoading}
 									>
-										<option>a</option>
-										<option>b</option>
-										<option>Select Option</option>
+										{language.data.languages.map(
+											(language: any) => (
+												<option
+													value={language.id}
+													key={language.id}
+												>
+													{language.name}
+												</option>
+											)
+										)}
 									</Select>
 								</div>
 							</div>
@@ -103,26 +190,50 @@ const AddBook = () => {
 									Mode
 								</span>
 								<div className="mr-4">
-									<FMCheckbox name="sell" label="For Sell" />
+									<FMCheckbox
+										disabled={upload.isLoading}
+										name="sell"
+										label="For Sell"
+									/>
 								</div>
 								<div>
-									<FMCheckbox name="rent" label="For Rent" />
+									<FMCheckbox
+										disabled={upload.isLoading}
+										name="rent"
+										label="For Rent"
+									/>
 								</div>
 							</div>
-							<SellInformation />
-							<RentInformation />
+							<SellInformation disabled={upload.isLoading} />
+							<RentInformation disabled={upload.isLoading} />
 							<div className="flex justify-center mt-4">
 								<Button
+									type="submit"
 									value="Create"
 									color="semiLight"
-									left={<BiBook size={25} className="mr-2" />}
+									disabled={upload.isLoading}
+									left={
+										upload.isLoading ? (
+											<div className="mr-2">
+												<Loader
+													size="sm"
+													color="light"
+												/>
+											</div>
+										) : (
+											<BiBook
+												size={25}
+												className="mr-2"
+											/>
+										)
+									}
 								/>
 							</div>
-						</Form>
-					</Formik>
-				</div>
+						</div>
+					</div>
+				</Form>
 			</div>
-		</div>
+		</Formik>
 	);
 };
 
