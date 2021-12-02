@@ -19,6 +19,9 @@ const ProfilePopUp: React.FC<
 			<NavLink to="/mybooks" className="p-4 mr-2 ">
 				My Books
 			</NavLink>
+			<NavLink to="/myprofile" className="p-4 mr-2 ">
+				My Profile
+			</NavLink>
 
 			<LogOutButton extraCleanUp={closerFunc} />
 		</div>

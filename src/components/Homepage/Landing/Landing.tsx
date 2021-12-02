@@ -31,7 +31,13 @@ const Landing = () => {
 									Go To Catalogue
 								</NavLink>
 							</button>
-							{isLoggedIn ? null : (
+							{isLoggedIn ? (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/book/create">
+										Add A Book
+									</NavLink>
+								</button>
+							) : (
 								<button className="px-4 py-1 rounded text-light bg-semiLight">
 									<NavLink to="/signup">Sign Up</NavLink>
 								</button>

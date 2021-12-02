@@ -47,6 +47,7 @@ class AuthService {
 			last_name: yup.string().required(),
 			id: yup.number().required(),
 			role: yup.string().required(),
+			avatarUrl: yup.string().url(), // NOTE: .url() only covers https:// urls. other formats are not supported. somethimnng like "imbb.com" will fail.
 		});
 
 		const isLoggedIn = authDataSchema.isValidSync(authData);

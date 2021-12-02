@@ -17,6 +17,7 @@ export type AuthDataType = {
 	id: number;
 	last_name: string;
 	role: string;
+	avatarUrl?: string | "https://i.ibb.co/rt9TSY7/8740db0e7e05.png";
 };
 
 // TODO: this can eventually be made a lot clearer
