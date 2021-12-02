@@ -7,8 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
-import { BookDisplay } from "pages";
-
+import singleQuote from "utils/quotes";
 type ParamType = {
 	id: string;
 };
@@ -42,6 +41,12 @@ type BookType = {
 		duration: number;
 		durationUnit: "string";
 	};
+	user: {
+		id: number;
+		first_name: string;
+		last_name: string;
+		email: string;
+	};
 };
 
 type BookResponseType = {
@@ -49,6 +54,7 @@ type BookResponseType = {
 		books: BookType[];
 	};
 };
+console.log(singleQuote.text);
 const MyBooks = () => {
 	const history = useHistory();
 	const params = useParams<ParamType>();
@@ -70,6 +76,8 @@ const MyBooks = () => {
 		}
 	);
 	console.log(isLoading);
+	const userName = "ok";
+	console.log(userName);
 
 	return (
 		<>
@@ -81,8 +89,8 @@ const MyBooks = () => {
 					</div>
 				) : (
 					<>
-						<div className="flex">
-							<div className="container flex-col hidden lg:flex max-w-max">
+						<div className="relative flex">
+							<div className="container flex-col hidden w-[500px] lg:flex ">
 								<div className="mx-10 mt-10">
 									<div className="text-center">
 										<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
@@ -93,16 +101,22 @@ const MyBooks = () => {
 										</div>
 										<div className="text-center">
 											<h1 className="text-2xl font-bold">
-												Usernames' Books
+												{}' Books
 											</h1>
 										</div>
+									</div>
+								</div>
+								<div className="flex flex-col items-center px-5 mt-5 font-bold text-center ">
+									<div>"{singleQuote.text}"</div>
+									<div className="text-sm font-semibold text-opacity-70 text-dark">
+										-{singleQuote.author}
 									</div>
 								</div>
 							</div>
 
 							<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
 								<div className="flex justify-center w-full">
-									<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
+									<button className="px-3 text-lg font-semibold text-center duration-700 ease-out rounded-lg shadow bg-semiLight hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80">
 										<NavLink to="/book/create">
 											+ Add A Book
 										</NavLink>
@@ -127,8 +141,17 @@ const MyBooks = () => {
 												book.rentListing?.durationUnit
 											}
 											deposit={book.rentListing?.deposit}
+											// userName={book.user.first_name}
 										/>
 									))}
+								</div>
+								<div>
+									<div className="flex flex-col items-center pt-2 mx-5 mt-5 mb-4 font-bold text-center border-t border-opacity-40 lg:hidden border-dark">
+										<div>"{singleQuote.text}"</div>
+										<div className="text-sm font-semibold text-opacity-70 text-dark">
+											-{singleQuote.author}
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

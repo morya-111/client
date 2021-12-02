@@ -41,40 +41,42 @@ const MyBookCard: React.FC<Props> = (props) => {
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
-						<h1 className="inline-block text-2xl font-bold text-dark">
+						<h1 className="inline-block text-2xl font-bold text-dark line-clamp-1">
 							{title}
 						</h1>
-						<h2 className="absolute right-0 inline-block px-2 text-sm leading-relaxed capitalize rounded-full bg-semiLight text-light ">
-							{genre}
-						</h2>
+						<div className="flex justify-end">
+							<h2 className="px-2 mb-1 text-xs leading-relaxed capitalize rounded-full bg-semiLight text-light">
+								{genre}
+							</h2>
+						</div>
 					</div>
-					<div className="text-base line-clamp-2 md:line-clamp-3 text-dark">
+					<div className="text-base border-b border-gray-400 2xl:line-clamp-2 line-clamp-1 text-dark">
 						{description}
 					</div>
 					<div className="flex flex-col border-collapse">
 						{sell && (
-							<div className="flex border border-l-0 border-r-0 border-gray-400">
+							<div className="flex border-b border-gray-400">
 								<span className="text-gray-500">For Sell</span>
 								<span className="ml-auto capitalize text-dark">
-									{price} ₹
+									&#x20B9;{price}
 								</span>
 							</div>
 						)}
 						{borrow && (
 							<div>
-								<div className="flex border border-l-0 border-r-0 border-gray-400">
+								<div className="flex border-b border-gray-400">
 									<span className="text-gray-500">
 										For Rent
 									</span>
 									<span className="ml-auto capitalize text-dark">
-										{fees} ₹ /{" "}
+										&#x20B9;{fees} /{" "}
 										{durationUnit?.slice(
 											0,
 											durationUnit.length - 1
 										)}
 									</span>
 								</div>
-								<div className="flex border border-l-0 border-r-0 border-gray-400">
+								<div className="flex border-b border-gray-400">
 									<span className="text-gray-500">
 										Available For
 									</span>
@@ -82,12 +84,12 @@ const MyBookCard: React.FC<Props> = (props) => {
 										{duration} {durationUnit}
 									</span>
 								</div>
-								<div className="flex border border-l-0 border-r-0 border-gray-400">
+								<div className="flex border-b border-gray-400">
 									<span className="text-gray-500">
 										Deposit
 									</span>
 									<span className="ml-auto capitalize text-dark">
-										{deposit} ₹
+										&#x20B9;{deposit}
 									</span>
 								</div>
 							</div>
