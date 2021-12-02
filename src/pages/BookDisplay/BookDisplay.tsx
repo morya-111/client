@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import { useQuery } from "react-query";
 import Loader from "components/Loader";
 import api from "api";
 import { useParams, useHistory } from "react-router-dom";
-import { isEmptyStatement } from "typescript";
+import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 type ParamType = {
 	id: string;
@@ -42,6 +43,12 @@ type BookResponseType = {
 				duration: number;
 				durationUnit: "string";
 			};
+			user: {
+				id: number;
+				first_name: string;
+				last_name: string;
+				email: string;
+			};
 		};
 	};
 };
@@ -77,6 +84,8 @@ const BookDisplay: React.FC = () => {
 				break;
 		}
 	};
+	const [inHover, setHover] = useState(false);
+	const isLoggedIn = useCachedLoginStatus();
 
 	const sell = data?.data.data.book.sellListing !== null;
 	const borrow = data?.data.data.book.rentListing !== null;
@@ -87,8 +96,9 @@ const BookDisplay: React.FC = () => {
 	const deposit = data?.data.data.book.rentListing?.deposit;
 	const description =
 		data?.data.data.book.description === ""
-			? "Description Not Found 🧐"
+			? "Description Not Available 🧐"
 			: data?.data.data.book.description;
+	const userName = data?.data.data.book.user.first_name;
 
 	return (
 		<div>
@@ -110,12 +120,53 @@ const BookDisplay: React.FC = () => {
 											{switchJSX(status)}
 										</div>
 										<div className="relative">
-											<h2 className="inline-block text-sm font-semibold text-dark">
-												Uploaded by --Username--{" "}
-												{/*TODO:dynamic username*/}
-											</h2>
-											<h2 className="absolute right-0 inline-block px-2 text-sm capitalize rounded-full bg-semiLight text-light">
+											<h2 className="absolute right-0 inline-flex px-2 text-sm capitalize rounded-full bg-semiLight text-light">
 												{data?.data.data.book.genre}
+											</h2>
+											<h2
+												onMouseEnter={() =>
+													setHover(true)
+												}
+												onMouseLeave={() =>
+													setHover(false)
+												}
+												className="inline-flex text-sm font-semibold text-dark"
+											>
+												Uploaded by {userName}{" "}
+												<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
+												{inHover && (
+													<div className="relative inline-flex items-center px-2 ml-2 text-xs font-normal rounded-sm bg-semiLight md:text-sm text-light ">
+														<div className="absolute left-0 bottom-0 h-[53%] w-[10px] skew-x-[50deg] bg-semiLight rounded-sm"></div>
+														<div className="absolute left-0 top-0 h-1/2 w-[10px] skew-x-[-50deg]  bg-semiLight rounded-sm"></div>
+
+														<h1
+															className={
+																isLoggedIn
+																	? "select-all"
+																	: ""
+															}
+														>
+															{isLoggedIn ? (
+																data?.data.data
+																	.book.user
+																	.email
+															) : (
+																<h1>
+																	<a
+																		href="/signup"
+																		className="underline hover:text-dark"
+																	>
+																		Sign Up
+																	</a>
+																	&nbsp;to
+																	access
+																	Contact
+																	Information
+																</h1>
+															)}
+														</h1>
+													</div>
+												)}
 											</h2>
 										</div>
 										<img
@@ -134,7 +185,7 @@ const BookDisplay: React.FC = () => {
 										</p>
 
 										<div className="mb-4 ">
-											<div className="flex py-2 border-t border-gray-400">
+											<div className="flex px-2 py-2 border-t border-gray-400 md:px-1">
 												<span className="text-gray-500">
 													Language
 												</span>
@@ -145,7 +196,7 @@ const BookDisplay: React.FC = () => {
 													}
 												</span>
 											</div>
-											<div className="flex py-2 border-t border-gray-400">
+											<div className="flex px-2 py-2 border-t border-gray-400 md:px-1">
 												<span className="text-gray-500">
 													Author
 												</span>
@@ -156,7 +207,7 @@ const BookDisplay: React.FC = () => {
 													}
 												</span>
 											</div>
-											<div className="flex py-2 border-t border-b border-gray-400">
+											<div className="flex px-2 py-2 border-t border-b border-gray-400 md:px-1">
 												<span className="text-gray-500">
 													Publisher
 												</span>
@@ -174,10 +225,9 @@ const BookDisplay: React.FC = () => {
 														: "invisible"
 												}
 											>
-												<div className="flex py-2 border-b border-gray-400">
+												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
 													<span className="text-gray-500">
 														For Sell{" "}
-														{/*TODO:dynamic sellInfo*/}
 													</span>
 													<span className="ml-auto text-dark">
 														{price} ₹
@@ -191,10 +241,9 @@ const BookDisplay: React.FC = () => {
 														: "invisible"
 												}
 											>
-												<div className="flex py-2 border-b border-gray-400">
+												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
 													<span className="text-gray-500">
 														For Rent{" "}
-														{/*TODO:dynamic rentInfo*/}
 													</span>
 													<span className="ml-auto text-dark">
 														{fees} ₹ /{" "}
@@ -205,20 +254,18 @@ const BookDisplay: React.FC = () => {
 														)}
 													</span>
 												</div>
-												<div className="flex py-2 border-b border-gray-400">
+												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
 													<span className="text-gray-500">
-														Available{" "}
-														{/*TODO:dynamic depositInfo*/}
+														Available For{" "}
 													</span>
 													<span className="ml-auto text-dark">
 														{duration}{" "}
 														{durationUnit}
 													</span>
 												</div>
-												<div className="flex py-2 border-b border-gray-400">
+												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
 													<span className="text-gray-500">
 														Deposit{" "}
-														{/*TODO:dynamic depositInfo*/}
 													</span>
 													<span className="ml-auto text-dark">
 														{deposit} ₹
