@@ -2,7 +2,7 @@ import React from "react";
 import SignInForm from "components/SignInForm";
 const SignInPage: React.FC = () => {
 	return (
-		<div>
+		<div className="mt-20">
 			<SignInForm />
 		</div>
 	);

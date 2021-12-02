@@ -50,7 +50,7 @@ const SignUpForm: React.FC = () => {
 	);
 
 	if (authService.checkIfLoggedIn(authData)) {
-		return <Redirect to="/protroute" />;
+		return <Redirect to="/" />;
 	}
 	return (
 		<div className="signupform-main">

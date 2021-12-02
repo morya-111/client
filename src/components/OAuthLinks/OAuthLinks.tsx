@@ -10,7 +10,7 @@ type OAuthLinksPropsType = {
 const OAuthLinks: React.FC<OAuthLinksPropsType> = ({ titleText }) => {
 	return (
 		<div className="m-50">
-			<div className="flex justify-center m-auto text-xl font-bold ">
+			<div className="flex justify-center m-auto mt-3 text-xl font-bold">
 				{titleText || "Title Text"}
 			</div>
 			<div className="flex justify-center">

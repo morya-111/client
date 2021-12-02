@@ -5,6 +5,7 @@ interface Props {
 	size?: "xs" | "sm" | "md" | "lg";
 	thickness?: "sm" | "md" | "lg";
 	color?: "dark" | "semiDark" | "semiLight" | "light";
+	loading?: boolean;
 }
 
 const sizeMap = {
@@ -31,7 +32,10 @@ const Loader: React.FC<Props> = ({
 	size = "md",
 	thickness = "md",
 	color = "semiDark",
+	loading = true,
 }) => {
+	if (!loading) return <></>;
+
 	return (
 		<div className="flex items-center justify-center ">
 			<div
