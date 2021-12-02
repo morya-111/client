@@ -57,7 +57,7 @@ const NavigationBar: React.FC = () => {
 
 	return (
 		<>
-			<div className="flex items-center justify-between h-24  md:pl-14 lg:pr-14 md:pr-5 bg-light">
+			<div className="flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
 				<NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
 				</NavLink>

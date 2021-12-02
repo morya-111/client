@@ -13,8 +13,8 @@ const About = () => {
 							<LogoLight className="w-auto h-24 p-2" />
 						</NavLink>
 						<div className="absolute bottom-0 bg-light w-[140px] h-[40px]">
-							<div className="absolute bottom-0 left-0 w-[71px] h-[140px] bg-dark -skew-y-12 rounded-bl-md "></div>
-							<div className="absolute bottom-0 right-0 w-[71px] h-[140px] bg-dark skew-y-12 rounded-br-md"></div>
+							<div className="absolute bottom-0 left-0 w-[71px] h-[140px] bg-dark -skew-y-12 rounded-bl-sm "></div>
+							<div className="absolute bottom-0 right-0 w-[71px] h-[140px] bg-dark skew-y-12 rounded-br-sm"></div>
 						</div>
 					</div>
 
