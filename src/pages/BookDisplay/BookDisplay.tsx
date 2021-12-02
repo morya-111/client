@@ -29,6 +29,7 @@ type BookResponseType = {
 				priority: number;
 			};
 			images: ImageResponseType[];
+			image: { url: string };
 		};
 	};
 };
@@ -93,7 +94,7 @@ const BookDisplay: React.FC = () => {
 									<img
 										alt="ecommerce"
 										className="w-1/2 h-auto mx-auto my-10 shadow-md md:hidden md:w-1/3 md:h-auto"
-										src={data?.data.data.book.images[0].url}
+										src={data?.data.data.book.image.url}
 									/>
 									<div className="flex mt-4">
 										<h1 className="flex-grow text-lg underline text-semiDark">

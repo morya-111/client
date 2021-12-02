@@ -1,14 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import {
-	Homepage,
-	SignInpage,
-	SignUppage,
-	Catalogue,
-	BookDisplay,
-	CreateBook,
-} from "pages";
+import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay,CreateBook, MyBooks } from "pages";
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
@@ -74,11 +66,14 @@ const Navigation = () => {
 				/>
 
 				<Route path="/books/:id" exact component={BookDisplay} />
+				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
 				<ProtectedRoute
 					path="/protroute"
 					component={ProtectedComponent}
 				/>
 				<Route component={NotFound} />
+
+
 			</Switch>
 		</BrowserRouter>
 	);
