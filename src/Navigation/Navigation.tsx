@@ -1,10 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-
-
 import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay,CreateBook, MyBooks } from "pages";
-
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
@@ -15,7 +11,6 @@ import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
 
 import Loader from "components/Loader";
-
 
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
@@ -64,7 +59,11 @@ const Navigation = () => {
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
 
-				<Route path="/book/create" exact component={CreateBook} />
+				<ProtectedRoute
+					path="/book/create"
+					exact
+					component={CreateBook}
+				/>
 
 				<Route path="/books/:id" exact component={BookDisplay} />
 				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
@@ -73,6 +72,7 @@ const Navigation = () => {
 					component={ProtectedComponent}
 				/>
 				<Route component={NotFound} />
+
 
 			</Switch>
 		</BrowserRouter>
