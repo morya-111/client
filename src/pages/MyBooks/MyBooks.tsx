@@ -7,6 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
+import { BookDisplay } from "pages";
 
 type ParamType = {
 	id: string;
@@ -30,7 +31,19 @@ type BookType = {
 	};
 	images: ImageResponseType[];
 	image: { url: string };
+	sellListing: {
+		id: string;
+		price: number;
+		createdAt: string;
+	} | null;
+	rentListing: {
+		fees: number;
+		deposit: number;
+		duration: number;
+		durationUnit: "string";
+	};
 };
+
 type BookResponseType = {
 	data: {
 		books: BookType[];
@@ -57,6 +70,7 @@ const MyBooks = () => {
 		}
 	);
 	console.log(isLoading);
+
 	return (
 		<>
 			<NavigationBar />
@@ -89,7 +103,7 @@ const MyBooks = () => {
 							<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
 								<div className="flex justify-center w-full">
 									<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
-										<NavLink to="/addBook">
+										<NavLink to="/book/create">
 											+ Add A Book
 										</NavLink>
 									</button>
@@ -102,6 +116,17 @@ const MyBooks = () => {
 											description={book.description}
 											genre={book.genre}
 											imgUrl={book.image.url}
+											sell={book.sellListing !== null}
+											price={book.sellListing?.price}
+											borrow={book.rentListing !== null}
+											fees={book.rentListing?.fees}
+											duration={
+												book.rentListing?.duration
+											}
+											durationUnit={
+												book.rentListing?.durationUnit
+											}
+											deposit={book.rentListing?.deposit}
 										/>
 									))}
 								</div>
