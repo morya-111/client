@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import Badge from "components/Badge";
 import React from "react";
+import { boolean } from "yup";
 import BookIndicator from "../BookIndicator";
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
@@ -8,9 +9,11 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 	description: string;
 	genre: string;
 	imgUrl: string;
+	borrow: boolean;
+	sell: boolean;
 };
 const Card: React.FC<Props> = (props) => {
-	const { title, description, genre, imgUrl, ...rest } = props;
+	const { title, description, genre, imgUrl, borrow, sell, ...rest } = props;
 	return (
 		<div
 			{...rest}
@@ -32,7 +35,7 @@ const Card: React.FC<Props> = (props) => {
 			</div>
 			<div className="flex justify-between">
 				<Badge label={genre} />
-				<BookIndicator borrow={true} sell={true} />
+				<BookIndicator borrow={borrow} sell={sell} />
 			</div>
 		</div>
 	);
