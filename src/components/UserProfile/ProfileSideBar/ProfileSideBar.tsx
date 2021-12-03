@@ -2,7 +2,7 @@ import useAuthData from "hooks/useAuthData";
 const ProfileSideBar: React.FC = () => {
 	const { avatarUrl, first_name, email } = useAuthData();
 	return (
-		<div className="container hidden mx-10 lg:flex max-w-max">
+		<div className="container mx-10 md:flex max-w-max">
 			<div className="text-center ">
 				<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
 					<img

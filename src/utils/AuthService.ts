@@ -40,7 +40,7 @@ class AuthService {
 		});
 	};
 
-	public checkIfLoggedIn = (authData: AuthDataType) => {
+	public checkIfLoggedIn = (authData: AuthDataType, logging = false) => {
 		const authDataSchema = yup.object().shape({
 			email: yup.string().email().required(),
 			first_name: yup.string().required(),
@@ -49,18 +49,29 @@ class AuthService {
 			role: yup.string().required(),
 			avatarUrl: yup.string().url(), // NOTE: .url() only covers https:// urls. other formats are not supported. somethimnng like "imbb.com" will fail.
 		});
-
 		const isLoggedIn = authDataSchema.isValidSync(authData);
-		console.log(
-			"checking isloggedin from cached data...result is",
-			isLoggedIn,
-			"authdata is",
-			authData,
-			"current time - ",
-			new Date()
-		);
-
+		if (logging) {
+			console.log(
+				"checking isloggedin from cached data...result is",
+				isLoggedIn,
+				"authdata is",
+				authData,
+				"current time - ",
+				new Date()
+			);
+		}
 		return isLoggedIn;
+	};
+	public updateUserInfo = (updatedData: any) => {
+		return axiosClient.put<any>("/user/updateuser", { ...updatedData });
+	};
+
+	public delAccount = () => {
+		return axiosClient.delete<any>("/user/deleteuser");
+	};
+
+	public getAuthInfo = () => {
+		return axiosClient.get<any>("/user/loggedinusing");
 	};
 }
 

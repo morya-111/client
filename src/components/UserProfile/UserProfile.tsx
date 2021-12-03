@@ -1,13 +1,11 @@
 import ProfileSideBar from "./ProfileSideBar";
 import ProfileDetails from "./ProfileDetails";
-import Loader from "components/Loader";
 import Footer from "components/Footer";
-import { NavLink } from "react-router-dom";
 
 const UserProfile: React.FC = () => {
 	return (
 		<>
-			<div className="flex min-w-full min-h-screen bg-light">
+			<div className="flex flex-col items-center min-w-full min-h-screen md:items-start md:flex-row bg-light">
 				<>
 					<div>
 						<ProfileSideBar />
@@ -23,8 +21,3 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
-
-// <div className="flex flex-row justify-center">
-// 	<ProfileSideBar />
-// 	<ProfileDetails />
-// </div>

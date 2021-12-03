@@ -1,33 +1,62 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
+
 import { useState } from "react";
-import Loader from "components/Loader";
 import { FormMessageType } from "types/formTypes";
 import { formMsgsTypeEnum } from "types/formTypes";
 import authService from "utils/AuthService";
-import { Link } from "react-router-dom";
-import { SignUpFormData } from "types/formTypes";
 import { useMutation } from "react-query";
-import * as Yup from "yup";
+import { updateProfileSchema } from "utils/authFormsValidators";
 import useAuthData from "hooks/useAuthData";
-
+import AvatarForm from "./AvatarForm";
 import Button from "components/Buttons/Button";
+import FormikFieldWithErrMsg from "components/FormikFieldWithErrMsg";
+import Loader from "components/Loader";
+import DeleteAccountBtn from "./DeleteAccountBtn";
+import AuthInfo from "../UpdateProfileForm/AuthInfo";
 
+type UpdateUserData = {
+	first_name?: string;
+	last_name?: string;
+	avatarUrl?: string;
+	password?: string;
+};
 const UpdateProfileForm: React.FC = () => {
-	const { first_name, last_name, email } = useAuthData();
+	const { first_name, last_name, email, avatarUrl } = useAuthData();
+
+	const [isAuthBookEx, setIsAuthBookEx] = useState(false);
+
 	const [formMsg, setFormMsg] = useState<FormMessageType>({
 		msg: "",
 		type: formMsgsTypeEnum.None,
 	});
+
+	const checkIfFormChanged = (formValues: UpdateUserData) => {
+		if (formValues.first_name !== first_name) {
+			return true;
+		}
+		if (formValues.password) {
+			return true;
+		}
+		if (formValues.last_name !== last_name) {
+			return true;
+		}
+		if (formValues.avatarUrl !== avatarUrl) {
+			return true;
+		}
+		return false;
+	};
 	const updateProfileMutation = useMutation(
-		(formData: SignUpFormData) => {
-			// NEXTCOMMIT:
-			return authService.registerUser(formData);
+		(formData: UpdateUserData) => {
+			return authService.updateUserInfo(formData);
 		},
 		{
 			onError: (err: any) => {
-				if (err.response.status === 409) {
+				if (
+					err.response.status === 401 ||
+					err.response.status === 404
+				) {
 					setFormMsg({
-						msg: `Email Already Exists. Sign In instead ?`,
+						msg: "The Field you request to change can not be changed",
 						type: formMsgsTypeEnum.Fail,
 					});
 				} else {
@@ -37,9 +66,11 @@ const UpdateProfileForm: React.FC = () => {
 					});
 				}
 			},
-			onSuccess: () => {
+			onSuccess: (data) => {
 				setFormMsg({
-					msg: "Profile Updated Successfully",
+					msg: `Profile Updated Successfully ${data.data.changedFields.join(
+						", "
+					)}`,
 					type: formMsgsTypeEnum.Success,
 				});
 			},
@@ -50,158 +81,119 @@ const UpdateProfileForm: React.FC = () => {
 			<div>
 				<Formik
 					initialValues={{
-						firstName: first_name || "",
-						lastName: last_name || "",
+						first_name: first_name || "",
+						last_name: last_name || "",
 						emailId: email || "",
 						password: "",
 						confirmPassword: "",
+						avatarUrl: avatarUrl,
 					}}
-					onSubmit={(values: SignUpFormData) => {
+					onSubmit={(values: UpdateUserData) => {
 						updateProfileMutation.mutate(values);
 					}}
 					validationSchema={updateProfileSchema}
+					validateOnChange={true}
 				>
-					{({ errors, touched, isSubmitting }) => (
+					{({ touched, initialTouched, initialValues, values }) => (
 						<Form>
 							<div className="flex">
 								<div className="mx-4  mr-0.5">
-									<label
-										htmlFor="firstName"
-										className="std-label"
-									>
-										First Name
-									</label>
-									<Field
-										id="firstName"
-										name="firstName"
-										type="text"
-										placeholder="First Name"
-										className="std-input"
-										// validate={validateFirstName}
+									<FormikFieldWithErrMsg
+										id="first_name"
+										name="first_name"
+										type="first_name"
+										labelName="First Name :"
+										labelFor="first_name"
 									/>
-									<div className="validation-msg">
-										<ErrorMessage
-											className="validation-msg"
-											name="firstName"
-										/>
-									</div>
 								</div>
 								<div className="mx-4 ">
-									<label
-										htmlFor="lastName"
-										className="std-label"
-									>
-										Last Name
-									</label>
-									<Field
-										id="lastName"
-										name="lastName"
-										type="text"
-										placeholder="Last Name"
-										className="std-input"
+									<FormikFieldWithErrMsg
+										id="last_name"
+										name="last_name"
+										type="last_name"
+										labelName="Last Name :"
+										labelFor="last_name"
 									/>
-									<div className="validation-msg">
-										<ErrorMessage name="lastName" />
-									</div>
 								</div>
 							</div>
 							<div className="mx-4 ">
 								<label htmlFor="emailid" className="std-label">
 									Email
 								</label>
-								<Field
+								<input
 									id="emailId"
 									name="emailId"
 									type="text"
-									placeholder="Email ID"
+									placeholder={email}
 									className="std-input"
+									disabled
 								/>
-								<div className="validation-msg">
-									<ErrorMessage name="emailId" />
-								</div>
 							</div>
-							<div className="mx-4 ">
-								<label htmlFor="password" className="std-label">
-									Password
-								</label>
-								<Field
-									id="password"
-									name="password"
-									type="password"
-									placeholder="Password"
-									className="std-input"
-								/>
-								<div className="validation-msg">
-									<ErrorMessage name="password" />
-								</div>
-							</div>
-							{touched.password ? (
-								<div className="mx-4 ">
-									<label
-										htmlFor="confirmPassword"
-										className="std-label"
-									>
-										Confirm Password
-									</label>
-									<Field
-										id="confirmPassword"
-										name="confirmPassword"
-										type="password"
-										placeholder="Confirm Password"
-										className="std-input"
-									/>
-									<div className="validation-msg">
-										<ErrorMessage name="confirmPassword" />
+							{isAuthBookEx ? (
+								<>
+									<div className="mx-4 ">
+										<FormikFieldWithErrMsg
+											id="password"
+											name="password"
+											type="password"
+											labelName="Password :"
+											labelFor="password"
+										/>
 									</div>
-								</div>
+									<div className="mx-4 ">
+										{values.password !==
+										initialValues.password ? (
+											<FormikFieldWithErrMsg
+												id="confirmPassword"
+												name="confirmPassword"
+												type="password"
+												placeholder={"&#8226;".repeat(
+													10
+												)}
+												labelName="Confirm Password :"
+												labelFor="confirmPassword"
+											/>
+										) : null}
+									</div>
+								</>
 							) : null}
+							<div className="mt-4 mb-4 ml-4 w-96">
+								<AuthInfo
+									setPasswordVisibility={setIsAuthBookEx}
+								/>
+							</div>
+							<div>
+								<AvatarForm />
+							</div>
 							<div className="flex mt-5 ml-4">
 								<div>
-									{touched.firstName ||
-									touched.lastName ||
-									touched.emailId ||
-									touched.password ||
-									touched.confirmPassword ? (
+									{checkIfFormChanged(values) ? (
 										<Button
 											type="submit"
 											value="Save Changes"
+											right={
+												updateProfileMutation.isLoading ? (
+													<div className="ml-2">
+														<Loader size="xs" />
+													</div>
+												) : null
+											}
 										></Button>
 									) : null}
-								</div>
-								<div className="ml-4 mr-4">
-									<Button
-										type="submit"
-										value="Delete Account"
-										color="error"
-										right={
-											updateProfileMutation.isLoading ? (
-												<div className="ml-2">
-													<Loader size="xs" />
-												</div>
-											) : null
-										}
-									></Button>
 								</div>
 							</div>
 						</Form>
 					)}
 				</Formik>
+				<div className="h-full mt-4 ml-4 bg-dark">
+					<div className={formMsg.type}>{formMsg.msg}</div>
+				</div>
+				<div className="m-4">
+					<DeleteAccountBtn />
+				</div>
 			</div>
 		</div>
 	);
 };
-
-export const updateProfileSchema = Yup.object().shape({
-	firstName: Yup.string(),
-	lastName: Yup.string(),
-	password: Yup.string().min(
-		8,
-		"Password should atleast be longer than 8 characters"
-	),
-	confirmPassword: Yup.string().oneOf(
-		[Yup.ref("password")],
-		"Passwords must match !"
-	),
-});
 
 export default UpdateProfileForm;

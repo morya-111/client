@@ -9,14 +9,7 @@ type Props = React.ComponentPropsWithoutRef<"button"> & {
 };
 
 const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
-	const {
-		left,
-		right,
-		full = false,
-		color = "semiDark",
-		className = "",
-		...rest
-	} = props;
+	const { left, right, full = false, color = "semiDark", ...rest } = props;
 
 	return (
 		<button

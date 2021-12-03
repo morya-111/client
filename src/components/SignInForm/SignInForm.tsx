@@ -18,9 +18,11 @@ import { SignInFormData } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
 
 import Loader from "components/Loader";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const SignInForm: React.FC = () => {
-	const { authData, authDataDispatch } = useContext(AuthDataContext);
+	const isLoggedIn = useCachedLoginStatus();
+	const { authDataDispatch } = useContext(AuthDataContext);
 
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
@@ -81,8 +83,7 @@ const SignInForm: React.FC = () => {
 		}
 	);
 
-	// NEXTCOMMIT: use custom isLoggedIn hook here
-	if (authService.checkIfLoggedIn(authData)) {
+	if (isLoggedIn) {
 		return <Redirect exact to="/" />;
 	}
 	return (

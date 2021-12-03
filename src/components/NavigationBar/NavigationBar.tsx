@@ -35,22 +35,16 @@ const NavigationBar: React.FC = () => {
 				setIsOpen(false);
 			}
 		};
-
-		window.addEventListener("resize", () => {
+		const closePopUpAndHideMenu = () => {
 			closePopUp();
 			hideMenu();
-		});
-		window.addEventListener("scroll", () => {
-			closePopUp();
-		});
+		};
+
+		window.addEventListener("resize", closePopUpAndHideMenu);
+		window.addEventListener("scroll", closePopUp);
 		return () => {
-			window.removeEventListener("resize", () => {
-				closePopUp();
-				hideMenu();
-			});
-			window.removeEventListener("scroll", () => {
-				closePopUp();
-			});
+			window.removeEventListener("resize", closePopUpAndHideMenu);
+			window.removeEventListener("scroll", closePopUp);
 		};
 	});
 

@@ -22,3 +22,17 @@ export const SignInSchema = Yup.object().shape({
 		.min(8, "Password should atleast be longer than 8 characters")
 		.required("Password is required !"),
 });
+
+export const updateProfileSchema = Yup.object().shape({
+	firstName: Yup.string(),
+	lastName: Yup.string(),
+	password: Yup.string().min(
+		8,
+		"Password should atleast be longer than 8 characters"
+	),
+	confirmPassword: Yup.string().oneOf(
+		[Yup.ref("password")],
+		"Passwords must match !"
+	),
+	avatarUrl: Yup.string().url(),
+});
