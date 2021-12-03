@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FormMessageType } from "types/formTypes";
 import { formMsgsTypeEnum } from "types/formTypes";
 import authService from "utils/AuthService";
@@ -13,6 +13,8 @@ import FormikFieldWithErrMsg from "components/FormikFieldWithErrMsg";
 import Loader from "components/Loader";
 import DeleteAccountBtn from "./DeleteAccountBtn";
 import AuthInfo from "../UpdateProfileForm/AuthInfo";
+import { AuthDataActionsTypeEnum } from "types/authTypes";
+import AuthDataContext from "contexts/AuthDataContext";
 
 type UpdateUserData = {
 	first_name?: string;
@@ -22,6 +24,7 @@ type UpdateUserData = {
 };
 const UpdateProfileForm: React.FC = () => {
 	const { first_name, last_name, email, avatarUrl } = useAuthData();
+	const { authDataDispatch } = useContext(AuthDataContext);
 
 	const [isAuthBookEx, setIsAuthBookEx] = useState(false);
 
@@ -31,26 +34,38 @@ const UpdateProfileForm: React.FC = () => {
 	});
 
 	const checkIfFormChanged = (formValues: UpdateUserData) => {
+		let changed: string[] = [];
 		if (formValues.first_name !== first_name) {
-			return true;
+			changed.push("First Name");
 		}
 		if (formValues.password) {
-			return true;
+			changed.push("Password");
 		}
 		if (formValues.last_name !== last_name) {
-			return true;
+			changed.push("Last Name");
 		}
 		if (formValues.avatarUrl !== avatarUrl) {
+			changed.push("Avatar Url");
+		}
+		if (changed.length > 0) {
+			console.log(
+				"Save Changes is popping Up Due To : ",
+				changed.join(", ")
+			);
 			return true;
 		}
+
 		return false;
 	};
+
 	const updateProfileMutation = useMutation(
 		(formData: UpdateUserData) => {
 			return authService.updateUserInfo(formData);
 		},
 		{
 			onError: (err: any) => {
+				console.log(err.response.status);
+
 				if (
 					err.response.status === 401 ||
 					err.response.status === 404
@@ -68,14 +83,36 @@ const UpdateProfileForm: React.FC = () => {
 			},
 			onSuccess: (data) => {
 				setFormMsg({
-					msg: `Profile Updated Successfully ${data.data.changedFields.join(
+					msg: `Fields updated successfully - ${data.data.changedFields.join(
 						", "
 					)}`,
 					type: formMsgsTypeEnum.Success,
 				});
+
+				authDataDispatch({
+					type: AuthDataActionsTypeEnum.PROFILE_UPDATE,
+					payload: { ...data.data.data.newUser },
+				});
 			},
 		}
 	);
+	const SaveVsLoader = (formValues: UpdateUserData) => {
+		if (updateProfileMutation.isLoading) {
+			return (
+				<>
+					<div className="flex items-center justify-center w-48 mb-1 ml-2">
+						<Loader size="sm" thickness="md" />
+					</div>
+				</>
+			);
+		} else if (checkIfFormChanged(formValues)) {
+			return (
+				<div onClick={() => {}}>
+					<Button type="submit" value="Save Changes"></Button>
+				</div>
+			);
+		}
+	};
 	return (
 		<div>
 			<div>
@@ -94,8 +131,8 @@ const UpdateProfileForm: React.FC = () => {
 					validationSchema={updateProfileSchema}
 					validateOnChange={true}
 				>
-					{({ touched, initialTouched, initialValues, values }) => (
-						<Form>
+					{({ resetForm, initialValues, values }) => (
+						<Form autoComplete="false">
 							<div className="flex">
 								<div className="mx-4  mr-0.5">
 									<FormikFieldWithErrMsg
@@ -140,20 +177,23 @@ const UpdateProfileForm: React.FC = () => {
 											labelFor="password"
 										/>
 									</div>
-									<div className="mx-4 ">
-										{values.password !==
-										initialValues.password ? (
+									<div className="mx-4">
+										<div
+											className={
+												values.password !==
+												initialValues.password
+													? ""
+													: "hidden"
+											}
+										>
 											<FormikFieldWithErrMsg
 												id="confirmPassword"
 												name="confirmPassword"
 												type="password"
-												placeholder={"&#8226;".repeat(
-													10
-												)}
 												labelName="Confirm Password :"
 												labelFor="confirmPassword"
 											/>
-										) : null}
+										</div>
 									</div>
 								</>
 							) : null}
@@ -166,28 +206,19 @@ const UpdateProfileForm: React.FC = () => {
 								<AvatarForm />
 							</div>
 							<div className="flex mt-5 ml-4">
-								<div>
-									{checkIfFormChanged(values) ? (
-										<Button
-											type="submit"
-											value="Save Changes"
-											right={
-												updateProfileMutation.isLoading ? (
-													<div className="ml-2">
-														<Loader size="xs" />
-													</div>
-												) : null
-											}
-										></Button>
-									) : null}
-								</div>
+								<div>{SaveVsLoader(values)}</div>
 							</div>
+							{checkIfFormChanged(values) ? null : (
+								<div className="flex mt-2 ml-4 text-xl font-semibold ">
+									<div className={formMsg.type}>
+										{formMsg.msg}
+									</div>
+								</div>
+							)}
 						</Form>
 					)}
 				</Formik>
-				<div className="h-full mt-4 ml-4 bg-dark">
-					<div className={formMsg.type}>{formMsg.msg}</div>
-				</div>
+
 				<div className="m-4">
 					<DeleteAccountBtn />
 				</div>

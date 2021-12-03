@@ -27,6 +27,7 @@ export enum AuthDataActionsTypeEnum {
 	LOGOUT_SUCCESS = "LOGOUT_SUCCESS",
 	CHANGE_AVATAR = "CHANGE_AVATAR",
 	ACC_DELETED = "ACC_DELETED",
+	PROFILE_UPDATE = "PROFILE_UPDATE",
 }
 
 export type AuthDataContextType = {

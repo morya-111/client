@@ -9,7 +9,6 @@ import TextInput from "components/Inputs/TextInput";
 import { BiBook } from "react-icons/bi";
 import { Formik, Form } from "formik";
 import React, { useState } from "react";
-import Modal from "components/Modal";
 
 const AddBook = () => {
 	const [imageId, setImageId] = useState<number | null>(null);

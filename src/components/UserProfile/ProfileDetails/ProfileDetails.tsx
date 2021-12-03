@@ -1,5 +1,4 @@
 import UpdateProfileForm from "./UpdateProfileForm";
-import AuthInfo from "./UpdateProfileForm/AuthInfo";
 
 const ProfileDetails = () => {
 	return (

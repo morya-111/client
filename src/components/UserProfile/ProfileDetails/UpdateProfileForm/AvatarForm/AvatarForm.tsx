@@ -11,9 +11,9 @@ const AvatarForm: React.FC = () => {
 	};
 
 	return (
-		<div className="mt-4 ml-4 bg-white rounded-sm ">
-			<span className="m-4 ">Choose An Avatar: </span>
-			<div className="grid grid-cols-4 grid-rows-2 ml-6 ">
+		<div className="m-4 bg-white rounded-md ">
+			<span className="ml-4 ">Choose An Avatar : </span>
+			<div className="grid grid-cols-4 grid-rows-2 ml-4">
 				{imgUrls.map((url, i) => {
 					if (meta.value === url) {
 						return (
@@ -23,7 +23,7 @@ const AvatarForm: React.FC = () => {
 							>
 								<img
 									src={url}
-									className="rounded-full opacity-40"
+									className="rounded-full cursor-pointer opacity-40"
 									alt="<Avatar Pic>"
 								/>
 								<div className="absolute z-100">
@@ -39,7 +39,7 @@ const AvatarForm: React.FC = () => {
 						>
 							<img
 								src={url}
-								className="rounded-full"
+								className="rounded-full cursor-pointer"
 								alt="<Avatar Pic>"
 								onClick={() => {
 									handleClick(url);

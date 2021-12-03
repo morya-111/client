@@ -11,10 +11,7 @@ type props = React.ComponentPropsWithoutRef<"div"> & {
 	extraCleanUp?: Function;
 };
 
-const LogOutButton: React.FC<props> = ({
-	className = "p-4 font-semibold cursor-pointer text-light",
-	extraCleanUp = () => {},
-}) => {
+const LogOutButton: React.FC<props> = ({ extraCleanUp = () => {} }) => {
 	const { authDataDispatch } = useContext(AuthDataContext);
 	const history = useHistory();
 	const { isLoading, mutate } = useMutation(
@@ -48,7 +45,7 @@ const LogOutButton: React.FC<props> = ({
 	}
 
 	return (
-		<div onClick={queryFetch} className={className}>
+		<div onClick={queryFetch} className="font-semibold cursor-pointer ">
 			Logout
 		</div>
 	);

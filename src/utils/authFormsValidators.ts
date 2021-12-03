@@ -30,9 +30,15 @@ export const updateProfileSchema = Yup.object().shape({
 		8,
 		"Password should atleast be longer than 8 characters"
 	),
-	confirmPassword: Yup.string().oneOf(
-		[Yup.ref("password")],
-		"Passwords must match !"
-	),
+	confirmPassword: Yup.string().when("password", {
+		is: (v: string) => {
+			if (v !== undefined) {
+				return true;
+			}
+		},
+		then: Yup.string()
+			.oneOf([Yup.ref("password")], "Passwords Must Match !")
+			.required("Plz Enter Confirm Password"),
+	}),
 	avatarUrl: Yup.string().url(),
 });
