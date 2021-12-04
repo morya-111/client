@@ -13,7 +13,6 @@ const Landing = () => {
 	return (
 		<div>
 			<NavigationBar />
-
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
 					<div className="w-[23ch] md:w-[30ch] lg:w-full">
@@ -31,7 +30,13 @@ const Landing = () => {
 									Go To Catalogue
 								</NavLink>
 							</button>
-							{isLoggedIn ? null : (
+							{isLoggedIn ? (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/book/create">
+										Add A Book
+									</NavLink>
+								</button>
+							) : (
 								<button className="px-4 py-1 rounded text-light bg-semiLight">
 									<NavLink to="/signup">Sign Up</NavLink>
 								</button>

@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
 			ref={ref}
 			{...rest}
 			className={classNames(
-				"flex text-light items-center justify-center px-8 py-1 text-xl align-text-top rounded-lg hover:shadow-lg transition",
+				"flex text-light items-center justify-center px-8 py-1 text-xl align-text-top rounded-md hover:shadow-lg transition",
 				{ "w-full": full },
 				{ "bg-dark": color === "dark" },
 				{ "bg-semiDark": color === "semiDark" },

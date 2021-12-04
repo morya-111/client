@@ -32,6 +32,7 @@ type BookResponseType = {
 			};
 			images: ImageResponseType[];
 			image: { url: string };
+
 			sellListing: {
 				id: string;
 				price: number;
@@ -49,6 +50,7 @@ type BookResponseType = {
 				last_name: string;
 				email: string;
 			};
+
 		};
 	};
 };
@@ -102,6 +104,7 @@ const BookDisplay: React.FC = () => {
 
 	return (
 		<div>
+
 			<div className="flex flex-col h-screen bg-light">
 				<NavigationBar />
 				{isLoading ? (
@@ -118,6 +121,7 @@ const BookDisplay: React.FC = () => {
 									<div className="w-full px-2 mb-6 md:w-4/6 md:pr-10 md:py-6 md:mb-0">
 										<div className="relative ">
 											{switchJSX(status)}
+
 										</div>
 										<div className="relative">
 											<h2 className="absolute right-0 inline-flex px-2 text-sm capitalize rounded-full bg-semiLight text-light">

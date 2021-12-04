@@ -20,6 +20,20 @@ const authDataReducer = (
 
 		case AuthDataActionsTypeEnum.LOGOUT_SUCCESS:
 			return { ...initialAuthData } as AuthDataType;
+
+		case AuthDataActionsTypeEnum.PROFILE_UPDATE:
+			console.log(action.payload);
+
+			return action.payload as AuthDataType;
+
+		case AuthDataActionsTypeEnum.CHANGE_AVATAR:
+			let oldState = { ...state };
+			oldState.avatarUrl = (action.payload as any).newAvatarUrl;
+			return { ...oldState };
+
+		case AuthDataActionsTypeEnum.ACC_DELETED:
+			return { ...initialAuthData };
+
 		default:
 			return state;
 	}
