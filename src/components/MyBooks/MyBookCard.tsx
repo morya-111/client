@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
 import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
 import useDeleteBookQuery from "hooks/useDeleteBookQuery";
+import Modal from "components/Modal";
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
 	title: string;
@@ -14,7 +15,8 @@ const MyBookCard: React.FC<Props> = (props) => {
 	const { title, description, genre, imgUrl, bookId, ...rest } = props;
 
 	// NOTE: Delete Book Logic
-	const { triggerDelQuery, isSuccess } = useDeleteBookQuery({ bookId });
+	const { triggerDelQuery, isSuccess, resolveConfirmation } =
+		useDeleteBookQuery({ bookId });
 	if (isSuccess) {
 		return null;
 	}
@@ -68,6 +70,10 @@ const MyBookCard: React.FC<Props> = (props) => {
 			</div>
 		</div>
 	);
+};
+// TODO: last working on, 5-12-21, 3:53 AM
+const DelBookConfirmation = () => {
+	return;
 };
 
 export default MyBookCard;
