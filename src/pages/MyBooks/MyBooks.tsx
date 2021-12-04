@@ -106,45 +106,54 @@ const MyBooks = () => {
 											</NavLink>
 										</button>
 									</div>
-									<div className="m-10 mt-4 mb-4 space-y-10">
+									<div className="m-10 mt-4 mb-4 space-y-10 ">
 										{data?.data.data.books.map(
 											(book, idx) => (
-												<MyBookCard
-													key={idx}
-													title={book.name}
-													description={
-														book.description
-													}
-													genre={book.genre}
-													imgUrl={book.image.url}
-													sell={
-														book.sellListing !==
-														null
-													}
-													price={
-														book.sellListing?.price
-													}
-													borrow={
-														book.rentListing !==
-														null
-													}
-													fees={
-														book.rentListing?.fees
-													}
-													duration={
-														book.rentListing
-															?.duration
-													}
-													durationUnit={
-														book.rentListing
-															?.durationUnit
-													}
-													deposit={
-														book.rentListing
-															?.deposit
-													}
-													// userName={book.user.first_name}
-												/>
+												<div className="cursor-pointer">
+													<MyBookCard
+														onClick={() =>
+															history.push(
+																`/books/${book.id}`
+															)
+														}
+														key={idx}
+														title={book.name}
+														description={
+															book.description
+														}
+														genre={book.genre}
+														imgUrl={book.image.url}
+														sell={
+															book.sellListing !==
+															null
+														}
+														price={
+															book.sellListing
+																?.price
+														}
+														borrow={
+															book.rentListing !==
+															null
+														}
+														fees={
+															book.rentListing
+																?.fees
+														}
+														duration={
+															book.rentListing
+																?.duration
+														}
+														durationUnit={
+															book.rentListing
+																?.durationUnit
+														}
+														deposit={
+															book.rentListing
+																?.deposit
+														}
+														// userName={book.user.first_name}
+													/>
+												</div>
 											)
 										)}
 									</div>

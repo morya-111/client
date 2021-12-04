@@ -13,7 +13,7 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 	fees?: number;
 	deposit?: number;
 	duration?: number;
-	durationUnit?: "string";
+	durationUnit?: string;
 };
 const MyBookCard: React.FC<Props> = (props) => {
 	const {
