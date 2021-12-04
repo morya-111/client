@@ -15,12 +15,20 @@ import gilfoyle from "assets/about/gilfoyle.png";
 import athhb from "assets/about/athhb.png";
 import SbG from "assets/about/SbG.png";
 import PdS from "assets/about/PdS.png";
+import instaIcon from "assets/common/insta-icon.png";
+import twitterIcon from "assets/common/twitter-icon.png";
+import githubIcon from "assets/common/github-icon.png";
+import linkedinIcon from "assets/common/linkedin-icon.png";
 
 const About = () => {
 	const [inHover, setHover] = useState(false);
 	return (
 		<div className="">
-			<div className="min-h-screen overflow-x-hidden bg-light">
+			<div
+				onMouseEnter={() => setHover(false)}
+				onMouseLeave={() => setHover(true)}
+				className="min-h-screen overflow-x-hidden bg-light"
+			>
 				<div className="relative w-full h-[600px] 2xl:h-screen ">
 					<div className="absolute bg-dark w-[140px] h-[500px] ml-3 md:ml-14 ">
 						<NavLink to="/">
@@ -95,14 +103,10 @@ const About = () => {
 				</div>
 			</div>
 			<div className="">
-				<div
-					onMouseEnter={() => setHover(true)}
-					onMouseLeave={() => setHover(false)}
-					className="container relative overflow-hidden"
-				>
+				<div className="container relative overflow-hidden">
 					<div className="h-4 bg-dark"></div>
-					<div className="h-[800px]">
-						<div className="absolute z-0 flex flex-row justify-center w-full h-[800px] text-white bg-shelf-bg">
+					<div className="h-[800px] bg-shelf-bg">
+						<div className="absolute flex flex-row justify-center w-full h-[800px] text-white z-50">
 							<div
 								className={
 									inHover
@@ -132,8 +136,42 @@ const About = () => {
 											</p>
 											<img
 												src={jarrod}
-												className="h-64 mt-7"
+												className="h-64 mt-7 drop-shadow-3xl"
 											></img>
+											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+												<a
+													href="https://github.com/PrathameshSujgure-git"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={githubIcon}></img>
+												</a>
+												<a
+													href="https://www.linkedin.com/in/prathamesh-sujgure-02827220a/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={linkedinIcon}
+													></img>
+												</a>
+												<a
+													href="https://twitter.com/invinci_111"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={twitterIcon}
+													></img>
+												</a>
+												<a
+													href="https://www.instagram.com/invincible.111/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={instaIcon}></img>
+												</a>
+											</div>
 										</div>
 										<div className="flex flex-col items-center w-72 ">
 											<img
@@ -149,8 +187,42 @@ const About = () => {
 											</p>
 											<img
 												src={dinesh}
-												className="h-64 mt-7"
+												className="h-64 mt-7 drop-shadow-3xl"
 											></img>
+											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+												<a
+													href="https://github.com/atharva-bhange"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={githubIcon}></img>
+												</a>
+												<a
+													href="https://www.linkedin.com/in/atharva-bhange/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={linkedinIcon}
+													></img>
+												</a>
+												<a
+													href="https://twitter.com/atharvabhange"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={twitterIcon}
+													></img>
+												</a>
+												<a
+													href="https://www.instagram.com/atharva__bhange/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={instaIcon}></img>
+												</a>
+											</div>
 										</div>
 										<div className="flex flex-col items-center w-72">
 											<img
@@ -166,63 +238,100 @@ const About = () => {
 											</p>
 											<img
 												src={gilfoyle}
-												className="h-64 mt-7"
+												className="h-64 mt-7 drop-shadow-3xl"
 											></img>
+											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+												<a
+													href="https://github.com/shreyasg-git"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={githubIcon}></img>
+												</a>
+												<a
+													href="https://www.linkedin.com/in/shreyas-gangurde-1438981a1/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={linkedinIcon}
+													></img>
+												</a>
+												<a
+													href="https://twitter.com/shreyasbg28"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img
+														src={twitterIcon}
+													></img>
+												</a>
+												<a
+													href="https://www.instagram.com/_shreyas_gangurde/"
+													target="_blank"
+													rel="noopner noreferrer"
+												>
+													<img src={instaIcon}></img>
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<img
-							id="1"
-							src={Shelf1}
-							alt="1"
-							className={
-								inHover
-									? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px]"
-									: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20"
-							}
-						></img>
-						<img
-							id="2"
-							src={Shelf2}
-							alt="2"
-							className={
-								inHover
-									? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px]"
-									: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10"
-							}
-						></img>
-						<img
-							id="3"
-							src={Shelf3}
-							alt="3"
-							className={
-								inHover
-									? "absolute z-30 transform blur-[3px] ease-in-out opacity-0 duration-1000 "
-									: "absolute transform duration-1000 z-30 opacity-100"
-							}
-						></img>
-						<img
-							id="4"
-							src={Shelf4}
-							alt="4"
-							className={
-								inHover
-									? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px]"
-									: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 "
-							}
-						></img>
-						<img
-							id="5"
-							src={Shelf5}
-							alt="5"
-							className={
-								inHover
-									? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px]"
-									: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20"
-							}
-						></img>
+
+						<div className="z-0">
+							<img
+								id="1"
+								src={Shelf1}
+								alt="1"
+								className={
+									inHover
+										? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px]"
+										: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20"
+								}
+							></img>
+							<img
+								id="2"
+								src={Shelf2}
+								alt="2"
+								className={
+									inHover
+										? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px]"
+										: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10"
+								}
+							></img>
+							<img
+								id="3"
+								src={Shelf3}
+								alt="3"
+								className={
+									inHover
+										? "absolute z-30 transform blur-[3px] ease-in-out opacity-0 duration-1000 "
+										: "absolute transform duration-[1.5s] z-30 opacity-100"
+								}
+							></img>
+							<img
+								id="4"
+								src={Shelf4}
+								alt="4"
+								className={
+									inHover
+										? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px]"
+										: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 "
+								}
+							></img>
+							<img
+								id="5"
+								src={Shelf5}
+								alt="5"
+								className={
+									inHover
+										? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px]"
+										: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20"
+								}
+							></img>
+						</div>
 					</div>
 				</div>
 			</div>
