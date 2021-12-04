@@ -1,15 +1,24 @@
 import React from "react";
 import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
 import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
+import useDeleteBookQuery from "hooks/useDeleteBookQuery";
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
 	title: string;
 	description: string | null;
 	genre: string;
 	imgUrl: string;
+	bookId: number;
 };
 const MyBookCard: React.FC<Props> = (props) => {
-	const { title, description, genre, imgUrl, ...rest } = props;
+	const { title, description, genre, imgUrl, bookId, ...rest } = props;
+
+	// NOTE: Delete Book Logic
+	const { triggerDelQuery, isSuccess } = useDeleteBookQuery({ bookId });
+	if (isSuccess) {
+		return null;
+	}
+
 	return (
 		<div
 			{...rest}
@@ -17,7 +26,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 		>
 			<div className="flex flex-row">
 				<div className="shadow">
-					<img src={imgUrl} />
+					<img src={imgUrl} alt="Book" />
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
@@ -52,7 +61,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 					<button className="inline-flex">
 						<EditIcon />
 					</button>
-					<button className="inline-flex">
+					<button className="inline-flex" onClick={triggerDelQuery}>
 						<DeleteIcon />
 					</button>
 				</div>
@@ -60,4 +69,5 @@ const MyBookCard: React.FC<Props> = (props) => {
 		</div>
 	);
 };
+
 export default MyBookCard;
