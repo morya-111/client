@@ -15,12 +15,15 @@ import DeleteAccountBtn from "./DeleteAccountBtn";
 import AuthInfo from "../UpdateProfileForm/AuthInfo";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import AuthDataContext from "contexts/AuthDataContext";
+import ServerDown from "Navigation/NotFound";
 
 type UpdateUserData = {
 	first_name?: string;
 	last_name?: string;
+
 	avatarUrl?: string;
 	password?: string;
+	confirmPassword?: string;
 };
 const UpdateProfileForm: React.FC = () => {
 	const { first_name, last_name, email, avatarUrl } = useAuthData();
@@ -48,17 +51,17 @@ const UpdateProfileForm: React.FC = () => {
 			changed.push("Avatar Url");
 		}
 		if (changed.length > 0) {
-			console.log(
-				"Save Changes is popping Up Due To : ",
-				changed.join(", ")
-			);
+			// console.log(
+			// 	"Save Changes is popping Up Due To : ",
+			// 	changed.join(", ")
+			// );
 			return true;
 		}
 
 		return false;
 	};
 
-	const updateProfileMutation = useMutation(
+	const { isError, isLoading, error, mutate, data } = useMutation(
 		(formData: UpdateUserData) => {
 			return authService.updateUserInfo(formData);
 		},
@@ -96,8 +99,9 @@ const UpdateProfileForm: React.FC = () => {
 			},
 		}
 	);
+
 	const SaveVsLoader = (formValues: UpdateUserData) => {
-		if (updateProfileMutation.isLoading) {
+		if (isLoading) {
 			return (
 				<>
 					<div className="flex items-center justify-center w-48 mb-1 ml-2">
@@ -107,12 +111,16 @@ const UpdateProfileForm: React.FC = () => {
 			);
 		} else if (checkIfFormChanged(formValues)) {
 			return (
-				<div onClick={() => {}}>
+				<div>
 					<Button type="submit" value="Save Changes"></Button>
 				</div>
 			);
 		}
 	};
+
+	if (isError) {
+		if (error.message === "Network Error") return <ServerDown />;
+	}
 	return (
 		<div>
 			<div>
@@ -125,8 +133,17 @@ const UpdateProfileForm: React.FC = () => {
 						confirmPassword: "",
 						avatarUrl: avatarUrl,
 					}}
-					onSubmit={(values: UpdateUserData) => {
-						updateProfileMutation.mutate(values);
+					onSubmit={(values: UpdateUserData, { resetForm }) => {
+						mutate(values);
+						resetForm({
+							values: {
+								password: "",
+								confirmPassword: "",
+								avatarUrl: values.avatarUrl,
+								first_name: values.first_name,
+								last_name: values.last_name,
+							},
+						});
 					}}
 					validationSchema={updateProfileSchema}
 					validateOnChange={true}
@@ -166,6 +183,7 @@ const UpdateProfileForm: React.FC = () => {
 									disabled
 								/>
 							</div>
+
 							{isAuthBookEx ? (
 								<>
 									<div className="mx-4 ">
