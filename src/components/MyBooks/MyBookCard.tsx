@@ -33,9 +33,9 @@ const MyBookCard: React.FC<Props> = (props) => {
 	return (
 		<div
 			{...rest}
-			className="relative p-5 bg-white rounded-lg shadow md:py-5 md:pl-5 md:pr-3 hover:shadow-xl"
+			className="relative flex p-5 bg-white rounded-lg shadow md:py-5 md:pl-5 md:pr-3 hover:shadow-xl "
 		>
-			<div className="flex flex-col items-center md:items-start md:flex-row">
+			<div className="flex flex-col items-center w-full md:items-start md:flex-row">
 				<div className="mx-auto my-auto shadow md:flex-shrink-0">
 					<img className="w-auto h-44 sm:h-60 md:h-36" src={imgUrl} />
 				</div>

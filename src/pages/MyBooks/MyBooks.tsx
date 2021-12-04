@@ -8,6 +8,9 @@ import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
 import singleQuote from "utils/quotes";
+import useAuthData from "hooks/useAuthData";
+import ProfileSideBar from "components/UserProfile/ProfileSideBar";
+
 type ParamType = {
 	id: string;
 };
@@ -56,6 +59,7 @@ type BookResponseType = {
 };
 console.log(singleQuote.text);
 const MyBooks = () => {
+	const { first_name, avatarUrl } = useAuthData();
 	const history = useHistory();
 	const params = useParams<ParamType>();
 	const { data, isLoading, isSuccess, status } = useQuery(
@@ -89,67 +93,67 @@ const MyBooks = () => {
 					</div>
 				) : (
 					<>
-						<div className="relative flex">
-							<div className="container flex-col hidden w-[500px] lg:flex ">
-								<div className="mx-10 mt-10">
-									<div className="text-center">
-										<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
-											<img
-												src="https://via.placeholder.com/200x200"
-												className="rounded-full"
-											/>
-										</div>
-										<div className="text-center">
-											<h1 className="text-2xl font-bold">
-												{}' Books
-											</h1>
-										</div>
-									</div>
-								</div>
-								<div className="flex flex-col items-center px-5 mt-5 font-bold text-center ">
-									<div>"{singleQuote.text}"</div>
-									<div className="text-sm font-semibold text-opacity-70 text-dark">
-										-{singleQuote.author}
-									</div>
-								</div>
+						<div className="flex flex-row">
+							<div className="hidden md:flex ">
+								<ProfileSideBar showEmail={false} />
 							</div>
-
-							<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
-								<div className="flex justify-center w-full">
-									<button className="px-3 text-lg font-semibold text-center duration-700 ease-out rounded-lg shadow bg-semiLight hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80">
-										<NavLink to="/book/create">
-											+ Add A Book
-										</NavLink>
-									</button>
-								</div>
-								<div className="m-10 mt-4 mb-4 space-y-10">
-									{data?.data.data.books.map((book, idx) => (
-										<MyBookCard
-											key={idx}
-											title={book.name}
-											description={book.description}
-											genre={book.genre}
-											imgUrl={book.image.url}
-											sell={book.sellListing !== null}
-											price={book.sellListing?.price}
-											borrow={book.rentListing !== null}
-											fees={book.rentListing?.fees}
-											duration={
-												book.rentListing?.duration
-											}
-											durationUnit={
-												book.rentListing?.durationUnit
-											}
-											deposit={book.rentListing?.deposit}
-											// userName={book.user.first_name}
-										/>
-									))}
-								</div>
-								<div>
-									<div className="flex flex-col items-center pt-2 mx-5 mt-5 mb-4 font-bold text-center border-t border-opacity-40 lg:hidden border-dark">
-										<div>"{singleQuote.text}"</div>
-										<div className="text-sm font-semibold text-opacity-70 text-dark">
-											-{singleQuote.author}
+							<div className="relative flex flex-col md:w-4/5">
+								<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
+									<div className="flex justify-center w-full">
+										<button className="px-3 text-lg font-semibold text-center duration-700 ease-out rounded-lg shadow bg-semiLight hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80">
+											<NavLink to="/book/create">
+												+ Add A Book
+											</NavLink>
+										</button>
+									</div>
+									<div className="m-10 mt-4 mb-4 space-y-10">
+										{data?.data.data.books.map(
+											(book, idx) => (
+												<MyBookCard
+													key={idx}
+													title={book.name}
+													description={
+														book.description
+													}
+													genre={book.genre}
+													imgUrl={book.image.url}
+													sell={
+														book.sellListing !==
+														null
+													}
+													price={
+														book.sellListing?.price
+													}
+													borrow={
+														book.rentListing !==
+														null
+													}
+													fees={
+														book.rentListing?.fees
+													}
+													duration={
+														book.rentListing
+															?.duration
+													}
+													durationUnit={
+														book.rentListing
+															?.durationUnit
+													}
+													deposit={
+														book.rentListing
+															?.deposit
+													}
+													// userName={book.user.first_name}
+												/>
+											)
+										)}
+									</div>
+									<div>
+										<div className="flex flex-col items-center pt-2 mx-5 mt-5 mb-4 font-bold text-center border-t md:hidden border-opacity-40 border-dark">
+											<div>"{singleQuote.text}"</div>
+											<div className="text-sm font-semibold text-opacity-70 text-dark">
+												-{singleQuote.author}
+											</div>
 										</div>
 									</div>
 								</div>
@@ -164,3 +168,29 @@ const MyBooks = () => {
 };
 export default MyBooks;
 // src="https://via.placeholder.com/200x200"
+
+{
+	/* <div className="container flex-col hidden w-[500px] lg:flex ">
+								<div className="mx-10 mt-10">
+									<div className="text-center">
+										<div className="inline-flex items-center justify-center rounded-full w-60 h-60">
+											<img
+												src={avatarUrl}
+												className="rounded-full"
+											/>
+										</div>
+										<div className="text-center">
+											<h1 className="text-2xl font-bold">
+												{first_name}'s Books
+											</h1>
+										</div>
+									</div>
+								</div>
+								<div className="flex flex-col items-center px-5 mt-5 font-bold text-center ">
+									<div>"{singleQuote.text}"</div>
+									<div className="text-sm font-semibold text-opacity-70 text-dark">
+										-{singleQuote.author}
+									</div>
+								</div>
+							</div> */
+}
