@@ -9,15 +9,16 @@ import ImageCropModal from "../ImageCropModal";
 import { useMutation } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
+import { useField } from "formik";
 
-interface Props {
-	setImageId: React.Dispatch<React.SetStateAction<number | null>>;
-}
+interface Props {}
 
-const ImageDrop: React.FC<Props> = ({ setImageId }) => {
+const ImageDrop: React.FC<Props> = () => {
 	const [file, setFile] = useState<string | null>(null);
 	const [isImageCropOpen, setIsImageCropOpen] = useState(false);
 	const [preview, setPreview] = useState<HTMLCanvasElement | null>(null);
+
+	const [field, meta, helper] = useField("image");
 
 	const { mutate, status: uploadStatus } = useMutation(
 		(imageData: FormData) => {
@@ -25,7 +26,13 @@ const ImageDrop: React.FC<Props> = ({ setImageId }) => {
 		},
 		{
 			onSuccess: (data) => {
-				setImageId(data.data.data.newImage.id);
+				helper.setValue(data.data.data.newImage.id);
+			},
+			onError: () => {
+				setPreview(null);
+				helper.setError(
+					"Image could not be uploaded. Please try again."
+				);
 			},
 		}
 	);
@@ -37,16 +44,20 @@ const ImageDrop: React.FC<Props> = ({ setImageId }) => {
 			formData.append("mainImage", blob);
 			mutate(formData);
 		});
-	}, [preview]);
+	}, [preview, mutate]);
 
-	const onDrop = useCallback((acceptedFiles) => {
-		const reader = new FileReader();
-		reader.readAsDataURL(acceptedFiles[0]);
-		reader.addEventListener("load", () => {
-			setFile(reader.result as string);
-			setIsImageCropOpen(true);
-		});
-	}, []);
+	const onDrop = useCallback(
+		(acceptedFiles) => {
+			helper.setTouched(true);
+			const reader = new FileReader();
+			reader.readAsDataURL(acceptedFiles[0]);
+			reader.addEventListener("load", () => {
+				setFile(reader.result as string);
+				setIsImageCropOpen(true);
+			});
+		},
+		[helper]
+	);
 
 	const {
 		getRootProps,
@@ -75,9 +86,12 @@ const ImageDrop: React.FC<Props> = ({ setImageId }) => {
 	);
 
 	return (
-		<div className="flex flex-col w-2/3 h-2/3">
+		<div className="flex flex-col w-1/2 sm:w-1/3 lg:w-2/3 lg:h-2/3">
+			{meta.touched && meta.error ? (
+				<div className="text-center text-red-600">{meta.error}</div>
+			) : undefined}
 			{preview !== null ? (
-				<div className="relative w-full ">
+				<div className="relative flex items-center justify-center w-full ">
 					{uploadStatus === "loading" && (
 						<div className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50">
 							<div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -90,7 +104,10 @@ const ImageDrop: React.FC<Props> = ({ setImageId }) => {
 							</div>
 						</div>
 					)}
-					<img src={preview.toDataURL("image/jpeg")} />
+					<img
+						src={preview.toDataURL("image/jpeg")}
+						alt="Book Preview"
+					/>
 				</div>
 			) : (
 				<>
@@ -121,7 +138,6 @@ const ImageDrop: React.FC<Props> = ({ setImageId }) => {
 					onClose={() => setIsImageCropOpen(false)}
 					file={file}
 					setPreview={setPreview}
-					// disableDismiss
 				/>
 			)}
 		</div>
