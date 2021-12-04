@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import { ReactComponent as LogoLight } from "assets/common/logo-main-light.svg";
 import { NavLink } from "react-router-dom";
+import ShelfBG from "assets/about/shelf_bg.png";
+import Shelf1 from "assets/about/shelf_1.png";
+import Shelf2 from "assets/about/shelf_2.png";
+import Shelf3 from "assets/about/shelf_3.png";
+import Shelf4 from "assets/about/shelf_4.png";
+import Shelf5 from "assets/about/shelf_5.png";
+
 const About = () => {
+	const [inHover, setHover] = useState(false);
 	return (
-		<div>
+		<div className="">
 			<div className="min-h-screen overflow-x-hidden bg-light">
 				<div className="relative w-full h-[600px] 2xl:h-screen ">
 					<div className="absolute bg-dark w-[140px] h-[500px] ml-3 md:ml-14 ">
@@ -78,8 +86,87 @@ const About = () => {
 						</div>
 					</div>
 				</div>
-				<div className="mb-7">
-					<div className="text-center ">
+			</div>
+
+			<div
+				onMouseEnter={() => setHover(true)}
+				onMouseLeave={() => setHover(false)}
+				className="container relative overflow-hidden"
+			>
+				<div className="h-4 bg-dark"></div>
+				<div className=" h-[800px] w-[1240px]">
+					<img
+						id="bg"
+						src={ShelfBG}
+						alt="bg"
+						className="absolute z-0 w-auto"
+					></img>
+					<img
+						id="1"
+						src={Shelf1}
+						alt="1"
+						className={
+							inHover
+								? "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-10"
+								: "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-10 blur-[6px]"
+						}
+					></img>
+					<img
+						id="2"
+						src={Shelf2}
+						alt="2"
+						className={
+							inHover
+								? "absolute duration-1000 ease-linear transform translate-x-28 -left-28 z-20"
+								: "absolute duration-1000 ease-linear transform -translate-x-28 -left-28 z-20 blur-sm"
+						}
+					></img>
+					<img
+						id="3"
+						src={Shelf3}
+						alt="3"
+						className={
+							inHover
+								? "absolute transform duration-1000 z-30 opacity-100"
+								: "absolute z-30 transform blur-[3px] ease-in-out opacity-50 duration-1000 "
+						}
+					></img>
+					<img
+						id="4"
+						src={Shelf4}
+						alt="4"
+						className={
+							inHover
+								? "absolute duration-1000 ease-linear transform -translate-x-28 -right-28 z-20"
+								: "absolute duration-1000 ease-linear transform translate-x-28 -right-28 z-20 blur-sm"
+						}
+					></img>
+					<img
+						id="5"
+						src={Shelf5}
+						alt="5"
+						className={
+							inHover
+								? "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-10"
+								: "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-10 blur-[6px]"
+						}
+					></img>
+				</div>
+
+				<div className="absolute z-50 text-red-700 bg-white">
+					Execution & Concept By:
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default About;
+
+// "absolute duration-100 ease-linear hover:transform cursor-help hover:translate-x-9 -left-7"
+
+{
+	/* <div className="text-center ">
 						<h1 className="mb-4 text-2xl font-bold text-dark">
 							Execution & Concept By:
 						</h1>
@@ -124,13 +211,5 @@ const About = () => {
 								"Reading is a discount ticket to everywhere."
 							</p>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<Footer />
-		</div>
-	);
-};
-
-export default About;
+					</div> */
+}

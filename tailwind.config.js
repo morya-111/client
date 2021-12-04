@@ -25,6 +25,9 @@ module.exports = {
 			animation: {
 				"scale-reveal": "scale 0.5s ease-in-out ",
 			},
+			// backgroundImage: {
+			// 	"shelf-bg": "url('assets/about/shelf_1.png')",
+			// },
 		},
 		fontFamily: {
 			sans: ["Nunito", "sans-serif"],
