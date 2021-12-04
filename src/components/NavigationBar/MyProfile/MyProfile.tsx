@@ -1,18 +1,19 @@
+import useAuthData from "hooks/useAuthData";
 const MyProfile: React.FC<React.ComponentPropsWithoutRef<"button">> = ({
 	onClick,
 }) => {
+	const { avatarUrl } = useAuthData();
 	return (
 		<button
-			className="relative font-bold text-white rounded-full top-3 bg-light"
+			className="relative font-bold text-white rounded-full top-0.3 bg-light"
 			onClick={onClick}
 		>
 			<img
-				src="https://i.ibb.co/svPq37Q/62c39aa27b5f.png"
+				src={avatarUrl}
 				alt="P"
 				className="bg-light "
 				style={{ height: "40px" }}
 			/>
-			{/* <ProfilePopUp className=" z-100" /> */}
 		</button>
 	);
 };

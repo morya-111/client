@@ -86,7 +86,7 @@ const ImageDrop: React.FC<Props> = () => {
 	);
 
 	return (
-		<div className="flex flex-col w-2/3 h-2/3">
+		<div className="flex flex-col w-1/2 sm:w-1/3 lg:w-2/3 lg:h-2/3">
 			{meta.touched && meta.error ? (
 				<div className="text-center text-red-600">{meta.error}</div>
 			) : undefined}

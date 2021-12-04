@@ -18,9 +18,11 @@ import { SignInFormData } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
 
 import Loader from "components/Loader";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const SignInForm: React.FC = () => {
-	const { authData, authDataDispatch } = useContext(AuthDataContext);
+	const isLoggedIn = useCachedLoginStatus();
+	const { authDataDispatch } = useContext(AuthDataContext);
 
 	const [formMsg, setFormMsg] = React.useState<FormMessageType>({
 		msg: "",
@@ -81,8 +83,8 @@ const SignInForm: React.FC = () => {
 		}
 	);
 
-	if (authService.checkIfLoggedIn(authData)) {
-		return <Redirect to="/" />;
+	if (isLoggedIn) {
+		return <Redirect exact to="/" />;
 	}
 	return (
 		<div className="signupform-main">

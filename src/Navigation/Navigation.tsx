@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
-
 import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay,CreateBook, MyBooks } from "pages";
 
 import AuthDataContext from "contexts/AuthDataContext";
@@ -13,9 +12,9 @@ import { AuthDataActionsTypeEnum } from "types/authTypes";
 import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
+import UserProfilePage from "pages/UserProfilePage";
 
 import Loader from "components/Loader";
-
 
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
@@ -64,28 +63,23 @@ const Navigation = () => {
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
 
-				<Route path="/book/create" exact component={CreateBook} />
+				<ProtectedRoute
+					path="/book/create"
+					exact
+					component={CreateBook}
+				/>
 
 				<Route path="/books/:id" exact component={BookDisplay} />
 				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
 				<ProtectedRoute
-					path="/protroute"
-					component={ProtectedComponent}
+					exact
+					path="/myprofile"
+					component={UserProfilePage}
 				/>
-				<Route component={NotFound} />
 
+				<Route component={NotFound} />
 			</Switch>
 		</BrowserRouter>
-	);
-};
-
-// TODO: move this or delete this ... this is temporary
-const ProtectedComponent: React.FC = () => {
-	return (
-		<div>
-			THIS COMPONENT IS PROTECTED, IF YOU ARE SEEING THIS, YOU ARE LOGGED
-			IN. ENJOYY !!!
-		</div>
 	);
 };
 
