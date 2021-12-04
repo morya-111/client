@@ -9,6 +9,12 @@ import Shelf2 from "assets/about/shelf_2.png";
 import Shelf3 from "assets/about/shelf_3.png";
 import Shelf4 from "assets/about/shelf_4.png";
 import Shelf5 from "assets/about/shelf_5.png";
+import jarrod from "assets/about/jarrod.png";
+import dinesh from "assets/about/dinesh.png";
+import gilfoyle from "assets/about/gilfoyle.png";
+import athhb from "assets/about/athhb.png";
+import SbG from "assets/about/SbG.png";
+import PdS from "assets/about/PdS.png";
 
 const About = () => {
 	const [inHover, setHover] = useState(false);
@@ -29,6 +35,7 @@ const About = () => {
 					<div>
 						<NavigationBar />
 					</div>
+
 					<div className="absolute w-full ml-48 sm:ml-52 ">
 						<div className="flex flex-col mx-auto">
 							<section>
@@ -87,74 +94,136 @@ const About = () => {
 					</div>
 				</div>
 			</div>
-
-			<div
-				onMouseEnter={() => setHover(true)}
-				onMouseLeave={() => setHover(false)}
-				className="container relative overflow-hidden"
-			>
-				<div className="h-4 bg-dark"></div>
-				<div className=" h-[800px] w-[1240px]">
-					<img
-						id="bg"
-						src={ShelfBG}
-						alt="bg"
-						className="absolute z-0 w-auto"
-					></img>
-					<img
-						id="1"
-						src={Shelf1}
-						alt="1"
-						className={
-							inHover
-								? "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-10"
-								: "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-10 blur-[6px]"
-						}
-					></img>
-					<img
-						id="2"
-						src={Shelf2}
-						alt="2"
-						className={
-							inHover
-								? "absolute duration-1000 ease-linear transform translate-x-28 -left-28 z-20"
-								: "absolute duration-1000 ease-linear transform -translate-x-28 -left-28 z-20 blur-sm"
-						}
-					></img>
-					<img
-						id="3"
-						src={Shelf3}
-						alt="3"
-						className={
-							inHover
-								? "absolute transform duration-1000 z-30 opacity-100"
-								: "absolute z-30 transform blur-[3px] ease-in-out opacity-50 duration-1000 "
-						}
-					></img>
-					<img
-						id="4"
-						src={Shelf4}
-						alt="4"
-						className={
-							inHover
-								? "absolute duration-1000 ease-linear transform -translate-x-28 -right-28 z-20"
-								: "absolute duration-1000 ease-linear transform translate-x-28 -right-28 z-20 blur-sm"
-						}
-					></img>
-					<img
-						id="5"
-						src={Shelf5}
-						alt="5"
-						className={
-							inHover
-								? "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-10"
-								: "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-10 blur-[6px]"
-						}
-					></img>
-				</div>
-
-				<div className="absolute z-50 text-red-700 bg-white">
-					Execution & Concept By:
+			<div className="">
+				<div
+					onMouseEnter={() => setHover(true)}
+					onMouseLeave={() => setHover(false)}
+					className="container relative overflow-hidden"
+				>
+					<div className="h-4 bg-dark"></div>
+					<div className="h-[800px]">
+						<div className="absolute z-0 flex flex-row justify-center w-full h-[800px] text-white bg-shelf-bg">
+							<div
+								className={
+									inHover
+										? "opacity-100 transform duration-1000"
+										: "opacity-0 transform duration-1000"
+								}
+							>
+								<div className="flex flex-col mt-32">
+									<div className="text-center ">
+										<h1 className="mb-4 text-2xl font-bold text-semiLight">
+											Execution & Concept By:
+										</h1>
+									</div>
+									<div className="flex flex-col items-center mt-5 space-y-10 md:items-start md:space-y-0 md:justify-around md:flex-row ">
+										<div className="flex flex-col items-center w-72 divide-solid">
+											<img
+												src={PdS}
+												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+											></img>
+											<h1 className="text-lg font-semibold text-semiLight">
+												Prathamesh Sujgure
+											</h1>
+											<p className="text-center text-gray-300 opacity-75">
+												"If you are going to get
+												anywhere in life you have to
+												read a lot of books."
+											</p>
+											<img
+												src={jarrod}
+												className="h-64 mt-7"
+											></img>
+										</div>
+										<div className="flex flex-col items-center w-72 ">
+											<img
+												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+												src={athhb}
+											></img>
+											<h1 className="text-lg font-semibold text-semiLight">
+												Atharva Bhange
+											</h1>
+											<p className="text-center text-gray-300 opacity-75">
+												"All the secrets of the world
+												are contained in books."
+											</p>
+											<img
+												src={dinesh}
+												className="h-64 mt-7"
+											></img>
+										</div>
+										<div className="flex flex-col items-center w-72">
+											<img
+												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+												src={SbG}
+											></img>
+											<h1 className="text-lg font-semibold text-semiLight">
+												Shreyas Gangurde
+											</h1>
+											<p className="text-center text-gray-300 opacity-75">
+												"An hour spent reading is one
+												stolen from paradise."
+											</p>
+											<img
+												src={gilfoyle}
+												className="h-64 mt-7"
+											></img>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<img
+							id="1"
+							src={Shelf1}
+							alt="1"
+							className={
+								inHover
+									? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px]"
+									: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20"
+							}
+						></img>
+						<img
+							id="2"
+							src={Shelf2}
+							alt="2"
+							className={
+								inHover
+									? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px]"
+									: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10"
+							}
+						></img>
+						<img
+							id="3"
+							src={Shelf3}
+							alt="3"
+							className={
+								inHover
+									? "absolute z-30 transform blur-[3px] ease-in-out opacity-0 duration-1000 "
+									: "absolute transform duration-1000 z-30 opacity-100"
+							}
+						></img>
+						<img
+							id="4"
+							src={Shelf4}
+							alt="4"
+							className={
+								inHover
+									? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px]"
+									: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 "
+							}
+						></img>
+						<img
+							id="5"
+							src={Shelf5}
+							alt="5"
+							className={
+								inHover
+									? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px]"
+									: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20"
+							}
+						></img>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -212,4 +281,16 @@ export default About;
 							</p>
 						</div>
 					</div> */
+}
+{
+	/* <div className="flex flex-col items-center w-72 ">
+										<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
+										<h1 className="text-lg font-semibold text-dark">
+											Gaurav Tajanpure
+										</h1>
+										<p className="text-center opacity-75 text-semiDark">
+											"Reading is a discount ticket to
+											everywhere."
+										</p>
+									</div> */
 }
