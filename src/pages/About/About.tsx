@@ -104,7 +104,7 @@ const About = () => {
 			</div>
 			<div className="">
 				<div className="container relative overflow-hidden">
-					<div className="h-4 bg-dark"></div>
+					{/* <div className="h-4 bg-dark"></div> */}
 					<div className="h-[800px] bg-shelf-bg">
 						<div className="absolute flex flex-row justify-center w-full h-[800px] text-white z-50">
 							<div

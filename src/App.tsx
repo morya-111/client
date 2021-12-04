@@ -1,6 +1,6 @@
 import Navigation from "Navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import authDataReducer from "reducers/authDataReducer";
 import { initialAuthData } from "types/authTypes";
 

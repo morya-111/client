@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
-import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
-import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
-import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
+// import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
+// import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
+// import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
+import Third from "assets/homepage/WCIDH-1.png";
+import First from "assets/homepage/WCIDH-2.png";
+import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
 
@@ -48,7 +51,12 @@ const Landing = () => {
 
 						<div className="grid justify-center mt-16 md:justify-around md:flex md:flex-wrap">
 							<div className="h-auto w-72">
-								<First className="h-auto w-72" />
+								<img
+									src={First}
+									alt="1"
+									className="h-auto w-72"
+								/>
+								{/* <First className="h-auto w-72" /> */}
 								<div className="mt-3">
 									<h1 className="text-lg font-bold text-light">
 										Books Catalogue
@@ -61,7 +69,12 @@ const Landing = () => {
 								</div>
 							</div>
 							<div className="h-auto mt-8 md:mt-0 w-72">
-								<Second className="h-auto w-72" />
+								<img
+									src={Second}
+									alt="2"
+									className="h-auto w-72"
+								/>
+								{/* <Second className="h-auto w-72" /> */}
 								<div className="mt-3">
 									<h1 className="text-lg font-bold text-light">
 										Books Listing
@@ -73,7 +86,12 @@ const Landing = () => {
 								</div>
 							</div>
 							<div className="h-auto mt-8 mb-8 md:mt-0 w-72">
-								<Third className="h-auto w-72" />
+								<img
+									src={Third}
+									alt="3"
+									className="h-auto w-72"
+								/>
+								{/* <Third className="h-auto w-72" /> */}
 								<div className="mt-3">
 									<h1 className="text-lg font-bold text-light">
 										Join Community
