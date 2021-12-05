@@ -8,7 +8,6 @@ import { parse, stringify } from "query-string";
 import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
-import { Link, NavLink } from "react-router-dom";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 
@@ -95,7 +94,7 @@ const Catalogue: React.FC = () => {
 										title={book.name}
 										description={book.description}
 										genre={book.genre}
-										imgUrl={book.images[0].url}
+										imgUrl={book.image.url}
 									/>
 								))}
 							</div>

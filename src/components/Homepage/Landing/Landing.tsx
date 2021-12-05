@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
-// import Hero from "assets/homepage/hero-img.png";
-// import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
-// import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
-// import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
 import Third from "assets/homepage/WCIDH-1.png";
 import First from "assets/homepage/WCIDH-2.png";
 import Second from "assets/homepage/WCIDH-3.png";
@@ -15,11 +11,10 @@ import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 const Landing = () => {
 	const isLoggedIn = useCachedLoginStatus();
 	const [inHover, setHover] = useState(false);
-
+  
 	return (
 		<div>
 			<NavigationBar />
-
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
 					<div className="w-[23ch] md:w-[30ch] lg:w-full">
@@ -37,9 +32,17 @@ const Landing = () => {
 									Go To Catalogue
 								</NavLink>
 							</button>
-							<button className="px-4 py-1 rounded text-light bg-semiLight">
-								<NavLink to="/signup">Sign Up</NavLink>
-							</button>
+							{isLoggedIn ? (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/book/create">
+										Add A Book
+									</NavLink>
+								</button>
+							) : (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/signup">Sign Up</NavLink>
+								</button>
+							)}
 						</div>
 					</div>
 					<div>

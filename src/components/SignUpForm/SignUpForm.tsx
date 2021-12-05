@@ -169,7 +169,6 @@ const SignUpForm: React.FC = () => {
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
-							<div className={formMsg.type}>{}</div>
 							<span className="mr-1">
 								Already Have An Account ?
 							</span>

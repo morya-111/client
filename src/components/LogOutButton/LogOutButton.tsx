@@ -1,9 +1,8 @@
 import Loader from "components/Loader";
 import AuthDataContext from "contexts/AuthDataContext";
-import useCachedLoginStatus from "hooks/useCachedLoginStatus";
-import ServerDown from "Navigation/ServerDown";
+
 import { useContext } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import authService from "utils/AuthService";
@@ -12,10 +11,7 @@ type props = React.ComponentPropsWithoutRef<"div"> & {
 	extraCleanUp?: Function;
 };
 
-const LogOutButton: React.FC<props> = ({
-	className = "p-4 font-semibold cursor-pointer text-light",
-	extraCleanUp = () => {},
-}) => {
+const LogOutButton: React.FC<props> = ({ extraCleanUp = () => {} }) => {
 	const { authDataDispatch } = useContext(AuthDataContext);
 	const history = useHistory();
 	const { isLoading, mutate } = useMutation(
@@ -49,7 +45,7 @@ const LogOutButton: React.FC<props> = ({
 	}
 
 	return (
-		<div onClick={queryFetch} className={className}>
+		<div onClick={queryFetch} className="font-semibold cursor-pointer ">
 			Logout
 		</div>
 	);

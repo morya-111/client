@@ -9,6 +9,13 @@ type ProtectedRoutePropsType = React.ComponentProps<typeof Route> & {
 
 const ProtectedRoute: React.FC<ProtectedRoutePropsType> = (props) => {
 	const { authData } = React.useContext(AuthDataContext);
+
+	if (!authService.checkIfLoggedIn(authData)) {
+		console.log(
+			"not signed in detected, redirecting to signin",
+			props.path
+		);
+	}
 	return (
 		<>
 			{authService.checkIfLoggedIn(authData) ? (

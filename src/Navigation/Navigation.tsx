@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+
 import {
 	Homepage,
 	SignInpage,
@@ -11,6 +12,7 @@ import {
 	Contact,
 	PrivacyPolicy,
 } from "pages";
+
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
@@ -19,6 +21,7 @@ import { AuthDataActionsTypeEnum } from "types/authTypes";
 import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
+import UserProfilePage from "pages/UserProfilePage";
 
 import Loader from "components/Loader";
 
@@ -68,27 +71,30 @@ const Navigation = () => {
 				<Route path="/signup" exact component={SignUppage} />
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
+
+				<ProtectedRoute
+					path="/book/create"
+					exact
+					component={CreateBook}
+				/>
+
 				<Route path="/books/:id" exact component={BookDisplay} />
+
 				<Route path="/about" exact component={About} />
 				<Route path="/contact" exact component={Contact} />
 				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
+
+				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
+
 				<ProtectedRoute
-					path="/protroute"
-					component={ProtectedComponent}
+					exact
+					path="/myprofile"
+					component={UserProfilePage}
 				/>
+
 				<Route component={NotFound} />
 			</Switch>
 		</BrowserRouter>
-	);
-};
-
-// TODO: move this or delete this ... this is temporary
-const ProtectedComponent: React.FC = () => {
-	return (
-		<div>
-			THIS COMPONENT IS PROTECTED, IF YOU ARE SEEING THIS, YOU ARE LOGGED
-			IN. ENJOYY !!!
-		</div>
 	);
 };
 
