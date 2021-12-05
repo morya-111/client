@@ -13,11 +13,6 @@ const Landing = () => {
 	return (
 		<div>
 			<NavigationBar />
-
-			<button className="p-2 text-xl text-white bg-red-600 rounded">
-				<NavLink to="/mybooks">to My Books</NavLink>
-			</button>
-
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
 					<div className="w-[23ch] md:w-[30ch] lg:w-full">

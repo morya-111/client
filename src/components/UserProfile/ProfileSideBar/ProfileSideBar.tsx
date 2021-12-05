@@ -1,5 +1,10 @@
 import useAuthData from "hooks/useAuthData";
-const ProfileSideBar: React.FC = () => {
+import singleQuote from "utils/quotes";
+
+type Props = {
+	showEmail?: boolean;
+};
+const ProfileSideBar: React.FC<Props> = ({ showEmail = true }) => {
 	const { avatarUrl, first_name, email } = useAuthData();
 	return (
 		<div className="container mx-10 md:flex max-w-max">
@@ -13,7 +18,15 @@ const ProfileSideBar: React.FC = () => {
 				</div>
 				<div className="text-center">
 					<h1 className="text-2xl font-bold">{first_name}</h1>
-					<h3 className="text-sm text-gray-500">{email}</h3>
+					{showEmail && (
+						<h3 className="text-sm text-gray-500">{email}</h3>
+					)}
+				</div>
+				<div className="flex-col items-center hidden w-64 px-5 pt-3 mt-5 font-bold text-center border-t border-gray-500 md:flex lg:w-72">
+					<div>"{singleQuote.text}"</div>
+					<div className="text-sm font-semibold text-opacity-70 text-dark">
+						-{singleQuote.author}
+					</div>
 				</div>
 			</div>
 		</div>
