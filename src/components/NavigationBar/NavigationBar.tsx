@@ -53,7 +53,7 @@ const NavigationBar: React.FC = () => {
 
 	return (
 		<>
-			<div className="flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
+			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
 				<NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
 				</NavLink>
@@ -62,24 +62,35 @@ const NavigationBar: React.FC = () => {
 				</div>
 
 				<div className="hidden pr-8 md:block">
-
 					{isLoggedIn ? (
 						<>
 							<>
-								<NavLink
-									to="/catalogue"
-									className="p-4 motion-safe:hover:scale-110 "
-								>
-									Catalogue
-								</NavLink>
-								<NavLink
-									to="/mybooks"
-									className="p-4 mr-2 motion-safe:hover:scale-110 "
-								>
-									My Books
-								</NavLink>
+								<div className="flex flex-row">
+									<NavLink
+										to="/catalogue"
+										className="p-4 motion-safe:hover:scale-110 "
+										style={(isActive) => ({
+											textDecoration: isActive
+												? "underline"
+												: "none",
+										})}
+									>
+										Catalogue
+									</NavLink>
+									<NavLink
+										to="/mybooks"
+										className="p-4 mr-2 motion-safe:hover:scale-110 "
+										style={(isActive) => ({
+											textDecoration: isActive
+												? "underline"
+												: "none",
+										})}
+									>
+										My Books
+									</NavLink>
 
-								<MyProfile onClick={openPopUp} />
+									<MyProfile onClick={openPopUp} />
+								</div>
 							</>
 						</>
 					) : (
@@ -87,24 +98,44 @@ const NavigationBar: React.FC = () => {
 							<NavLink
 								to="/about"
 								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								About
 							</NavLink>
 							<NavLink
 								to="/catalogue"
 								className="p-4 motion-safe:hover:scale-110 "
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								Catalogue
 							</NavLink>
 							<NavLink
 								to="/contact"
 								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								Contact
 							</NavLink>
 							<NavLink
 								to="/signin"
 								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								Sign In
 							</NavLink>
