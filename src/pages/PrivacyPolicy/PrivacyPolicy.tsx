@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
 			<div className="min-h-screen bg-light">
 				<NavigationBar />
 
-				<div className="flex flex-col mx-4 md:mx-16">
+				<div className="flex flex-col mx-10 sm:mx-20 md:mx-40">
 					<h1 className="mt-4 text-xl font-semibold underline">
 						Privacy Policy for BookEx:
 					</h1>
