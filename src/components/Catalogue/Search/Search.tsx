@@ -1,7 +1,10 @@
 import Drawer from "components/Drawer";
+import TextInput from "components/Inputs/TextInput";
 import React, { useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import Sidebar from "../Sidebar";
+import { Form, Formik } from "formik";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Search: React.FC = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -15,9 +18,19 @@ const Search: React.FC = () => {
 					onClick={() => setDrawerOpen(true)}
 				/>
 			</div>
-			<div className="flex-grow text-lg text-center bg-gray-400">
-				Search Goes here
-			</div>
+			<Formik initialValues={{ test: "" }} onSubmit={() => {}}>
+				<Form className="flex flex-grow rounded-lg bg-semiLight hover:shadow-xl">
+					<div className="flex-grow">
+						<TextInput name="test" />
+					</div>
+					<div className="flex items-center justify-center px-2 py-1 cursor-pointer ">
+						<BiSearchAlt
+							size={35}
+							className="text-light hover:drop-shadow-xl"
+						/>
+					</div>
+				</Form>
+			</Formik>
 			<Drawer isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
 				<div className="h-full px-8 py-4 overflow-auto rounded-r-lg bg-light">
 					<Sidebar />
