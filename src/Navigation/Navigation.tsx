@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-
 import {
 	Homepage,
 	SignInpage,
@@ -11,6 +10,8 @@ import {
 	About,
 	Contact,
 	PrivacyPolicy,
+	CreateBook,
+	MyBooks,
 } from "pages";
 
 import AuthDataContext from "contexts/AuthDataContext";

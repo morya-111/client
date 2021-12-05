@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
 import Third from "assets/homepage/WCIDH-1.png";
@@ -11,7 +11,7 @@ import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 const Landing = () => {
 	const isLoggedIn = useCachedLoginStatus();
 	const [inHover, setHover] = useState(false);
-  
+
 	return (
 		<div>
 			<NavigationBar />
