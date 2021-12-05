@@ -32,7 +32,7 @@ const About = () => {
 				className="min-h-screen overflow-x-hidden bg-light"
 			>
 				<div className="relative w-full h-[600px] 2xl:h-screen ">
-					<div className="absolute bg-dark w-[140px] h-[500px] ml-3 md:ml-14 ">
+					<div className="absolute bg-dark w-[140px] h-[500px] ml-3 md:ml-14 z-50">
 						<NavLink to="/">
 							<LogoLight className="w-auto h-24 p-2" />
 						</NavLink>

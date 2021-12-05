@@ -7,6 +7,7 @@ import SignUppage from "./SignUppage";
 import About from "./About";
 import Contact from "./Contact";
 import PrivacyPolicy from "./PrivacyPolicy";
+import MyBooks from "./MyBooks";
 
 export {
 	Homepage,
@@ -17,5 +18,6 @@ export {
 	About,
 	Contact,
 	PrivacyPolicy,
+	CreateBook,
+	MyBooks,
 };
-

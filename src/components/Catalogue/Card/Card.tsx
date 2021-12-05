@@ -14,7 +14,7 @@ const Card: React.FC<Props> = (props) => {
 	return (
 		<div
 			{...rest}
-			className="flex flex-col col-span-2 p-3 transition-all bg-white rounded-lg shadow hover:shadow-2xl"
+			className="flex flex-col col-span-2 p-3 transition-all bg-white rounded-lg shadow hover:shadow-2xl hover:cursor-pointer"
 		>
 			<div className="flex flex-col justify-center flex-grow w-full px-6">
 				<img src={imgUrl} alt="" className="" />
