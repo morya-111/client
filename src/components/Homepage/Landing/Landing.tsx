@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
+// import Hero from "assets/homepage/hero-img.png";
 // import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
 // import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
 // import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
@@ -9,8 +10,12 @@ import First from "assets/homepage/WCIDH-2.png";
 import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const Landing = () => {
+	const isLoggedIn = useCachedLoginStatus();
+	const [inHover, setHover] = useState(false);
+
 	return (
 		<div>
 			<NavigationBar />
@@ -40,6 +45,10 @@ const Landing = () => {
 					<div>
 						<HeroImg className="flex flex-none flex-shrink-0 " />
 					</div>
+					{/* <img
+						src={Hero}
+						className="flex flex-none flex-shrink-0 "
+					></img> */}
 				</div>
 			</div>
 			<div className="w-auto min-h-screen bg-clip-padding bg-semiDark">
@@ -58,9 +67,13 @@ const Landing = () => {
 								/>
 								{/* <First className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										className="text-lg font-bold text-light hover:underline w-max"
+										href="/catalogue"
+									>
 										Books Catalogue
-									</h1>
+									</a>
+
 									<h2 className="text-base text-light">
 										Explore huge catalogue of new and used
 										books you can rent or buy from locals
@@ -76,9 +89,37 @@ const Landing = () => {
 								/>
 								{/* <Second className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										onMouseEnter={() => setHover(true)}
+										onMouseLeave={() => setHover(false)}
+										href={
+											isLoggedIn
+												? "/mybooks"
+												: "javascript:void(0)"
+										}
+										className="text-lg font-bold text-light hover:underline w-max"
+									>
 										Books Listing
-									</h1>
+										{!isLoggedIn && inHover && (
+											<div
+												className={
+													"relative inline-flex items-center px-2 ml-2 text-xs font-normal rounded-sm bg-semiLight md:text-sm text-light "
+												}
+											>
+												<div className="absolute left-0 bottom-0 h-[53%] w-[10px] skew-x-[50deg] bg-semiLight rounded-sm"></div>
+												<div className="absolute left-0 top-0 h-1/2 w-[10px] skew-x-[-50deg]  bg-semiLight rounded-sm"></div>
+												<h1>
+													<a
+														href="/signup"
+														className="underline hover:text-dark"
+													>
+														Sign Up
+													</a>
+													&nbsp;to continue.
+												</h1>
+											</div>
+										)}
+									</a>
 									<h2 className="text-base text-light">
 										Are you a huge book worm? You can sell
 										or rent your books on our book listing.
@@ -93,9 +134,12 @@ const Landing = () => {
 								/>
 								{/* <Third className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										href="/about"
+										className="text-lg font-bold text-light w-max hover:underline"
+									>
 										Join Community
-									</h1>
+									</a>
 									<h2 className="text-base text-light">
 										Join huge community of book geeks
 										sharing books and experience with other.

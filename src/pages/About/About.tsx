@@ -19,8 +19,10 @@ import instaIcon from "assets/common/insta-icon.png";
 import twitterIcon from "assets/common/twitter-icon.png";
 import githubIcon from "assets/common/github-icon.png";
 import linkedinIcon from "assets/common/linkedin-icon.png";
+import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const About = () => {
+	const isLoggedIn = useCachedLoginStatus();
 	const [inHover, setHover] = useState(false);
 	return (
 		<div className="">
@@ -82,12 +84,27 @@ const About = () => {
 											</b>{" "}
 											without any limitations of finding
 											books.
+											<br />
+											{!isLoggedIn && (
+												<b className="">
+													Join this Awesome Community
+													by{" "}
+													<a
+														href="/signup"
+														className="underline hover:text-semiDark"
+													>
+														Signing Up
+													</a>{" "}
+													now
+												</b>
+											)}
 										</p>
 									</div>
 								</div>
 							</section>
 						</div>
 					</div>
+
 					<div className="flex justify-center">
 						<div className="text-[13px] sm:hidden m-1 mt-96 pt-10 text-left">
 							<b className="text-semiDark">BookEx</b> is a
@@ -102,9 +119,9 @@ const About = () => {
 					</div>
 				</div>
 			</div>
+			<div className="h-4 bg-dark"></div>
 			<div className="">
 				<div className="container relative overflow-hidden">
-					{/* <div className="h-4 bg-dark"></div> */}
 					<div className="h-[800px] bg-shelf-bg">
 						<div className="absolute flex flex-row justify-center w-full h-[800px] text-white z-50">
 							<div

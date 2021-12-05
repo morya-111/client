@@ -13,7 +13,7 @@ import LogOutButton from "components/LogOutButton";
 import ProfilePopUp from "./ProfilePopUp";
 const NavigationBar: React.FC = () => {
 	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: "smooth" });
+		window.scrollTo({ top: 0 });
 	}, []);
 	const isLoggedIn = useCachedLoginStatus();
 	const [isOpen, setIsOpen] = useState(false);
