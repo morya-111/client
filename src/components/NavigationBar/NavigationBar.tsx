@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
@@ -11,6 +11,9 @@ import Dropdown from "./Dropdown";
 import MyProfile from "./MyProfile";
 import ProfilePopUp from "./ProfilePopUp";
 const NavigationBar: React.FC = () => {
+	useEffect(() => {
+		window.scrollTo({ top: 0 });
+	}, []);
 	const isLoggedIn = useCachedLoginStatus();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -50,14 +53,16 @@ const NavigationBar: React.FC = () => {
 
 	return (
 		<>
-			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
+			<div className="flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
 				<NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
 				</NavLink>
 				<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
 					<MenuIcon />
 				</div>
-				<div className="hidden pr-8 md:flex">
+
+				<div className="hidden pr-8 md:block">
+
 					{isLoggedIn ? (
 						<>
 							<>

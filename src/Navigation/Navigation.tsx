@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
-import { Homepage, SignInpage, SignUppage, Catalogue, BookDisplay,CreateBook, MyBooks } from "pages";
+import {
+	Homepage,
+	SignInpage,
+	SignUppage,
+	Catalogue,
+	BookDisplay,
+	About,
+	Contact,
+	PrivacyPolicy,
+} from "pages";
 
 import AuthDataContext from "contexts/AuthDataContext";
 import axiosClient from "utils/axiosClient";
@@ -70,7 +79,13 @@ const Navigation = () => {
 				/>
 
 				<Route path="/books/:id" exact component={BookDisplay} />
+
+				<Route path="/about" exact component={About} />
+				<Route path="/contact" exact component={Contact} />
+				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
+
 				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
+
 				<ProtectedRoute
 					exact
 					path="/myprofile"
