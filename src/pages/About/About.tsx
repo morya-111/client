@@ -120,176 +120,191 @@ const About = () => {
 				</div>
 			</div>
 			<div className="h-4 bg-dark"></div>
-			<div className="">
-				<div className="container relative overflow-hidden">
-					<div className="h-[800px] bg-shelf-bg">
-						<div className="absolute flex flex-row justify-center w-full h-[800px] text-white z-50">
-							<div
-								className={
-									inHover
-										? "opacity-100 transform duration-1000"
-										: "opacity-0 transform duration-1000"
-								}
-							>
-								<div className="flex flex-col mt-32">
-									<div className="text-center ">
-										<h1 className="mb-4 text-2xl font-bold text-semiLight">
-											Execution & Concept By:
-										</h1>
-									</div>
-									<div className="flex flex-col items-center mt-5 space-y-10 md:items-start md:space-y-0 md:justify-around md:flex-row ">
-										<div className="flex flex-col items-center w-72 divide-solid">
-											<img
-												src={PdS}
-												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
-											></img>
-											<h1 className="text-lg font-semibold text-semiLight">
-												Prathamesh Sujgure
+			<div className="bg-shelf-bg">
+				<div className="relative overflow-hidden">
+					<div className="h-[2000px] md:h-[800px] lg:h-[800px] bg-shelf-bg">
+						<div>
+							<div className="absolute z-50 flex flex-row justify-center h-[2000px] md:h-[800px] lg:h-[800px] w-full text-white">
+								<div
+									className={
+										inHover
+											? "opacity-100 transform duration-1000"
+											: "opacity-0 transform duration-1000"
+									}
+								>
+									<div className="flex flex-col mt-32">
+										<div className="text-center ">
+											<h1 className="mb-4 text-2xl font-bold text-semiLight">
+												Execution & Concept By:
 											</h1>
-											<p className="text-center text-gray-300 opacity-75">
-												"If you are going to get
-												anywhere in life you have to
-												read a lot of books."
-											</p>
-											<img
-												src={jarrod}
-												className="h-64 mt-7 drop-shadow-3xl"
-											></img>
-											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
-												<a
-													href="https://github.com/PrathameshSujgure-git"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={githubIcon}></img>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/prathamesh-sujgure-02827220a/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={linkedinIcon}
-													></img>
-												</a>
-												<a
-													href="https://twitter.com/invinci_111"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={twitterIcon}
-													></img>
-												</a>
-												<a
-													href="https://www.instagram.com/invincible.111/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={instaIcon}></img>
-												</a>
-											</div>
 										</div>
-										<div className="flex flex-col items-center w-72 ">
-											<img
-												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
-												src={athhb}
-											></img>
-											<h1 className="text-lg font-semibold text-semiLight">
-												Atharva Bhange
-											</h1>
-											<p className="text-center text-gray-300 opacity-75">
-												"All the secrets of the world
-												are contained in books."
-											</p>
-											<img
-												src={dinesh}
-												className="h-64 mt-7 drop-shadow-3xl"
-											></img>
-											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
-												<a
-													href="https://github.com/atharva-bhange"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={githubIcon}></img>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/atharva-bhange/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={linkedinIcon}
-													></img>
-												</a>
-												<a
-													href="https://twitter.com/atharvabhange"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={twitterIcon}
-													></img>
-												</a>
-												<a
-													href="https://www.instagram.com/atharva__bhange/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={instaIcon}></img>
-												</a>
+										<div className="flex flex-col items-center mt-5 space-y-10 md:items-start md:space-y-0 md:justify-around md:flex-row ">
+											<div className="flex flex-col items-center w-72 divide-solid">
+												<img
+													src={PdS}
+													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+												></img>
+												<h1 className="text-lg font-semibold text-semiLight">
+													Prathamesh Sujgure
+												</h1>
+												<p className="text-center text-gray-300 opacity-75">
+													"If you are going to get
+													anywhere in life you have to
+													read a lot of books."
+												</p>
+												<img
+													src={jarrod}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img>
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/PrathameshSujgure-git"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/prathamesh-sujgure-02827220a/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													<a
+														href="https://twitter.com/invinci_111"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.instagram.com/invincible.111/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
 											</div>
-										</div>
-										<div className="flex flex-col items-center w-72">
-											<img
-												className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
-												src={SbG}
-											></img>
-											<h1 className="text-lg font-semibold text-semiLight">
-												Shreyas Gangurde
-											</h1>
-											<p className="text-center text-gray-300 opacity-75">
-												"An hour spent reading is one
-												stolen from paradise."
-											</p>
-											<img
-												src={gilfoyle}
-												className="h-64 mt-7 drop-shadow-3xl"
-											></img>
-											<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
-												<a
-													href="https://github.com/shreyasg-git"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={githubIcon}></img>
-												</a>
-												<a
-													href="https://www.linkedin.com/in/shreyas-gangurde-1438981a1/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={linkedinIcon}
-													></img>
-												</a>
-												<a
-													href="https://twitter.com/shreyasbg28"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img
-														src={twitterIcon}
-													></img>
-												</a>
-												<a
-													href="https://www.instagram.com/_shreyas_gangurde/"
-													target="_blank"
-													rel="noopner noreferrer"
-												>
-													<img src={instaIcon}></img>
-												</a>
+											<div className="flex flex-col items-center w-72 ">
+												<img
+													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+													src={athhb}
+												></img>
+												<h1 className="text-lg font-semibold text-semiLight">
+													Atharva Bhange
+												</h1>
+												<p className="text-center text-gray-300 opacity-75">
+													"All the secrets of the
+													world are contained in
+													books."
+												</p>
+												<img
+													src={dinesh}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img>
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/atharva-bhange"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/atharva-bhange/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													<a
+														href="https://twitter.com/atharvabhange"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.instagram.com/atharva__bhange/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
+											</div>
+											<div className="flex flex-col items-center w-72">
+												<img
+													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+													src={SbG}
+												></img>
+												<h1 className="text-lg font-semibold text-semiLight">
+													Shreyas Gangurde
+												</h1>
+												<p className="text-center text-gray-300 opacity-75">
+													"An hour spent reading is
+													one stolen from paradise."
+												</p>
+												<img
+													src={gilfoyle}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img>
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/shreyasg-git"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/shreyas-gangurde-1438981a1/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													<a
+														href="https://twitter.com/shreyasbg28"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.instagram.com/_shreyas_gangurde/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -297,15 +312,15 @@ const About = () => {
 							</div>
 						</div>
 
-						<div className="z-0">
+						<div className="z-0 h-[2000px] md:h-[800px] lg:h-[800px]">
 							<img
 								id="1"
 								src={Shelf1}
 								alt="1"
 								className={
 									inHover
-										? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px]"
-										: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20"
+										? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20 h-[2000px] w-screen md:h-[800px] lg:h-[800px]"
 								}
 							></img>
 							<img
@@ -314,8 +329,8 @@ const About = () => {
 								alt="2"
 								className={
 									inHover
-										? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px]"
-										: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10"
+										? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
 								}
 							></img>
 							<img
@@ -324,8 +339,8 @@ const About = () => {
 								alt="3"
 								className={
 									inHover
-										? "absolute z-30 transform blur-[3px] ease-in-out opacity-0 duration-1000 "
-										: "absolute transform duration-[1.5s] z-30 opacity-100"
+										? "absolute z-30 transform blur-[3px] ease-in-out opacity-0 duration-1000 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute transform duration-[1.5s] z-30 opacity-100 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
 								}
 							></img>
 							<img
@@ -334,8 +349,8 @@ const About = () => {
 								alt="4"
 								className={
 									inHover
-										? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px]"
-										: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 "
+										? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 h-[2000px] md:h-[800px] lg:h-[800px]  w-screen"
 								}
 							></img>
 							<img
@@ -344,8 +359,8 @@ const About = () => {
 								alt="5"
 								className={
 									inHover
-										? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px]"
-										: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20"
+										? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
 								}
 							></img>
 						</div>
