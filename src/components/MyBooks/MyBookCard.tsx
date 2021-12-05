@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
 import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
 import useDeleteBookQuery from "hooks/useDeleteBookQuery";
 import Modal from "components/Modal";
+import Button from "components/Buttons/Button";
+import Loader from "components/Loader";
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
 	title: string;
@@ -13,11 +15,20 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 };
 const MyBookCard: React.FC<Props> = (props) => {
 	const { title, description, genre, imgUrl, bookId, ...rest } = props;
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isDeleted, setIsDeleted] = useState(false);
 
-	// NOTE: Delete Book Logic
-	const { triggerDelQuery, isSuccess, resolveConfirmation } =
-		useDeleteBookQuery({ bookId });
-	if (isSuccess) {
+	const openDelConfirmation = () => {
+		setIsModalOpen(true);
+	};
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+	const handleDeletion = () => {
+		setIsDeleted(true);
+	};
+
+	if (isDeleted) {
 		return null;
 	}
 
@@ -63,17 +74,87 @@ const MyBookCard: React.FC<Props> = (props) => {
 					<button className="inline-flex">
 						<EditIcon />
 					</button>
-					<button className="inline-flex" onClick={triggerDelQuery}>
+					<button
+						className="inline-flex"
+						onClick={openDelConfirmation}
+					>
 						<DeleteIcon />
 					</button>
+					{isModalOpen ? (
+						<div>
+							<DelBookConfirmation
+								bookId={bookId}
+								closeModal={closeModal}
+								handleParentDeletion={handleDeletion}
+							/>
+						</div>
+					) : null}
 				</div>
 			</div>
 		</div>
 	);
 };
 // TODO: last working on, 5-12-21, 3:53 AM
-const DelBookConfirmation = () => {
-	return;
+type props = {
+	bookId: number;
+	closeModal: () => any;
+	handleParentDeletion: Function;
+};
+const DelBookConfirmation = ({
+	bookId,
+	closeModal,
+	handleParentDeletion,
+}: props) => {
+	const { triggerDelQuery, isSuccess, status } = useDeleteBookQuery({
+		bookId,
+	});
+
+	const handleClickOnYes = () => {
+		triggerDelQuery();
+		closeModal();
+		if (isSuccess) {
+			handleParentDeletion();
+		}
+	};
+
+	return (
+		<Modal isOpen={true} onClose={closeModal}>
+			<div className="w-full bg-white rounded-md h-50">
+				<div className="flex justify-between">
+					<span className="pt-2 pl-3">
+						You sure you want to delete this book?
+					</span>
+					<span
+						className="pl-3 pr-2 cursor-pointer"
+						onClick={closeModal}
+					>
+						X
+					</span>
+				</div>
+				<div className="flex justify-around m-3">
+					<div className="">
+						<Button
+							value="Yes"
+							color="error"
+							onClick={handleClickOnYes}
+							left={
+								status === "loading" ? (
+									<Loader size="sm" />
+								) : null
+							}
+						></Button>
+					</div>
+					<div className="">
+						<Button
+							value="Cancel"
+							color="semiDark"
+							onClick={closeModal}
+						></Button>
+					</div>
+				</div>
+			</div>
+		</Modal>
+	);
 };
 
 export default MyBookCard;
