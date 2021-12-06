@@ -50,7 +50,6 @@ type BookResponseType = {
 				last_name: string;
 				email: string;
 			};
-
 		};
 	};
 };
@@ -104,8 +103,7 @@ const BookDisplay: React.FC = () => {
 
 	return (
 		<div>
-
-			<div className="flex flex-col h-screen bg-light">
+			<div className="flex flex-col min-h-screen bg-light">
 				<NavigationBar />
 				{isLoading ? (
 					<div className="container h-screen min-w-screen bg-light">
@@ -121,7 +119,6 @@ const BookDisplay: React.FC = () => {
 									<div className="w-full px-2 mb-6 md:w-4/6 md:pr-10 md:py-6 md:mb-0">
 										<div className="relative ">
 											{switchJSX(status)}
-
 										</div>
 										<div className="relative">
 											<h2 className="absolute right-0 inline-flex px-2 text-sm capitalize rounded-full bg-semiLight text-light">
@@ -134,7 +131,7 @@ const BookDisplay: React.FC = () => {
 												onMouseLeave={() =>
 													setHover(false)
 												}
-												className="inline-flex text-sm font-semibold text-dark"
+												className="inline-flex items-center text-sm font-semibold text-dark"
 											>
 												Uploaded by {userName}{" "}
 												<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
@@ -179,12 +176,12 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 										<div className="flex mt-4">
-											<h1 className="flex-grow text-lg underline text-semiDark">
+											<h1 className="flex-grow px-2 text-lg underline md:px-0 text-semiDark">
 												Description:
 											</h1>
 										</div>
 
-										<p className="mb-4 leading-relaxed">
+										<p className="px-2 mb-4 leading-relaxed md:px-0">
 											{description}
 										</p>
 
@@ -224,9 +221,7 @@ const BookDisplay: React.FC = () => {
 											</div>
 											<div
 												className={
-													sell
-														? "visible"
-														: "invisible"
+													sell ? "block" : "hidden"
 												}
 											>
 												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
@@ -234,7 +229,7 @@ const BookDisplay: React.FC = () => {
 														For Sell{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{price} ₹
+														&#x20B9;{price}
 													</span>
 												</div>
 											</div>
@@ -250,7 +245,7 @@ const BookDisplay: React.FC = () => {
 														For Rent{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{fees} ₹ /{" "}
+														&#x20B9;{fees} /{" "}
 														{durationUnit?.slice(
 															0,
 															durationUnit.length -
@@ -272,7 +267,7 @@ const BookDisplay: React.FC = () => {
 														Deposit{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{deposit} ₹
+														&#x20B9;{deposit}
 													</span>
 												</div>
 											</div>
@@ -288,8 +283,8 @@ const BookDisplay: React.FC = () => {
 						</section>
 					</>
 				)}
-				<Footer />
 			</div>
+			<Footer />
 		</div>
 	);
 };

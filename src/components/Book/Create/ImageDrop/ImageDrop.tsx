@@ -86,7 +86,7 @@ const ImageDrop: React.FC<Props> = () => {
 	);
 
 	return (
-		<div className="flex flex-col w-1/2 sm:w-1/3 lg:w-2/3 lg:h-2/3">
+		<div className="flex flex-col w-full mx-5 sm:w-1/2 md:w-3/4 md:h-2/3">
 			{meta.touched && meta.error ? (
 				<div className="text-center text-red-600">{meta.error}</div>
 			) : undefined}
@@ -114,11 +114,13 @@ const ImageDrop: React.FC<Props> = () => {
 					<div className={dropZoneStyle} {...getRootProps({})}>
 						<input {...getInputProps()} />
 						<div className={dropZoneTextStyle}>
-							<div>
-								<FiUpload size={50} />
-							</div>
-							<div className="text-center">
-								Drag N Drop Image Here To Upload
+							<div className="flex flex-col items-center mx-10 md:mx-2 my-28">
+								<div>
+									<FiUpload size={50} />
+								</div>
+								<div className="text-center">
+									Drag N Drop Image Here To Upload
+								</div>
 							</div>
 						</div>
 					</div>
