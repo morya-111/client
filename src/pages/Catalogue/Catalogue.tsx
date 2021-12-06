@@ -46,7 +46,12 @@ const Catalogue: React.FC = () => {
 
 	const setPage = (page: number) => {
 		const queryParam = stringify(
-			{ page, genre: selectedGenre, language: selectedLanguages },
+			{
+				page,
+				s: searchTerm,
+				genre: selectedGenre,
+				language: selectedLanguages,
+			},
 			{ arrayFormat: "comma" }
 		);
 		history.push({
@@ -54,6 +59,13 @@ const Catalogue: React.FC = () => {
 			search: `?${queryParam}`,
 		});
 	};
+
+	const searchTerm = useMemo(() => {
+		const parsed = parse(search);
+		if (Array.isArray(parsed["s"]) || parsed["s"] === null) return null;
+
+		return parsed["s"] || null;
+	}, [search]);
 
 	const selectedGenre = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
@@ -73,15 +85,21 @@ const Catalogue: React.FC = () => {
 
 		return parseInt(parsed["page"]) || 1;
 	}, [search]);
-
 	const { data, isLoading, isPreviousData } = useQuery(
-		["books", selectedGenre.join(","), page, selectedLanguages.join(",")],
+		[
+			"books",
+			selectedGenre.join(","),
+			page,
+			searchTerm,
+			selectedLanguages.join(","),
+		],
 		() =>
 			api.get<BookResponseType>("/books", {
 				params: {
 					genre__in: selectedGenre.join(",") || undefined,
 					page,
 					language__in: selectedLanguages.join(",") || undefined,
+					s: searchTerm || undefined,
 				},
 			}),
 		{
@@ -101,22 +119,22 @@ const Catalogue: React.FC = () => {
 			<NavigationBar />
 			<div
 				style={{ minHeight: "100vh" }}
-				className="grid w-full grid-cols-12 gap-2 px-2 md:px-12 bg-light"
+				className="grid w-full grid-cols-12 gap-2 px-2 md:px-14 bg-light"
 			>
-				{isLoading ? (
-					<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-						<Loader />
-					</div>
-				) : (
-					<>
-						<div
-							style={{ borderRightWidth: "1px" }}
-							className="hidden col-span-2 md:block xl:col-span-1 border-opacity-20 border-r-dark"
-						>
-							<Sidebar />
+				<div
+					style={{ borderRightWidth: "1px" }}
+					className="hidden col-span-2 md:block xl:col-span-1 border-opacity-20 border-r-dark"
+				>
+					<Sidebar />
+				</div>
+				<div className="flex flex-col col-span-full md:col-start-3 md:col-end-13 xl:col-start-2">
+					<Search />
+					{isLoading ? (
+						<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+							<Loader />
 						</div>
-						<div className="flex flex-col col-span-full md:col-start-3 md:col-end-13 xl:col-start-2">
-							<Search />
+					) : (
+						<>
 							<div className="grid gap-5 mx-8 my-4 sm:m-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
 								{(data?.data.data.books as Array<any>).map(
 									(book, idx) => (
@@ -137,7 +155,6 @@ const Catalogue: React.FC = () => {
 									)
 								)}
 							</div>
-
 							{data?.data.data.pagination.pages > 1 && (
 								<div className="flex justify-center md:justify-end mb-9">
 									<Pagination
@@ -155,9 +172,9 @@ const Catalogue: React.FC = () => {
 									/>
 								</div>
 							)}
-						</div>
-					</>
-				)}
+						</>
+					)}
+				</div>
 			</div>
 			<Footer />
 		</>
