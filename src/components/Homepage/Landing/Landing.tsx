@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
 import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
-import { ReactComponent as First } from "assets/homepage/WCIDH-1.svg";
-import { ReactComponent as Second } from "assets/homepage/WCIDH-2.svg";
-import { ReactComponent as Third } from "assets/homepage/WCIDH-3.svg";
+import Third from "assets/homepage/WCIDH-1.png";
+import First from "assets/homepage/WCIDH-2.png";
+import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
 import { NavLink } from "react-router-dom";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const Landing = () => {
 	const isLoggedIn = useCachedLoginStatus();
+	const [inHover, setHover] = useState(false);
+
 	return (
 		<div>
 			<NavigationBar />
-
-			<button className="p-2 text-xl text-white bg-red-600 rounded">
-				<NavLink to="/mybooks">to My Books</NavLink>
-			</button>
-
 			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
 					<div className="w-[23ch] md:w-[30ch] lg:w-full">
@@ -35,7 +32,13 @@ const Landing = () => {
 									Go To Catalogue
 								</NavLink>
 							</button>
-							{isLoggedIn ? null : (
+							{isLoggedIn ? (
+								<button className="px-4 py-1 rounded text-light bg-semiLight">
+									<NavLink to="/book/create">
+										Add A Book
+									</NavLink>
+								</button>
+							) : (
 								<button className="px-4 py-1 rounded text-light bg-semiLight">
 									<NavLink to="/signup">Sign Up</NavLink>
 								</button>
@@ -45,6 +48,10 @@ const Landing = () => {
 					<div>
 						<HeroImg className="flex flex-none flex-shrink-0 " />
 					</div>
+					{/* <img
+						src={Hero}
+						className="flex flex-none flex-shrink-0 "
+					></img> */}
 				</div>
 			</div>
 			<div className="w-auto min-h-screen bg-clip-padding bg-semiDark">
@@ -56,11 +63,20 @@ const Landing = () => {
 
 						<div className="grid justify-center mt-16 md:justify-around md:flex md:flex-wrap">
 							<div className="h-auto w-72">
-								<First className="h-auto w-72" />
+								<img
+									src={First}
+									alt="1"
+									className="h-auto w-72"
+								/>
+								{/* <First className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										className="text-lg font-bold text-light hover:underline w-max"
+										href="/catalogue"
+									>
 										Books Catalogue
-									</h1>
+									</a>
+
 									<h2 className="text-base text-light">
 										Explore huge catalogue of new and used
 										books you can rent or buy from locals
@@ -69,11 +85,44 @@ const Landing = () => {
 								</div>
 							</div>
 							<div className="h-auto mt-8 md:mt-0 w-72">
-								<Second className="h-auto w-72" />
+								<img
+									src={Second}
+									alt="2"
+									className="h-auto w-72"
+								/>
+								{/* <Second className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										onMouseEnter={() => setHover(true)}
+										onMouseLeave={() => setHover(false)}
+										href={
+											isLoggedIn
+												? "/mybooks"
+												: "javascript:void(0)"
+										}
+										className="text-lg font-bold text-light hover:underline w-max"
+									>
 										Books Listing
-									</h1>
+										{!isLoggedIn && inHover && (
+											<div
+												className={
+													"relative inline-flex items-center px-2 ml-2 text-xs font-normal rounded-sm bg-semiLight md:text-sm text-light "
+												}
+											>
+												<div className="absolute left-0 bottom-0 h-[53%] w-[10px] skew-x-[50deg] bg-semiLight rounded-sm"></div>
+												<div className="absolute left-0 top-0 h-1/2 w-[10px] skew-x-[-50deg]  bg-semiLight rounded-sm"></div>
+												<h1>
+													<a
+														href="/signup"
+														className="underline hover:text-dark"
+													>
+														Sign Up
+													</a>
+													&nbsp;to continue.
+												</h1>
+											</div>
+										)}
+									</a>
 									<h2 className="text-base text-light">
 										Are you a huge book worm? You can sell
 										or rent your books on our book listing.
@@ -81,11 +130,19 @@ const Landing = () => {
 								</div>
 							</div>
 							<div className="h-auto mt-8 mb-8 md:mt-0 w-72">
-								<Third className="h-auto w-72" />
+								<img
+									src={Third}
+									alt="3"
+									className="h-auto w-72"
+								/>
+								{/* <Third className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<h1 className="text-lg font-bold text-light">
+									<a
+										href="/about"
+										className="text-lg font-bold text-light w-max hover:underline"
+									>
 										Join Community
-									</h1>
+									</a>
 									<h2 className="text-base text-light">
 										Join huge community of book geeks
 										sharing books and experience with other.

@@ -25,13 +25,21 @@ module.exports = {
 			animation: {
 				"scale-reveal": "scale 0.5s ease-in-out ",
 			},
+			backgroundImage: {
+				"shelf-bg": "url('assets/about/shelf_bg.png')",
+			},
+			dropShadow: {
+				"3xl": "0 2px 3px rgba(255, 255, 255, 0.25)",
+			},
 		},
 		fontFamily: {
 			sans: ["Nunito", "sans-serif"],
 		},
 	},
 	variants: {
-		extend: { animation: ["motion-safe"] },
+
+		extend: { animation: ["responsive", "motion-safe", "motion-reduce"] },
+
 	},
 	plugins: [require("@tailwindcss/line-clamp")],
 };

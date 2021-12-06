@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { ReactComponent as LogoDark } from "assets/common/logo-main-dark.svg";
 import { ReactComponent as MenuIcon } from "assets/common/menu-icon.svg";
@@ -9,9 +9,11 @@ import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import Dropdown from "./Dropdown";
 
 import MyProfile from "./MyProfile";
-import LogOutButton from "components/LogOutButton";
 import ProfilePopUp from "./ProfilePopUp";
 const NavigationBar: React.FC = () => {
+	useEffect(() => {
+		window.scrollTo({ top: 0 });
+	}, []);
 	const isLoggedIn = useCachedLoginStatus();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -36,22 +38,16 @@ const NavigationBar: React.FC = () => {
 				setIsOpen(false);
 			}
 		};
-
-		window.addEventListener("resize", () => {
+		const closePopUpAndHideMenu = () => {
 			closePopUp();
 			hideMenu();
-		});
-		window.addEventListener("scroll", () => {
-			closePopUp();
-		});
+		};
+
+		window.addEventListener("resize", closePopUpAndHideMenu);
+		window.addEventListener("scroll", closePopUp);
 		return () => {
-			window.removeEventListener("resize", () => {
-				closePopUp();
-				hideMenu();
-			});
-			window.removeEventListener("scroll", () => {
-				closePopUp();
-			});
+			window.removeEventListener("resize", closePopUpAndHideMenu);
+			window.removeEventListener("scroll", closePopUp);
 		};
 	});
 
@@ -64,25 +60,37 @@ const NavigationBar: React.FC = () => {
 				<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
 					<MenuIcon />
 				</div>
+
 				<div className="hidden pr-8 md:block">
 					{isLoggedIn ? (
 						<>
 							<>
-								<NavLink
-									to="/catalogue"
-									className="p-4 motion-safe:hover:scale-110 "
-								>
-									Catalogue
-								</NavLink>
-								<NavLink
-									to="/mybooks"
-									className="p-4 mr-2 motion-safe:hover:scale-110 "
-								>
-									My Books
-								</NavLink>
+								<div className="flex flex-row">
+									<NavLink
+										to="/catalogue"
+										className="p-4 motion-safe:hover:scale-110 "
+										style={(isActive) => ({
+											textDecoration: isActive
+												? "underline"
+												: "none",
+										})}
+									>
+										Catalogue
+									</NavLink>
+									<NavLink
+										to="/mybooks"
+										className="p-4 mr-2 motion-safe:hover:scale-110 "
+										style={(isActive) => ({
+											textDecoration: isActive
+												? "underline"
+												: "none",
+										})}
+									>
+										My Books
+									</NavLink>
 
-								<MyProfile onClick={openPopUp} />
-								<LogOutButton />
+									<MyProfile onClick={openPopUp} />
+								</div>
 							</>
 						</>
 					) : (
@@ -90,20 +98,46 @@ const NavigationBar: React.FC = () => {
 							<NavLink
 								to="/about"
 								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								About
 							</NavLink>
 							<NavLink
 								to="/catalogue"
 								className="p-4 motion-safe:hover:scale-110 "
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								Catalogue
 							</NavLink>
 							<NavLink
 								to="/contact"
 								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
 							>
 								Contact
+							</NavLink>
+							<NavLink
+								to="/signin"
+								className="p-4 motion-safe:hover:scale-110"
+								style={(isActive) => ({
+									textDecoration: isActive
+										? "underline"
+										: "none",
+								})}
+							>
+								Sign In
 							</NavLink>
 							<SignUp />
 						</>
@@ -112,7 +146,8 @@ const NavigationBar: React.FC = () => {
 			</div>
 			{isPopUpOpen ? (
 				<ProfilePopUp
-					className="fixed z-50 mr-16 top-8 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
+					// NOTE: Popup position adjustments
+					className="fixed z-50 mr-16 top-12 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
 					closerFunc={closePopUp}
 				/>
 			) : null}
