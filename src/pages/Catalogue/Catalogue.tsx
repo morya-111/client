@@ -85,34 +85,35 @@ const Catalogue: React.FC = () => {
 
 		return parseInt(parsed["page"]) || 1;
 	}, [search]);
-	const { data, isLoading, isPreviousData } = useQuery(
-		[
-			"books",
-			selectedGenre.join(","),
-			page,
-			searchTerm,
-			selectedLanguages.join(","),
-		],
-		() =>
-			api.get<BookResponseType>("/books", {
-				params: {
-					genre__in: selectedGenre.join(",") || undefined,
-					page,
-					language__in: selectedLanguages.join(",") || undefined,
-					s: searchTerm || undefined,
+	const { data, isLoading, isPreviousData, isFetching, isRefetching } =
+		useQuery(
+			[
+				"books",
+				selectedGenre.join(","),
+				page,
+				searchTerm,
+				selectedLanguages.join(","),
+			],
+			() =>
+				api.get<BookResponseType>("/books", {
+					params: {
+						genre__in: selectedGenre.join(",") || undefined,
+						page,
+						language__in: selectedLanguages.join(",") || undefined,
+						s: searchTerm || undefined,
+					},
+				}),
+			{
+				keepPreviousData: true,
+				refetchOnWindowFocus: false,
+				staleTime: 30000,
+				onSuccess: (data) => {
+					data.data.data.books.map((book) => {
+						queryClient.setQueryData(["book", book.id], book);
+					});
 				},
-			}),
-		{
-			keepPreviousData: true,
-			refetchOnWindowFocus: false,
-			staleTime: 30000,
-			onSuccess: (data) => {
-				data.data.data.books.map((book) => {
-					queryClient.setQueryData(["book", book.id], book);
-				});
-			},
-		}
-	);
+			}
+		);
 
 	return (
 		<>
@@ -129,7 +130,7 @@ const Catalogue: React.FC = () => {
 				</div>
 				<div className="flex flex-col col-span-full md:col-start-3 md:col-end-13 xl:col-start-2">
 					<Search />
-					{isLoading ? (
+					{isLoading || isFetching || isRefetching ? (
 						<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
 							<Loader />
 						</div>
