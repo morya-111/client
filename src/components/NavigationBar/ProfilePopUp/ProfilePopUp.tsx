@@ -12,7 +12,7 @@ const ProfilePopUp: React.FC<
 		"p-1 pl-2 m-2 border-2 rounded-md border-semiLight hover:bg-semiDark hover:border-dark hover:text-white";
 	return (
 		<div
-			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col shadow-xl `}
+			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col shadow-xl -right-2 `}
 			ref={selfRef}
 		>
 			<NavLink to="/catalogue">
