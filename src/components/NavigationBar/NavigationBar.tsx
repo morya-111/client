@@ -106,7 +106,7 @@ const NavigationBar: React.FC = () => {
 						</>
 					) : (
 						<>
-							<div className="hidden md:flex md:flex-row">
+							<div className="items-center hidden md:flex md:flex-row">
 								<NavLink
 									to="/about"
 									className="block p-4 motion-safe:hover:scale-110"
