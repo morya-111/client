@@ -49,7 +49,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 	if (isDeleted) {
 		return (
 			<>
-				<div className="flex text-xl text-center bg-white rounded-md text-dark xs:text-xs hover:cursor-default">
+				<div className="flex justify-center text-xl text-center bg-white rounded-md text-dark xs:text-xs hover:cursor-default">
 					<span>
 						<b>{title}</b> book deleted from your collection.
 					</span>
