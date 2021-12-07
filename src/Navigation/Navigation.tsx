@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import {
@@ -7,10 +7,14 @@ import {
 	SignUppage,
 	Catalogue,
 	BookDisplay,
+  About,
+	Contact,
+	PrivacyPolicy,
 	CreateBook,
 	MyBooks,
 } from "pages";
 import api from "api";
+
 import AuthDataContext from "contexts/AuthDataContext";
 import { IsLoggedInResType } from "types/resTypes";
 import { useQuery } from "react-query";
@@ -76,7 +80,13 @@ const Navigation = () => {
 				/>
 
 				<Route path="/books/:id" exact component={BookDisplay} />
+
+				<Route path="/about" exact component={About} />
+				<Route path="/contact" exact component={Contact} />
+				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
+
 				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
+
 				<ProtectedRoute
 					exact
 					path="/myprofile"

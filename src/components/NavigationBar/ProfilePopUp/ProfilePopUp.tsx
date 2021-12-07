@@ -15,16 +15,16 @@ const ProfilePopUp: React.FC<
 			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col shadow-xl `}
 			ref={selfRef}
 		>
-			<div className={popUpBtnClassName}>
-				<NavLink to="/catalogue">Catalogue</NavLink>
-			</div>
-			<div className={popUpBtnClassName}>
-				<NavLink to="/mybooks">My Books</NavLink>
-			</div>
-			<div className={popUpBtnClassName}>
-				<NavLink to="/myprofile">My Profile</NavLink>
-			</div>
-			<div className={popUpBtnClassName}>
+			<NavLink to="/catalogue">
+				<div className={popUpBtnClassName}>Catalogue</div>
+			</NavLink>
+			<NavLink to="/mybooks">
+				<div className={popUpBtnClassName}>My Books</div>
+			</NavLink>
+			<NavLink to="/myprofile">
+				<div className={popUpBtnClassName}>My Profile</div>
+			</NavLink>
+			<div className="p-1 pl-2 m-2 border-2 rounded-md border-semiLight hover:bg-red-500 hover:opacity-100 hover:border-dark hover:text-white">
 				<LogOutButton extraCleanUp={closerFunc} />
 			</div>
 		</div>

@@ -27,10 +27,12 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 
 	return (
 		<div className="relative flex flex-col w-full group">
-			<span className="mb-1 ml-1 text-[#4E4E4E] text-sm font-bold text-opacity-80 group-focus-within:text-opacity-100">
-				{label}
-				{rest.required && <span>*</span>}
-			</span>
+			{label && (
+				<span className="mb-1 ml-1 text-[#4E4E4E] text-sm font-bold text-opacity-80 group-focus-within:text-opacity-100">
+					{label}
+					{rest.required && <span>*</span>}
+				</span>
+			)}
 			<div className="absolute top-9">{left}</div>
 			<input
 				{...rest}
