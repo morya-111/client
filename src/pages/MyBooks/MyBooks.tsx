@@ -109,7 +109,10 @@ const MyBooks = () => {
 									<div className="m-10 mt-4 mb-4 space-y-10 ">
 										{data?.data.data.books.map(
 											(book, idx) => (
-												<div className="cursor-pointer">
+												<div
+													key={idx}
+													className="cursor-pointer"
+												>
 													<MyBookCard
 														onClick={() =>
 															history.push(
