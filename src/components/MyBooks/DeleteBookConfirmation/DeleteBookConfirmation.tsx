@@ -2,6 +2,7 @@ import useDeleteBookQuery from "hooks/useDeleteBookQuery";
 import Modal from "components/Modal";
 import Button from "components/Buttons/Button";
 import Loader from "components/Loader";
+import { ReactComponent as CloseIcon } from "assets/common/close-icon.svg";
 type props = {
 	bookId: number;
 	closeModal: () => any;
@@ -26,16 +27,16 @@ const DeleteBookConfirmation = ({
 
 	return (
 		<Modal isOpen={true} onClose={closeModal} className="">
-			<div className="w-full h-full pb-3 rounded-md bg-semiLight">
-				<div className="flex justify-between">
-					<span className="pt-2 pl-3 lg:text-lg">
-						You sure you want to delete this book?
+			<div className="w-full h-full pb-3 rounded-md bg-semiLight drop-shadow-xl">
+				<div className="flex flex-col items-center">
+					<span className="flex pt-6 text-base font-semibold md:text-lg sm:pt-4 lg:text-xl">
+						Are you sure you want to delete this book?
 					</span>
 					<span
-						className="pl-3 pr-2 cursor-pointer"
+						className="absolute top-0 right-0 pt-2 pr-3 cursor-pointer"
 						onClick={closeModal}
 					>
-						X
+						<CloseIcon />
 					</span>
 				</div>
 				<div className="flex justify-around m-3">

@@ -53,22 +53,33 @@ const NavigationBar: React.FC = () => {
 
 	return (
 		<>
-			<div className="relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light">
+			<div
+				className={
+					isOpen
+						? "relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 duration-[0ms] bg-semiLight"
+						: "relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light"
+				}
+			>
 				<NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
 				</NavLink>
-				<div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
-					<MenuIcon />
-				</div>
+				{!isLoggedIn && (
+					<div
+						className="absolute right-0 px-4 cursor-pointer md:hidden"
+						onClick={toggle}
+					>
+						<MenuIcon />
+					</div>
+				)}
 
-				<div className="hidden pr-8 md:block">
+				<div className="pr-8">
 					{isLoggedIn ? (
 						<>
 							<>
 								<div className="flex flex-row">
 									<NavLink
 										to="/catalogue"
-										className="p-4 motion-safe:hover:scale-110 "
+										className="hidden p-4 motion-safe:hover:scale-110 md:block"
 										style={(isActive) => ({
 											textDecoration: isActive
 												? "underline"
@@ -79,7 +90,7 @@ const NavigationBar: React.FC = () => {
 									</NavLink>
 									<NavLink
 										to="/mybooks"
-										className="p-4 mr-2 motion-safe:hover:scale-110 "
+										className="hidden p-4 mr-2 md:block motion-safe:hover:scale-110 "
 										style={(isActive) => ({
 											textDecoration: isActive
 												? "underline"
@@ -95,51 +106,53 @@ const NavigationBar: React.FC = () => {
 						</>
 					) : (
 						<>
-							<NavLink
-								to="/about"
-								className="p-4 motion-safe:hover:scale-110"
-								style={(isActive) => ({
-									textDecoration: isActive
-										? "underline"
-										: "none",
-								})}
-							>
-								About
-							</NavLink>
-							<NavLink
-								to="/catalogue"
-								className="p-4 motion-safe:hover:scale-110 "
-								style={(isActive) => ({
-									textDecoration: isActive
-										? "underline"
-										: "none",
-								})}
-							>
-								Catalogue
-							</NavLink>
-							<NavLink
-								to="/contact"
-								className="p-4 motion-safe:hover:scale-110"
-								style={(isActive) => ({
-									textDecoration: isActive
-										? "underline"
-										: "none",
-								})}
-							>
-								Contact
-							</NavLink>
-							<NavLink
-								to="/signin"
-								className="p-4 motion-safe:hover:scale-110"
-								style={(isActive) => ({
-									textDecoration: isActive
-										? "underline"
-										: "none",
-								})}
-							>
-								Sign In
-							</NavLink>
-							<SignUp />
+							<div className="items-center hidden md:flex md:flex-row">
+								<NavLink
+									to="/about"
+									className="block p-4 motion-safe:hover:scale-110"
+									style={(isActive) => ({
+										textDecoration: isActive
+											? "underline"
+											: "none",
+									})}
+								>
+									About
+								</NavLink>
+								<NavLink
+									to="/catalogue"
+									className="block p-4 motion-safe:hover:scale-110 "
+									style={(isActive) => ({
+										textDecoration: isActive
+											? "underline"
+											: "none",
+									})}
+								>
+									Catalogue
+								</NavLink>
+								<NavLink
+									to="/contact"
+									className="block p-4 motion-safe:hover:scale-110"
+									style={(isActive) => ({
+										textDecoration: isActive
+											? "underline"
+											: "none",
+									})}
+								>
+									Contact
+								</NavLink>
+								<NavLink
+									to="/signin"
+									className="block p-4 motion-safe:hover:scale-110"
+									style={(isActive) => ({
+										textDecoration: isActive
+											? "underline"
+											: "none",
+									})}
+								>
+									Sign In
+								</NavLink>
+								<SignUp />
+							</div>
 						</>
 					)}
 				</div>
@@ -151,7 +164,8 @@ const NavigationBar: React.FC = () => {
 					closerFunc={closePopUp}
 				/>
 			) : null}
-			{isOpen ? <Dropdown /> : null}
+
+			{isOpen && <Dropdown />}
 		</>
 	);
 };

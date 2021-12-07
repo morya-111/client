@@ -50,7 +50,6 @@ type BookResponseType = {
 				last_name: string;
 				email: string;
 			};
-
 		};
 	};
 };
@@ -103,7 +102,6 @@ const BookDisplay: React.FC = () => {
 
 	return (
 		<div>
-
 			<div className="flex flex-col h-screen bg-light">
 				<NavigationBar />
 				{isLoading ? (
@@ -120,7 +118,6 @@ const BookDisplay: React.FC = () => {
 									<div className="w-full px-2 mb-6 md:w-4/6 md:pr-10 md:py-6 md:mb-0">
 										<div className="relative ">
 											{switchJSX(status)}
-
 										</div>
 										<div className="relative">
 											<h2 className="absolute right-0 inline-flex px-2 text-sm capitalize rounded-full bg-semiLight text-light">
@@ -133,7 +130,7 @@ const BookDisplay: React.FC = () => {
 												onMouseLeave={() =>
 													setHover(false)
 												}
-												className="inline-flex text-sm font-semibold text-dark"
+												className="inline-flex items-center text-sm font-semibold text-dark"
 											>
 												Uploaded by {userName}{" "}
 												<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
@@ -223,9 +220,7 @@ const BookDisplay: React.FC = () => {
 											</div>
 											<div
 												className={
-													sell
-														? "visible"
-														: "invisible"
+													sell ? "block" : "hidden"
 												}
 											>
 												<div className="flex px-2 py-2 border-b border-gray-400 md:px-1">
@@ -233,7 +228,7 @@ const BookDisplay: React.FC = () => {
 														For Sell{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{price} ₹
+														&#8377;{price}
 													</span>
 												</div>
 											</div>
@@ -249,7 +244,7 @@ const BookDisplay: React.FC = () => {
 														For Rent{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{fees} ₹ /{" "}
+														&#8377;{fees} /{" "}
 														{durationUnit?.slice(
 															0,
 															durationUnit.length -
@@ -271,7 +266,7 @@ const BookDisplay: React.FC = () => {
 														Deposit{" "}
 													</span>
 													<span className="ml-auto text-dark">
-														{deposit} ₹
+														&#8377;{deposit}
 													</span>
 												</div>
 											</div>
@@ -283,11 +278,6 @@ const BookDisplay: React.FC = () => {
 										src={data?.data.data.book.image.url}
 									/>
 								</div>
-								<img
-									alt="ecommerce"
-									className="hidden object-cover object-center mx-auto mt-4 rounded md:inline-flex md:w-1/5 md:h-1/4"
-									src={data?.data.data.book.image.url}
-								/>
 							</div>
 						</section>
 					</>
