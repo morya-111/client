@@ -70,11 +70,9 @@ const MyBooks = () => {
 			retry: false,
 			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
-				console.log("succesddd");
 				console.log(data);
 			},
 			onError: (error) => {
-				console.log("ERRROER");
 				console.log(error);
 			},
 		}
@@ -82,7 +80,6 @@ const MyBooks = () => {
 	console.log(isLoading);
 	const userName = "ok";
 	console.log(userName);
-
 	return (
 		<>
 			<NavigationBar />
@@ -121,6 +118,7 @@ const MyBooks = () => {
 														}
 														key={idx}
 														title={book.name}
+														bookId={book.id}
 														description={
 															book.description
 														}
@@ -154,6 +152,7 @@ const MyBooks = () => {
 															book.rentListing
 																?.deposit
 														}
+
 														// userName={book.user.first_name}
 													/>
 												</div>

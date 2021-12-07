@@ -77,7 +77,6 @@ const BookDisplay: React.FC = () => {
 					</h1>
 				);
 			case "error":
-				// TODO: make a Route named /notfound for SbG
 				history.push("/notfound");
 				break;
 
@@ -279,6 +278,11 @@ const BookDisplay: React.FC = () => {
 										src={data?.data.data.book.image.url}
 									/>
 								</div>
+								<img
+									alt="ecommerce"
+									className="hidden object-cover object-center mx-auto mt-4 rounded md:inline-flex md:w-1/5 md:h-1/4"
+									src={data?.data.data.book.image.url}
+								/>
 							</div>
 						</section>
 					</>

@@ -7,15 +7,15 @@ import {
 	SignUppage,
 	Catalogue,
 	BookDisplay,
-	About,
+  About,
 	Contact,
 	PrivacyPolicy,
 	CreateBook,
 	MyBooks,
 } from "pages";
+import api from "api";
 
 import AuthDataContext from "contexts/AuthDataContext";
-import axiosClient from "utils/axiosClient";
 import { IsLoggedInResType } from "types/resTypes";
 import { useQuery } from "react-query";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
@@ -30,7 +30,7 @@ const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
 	// const [isServerDown, setIsServerDown] = React.useState(false);
 	const fetchIfLoggedIn = () =>
-		axiosClient.get<IsLoggedInResType>("/user/isloggedin");
+		api.get<IsLoggedInResType>("/user/isloggedin");
 
 	const { isLoading, error, isError } = useQuery(
 		"isLoggedIn",
