@@ -124,7 +124,7 @@ const About = () => {
 			<div className="h-4 bg-dark"></div>
 			<div className="bg-shelf-bg">
 				<div className="relative overflow-hidden">
-					<div className="h-[2700px] md:h-[800px] lg:h-[800px] bg-shelf-bg">
+					<div className="h-[2440px] md:h-[800px] lg:h-[800px] bg-shelf-bg">
 						<div>
 							<div className="absolute z-50 flex flex-row justify-center h-[2700px] md:h-[800px] lg:h-[800px] w-full text-white">
 								<div
@@ -335,10 +335,7 @@ const About = () => {
 													<br />
 													<b>"Be Silent 🤫"</b>
 												</p>
-												<img
-													src={bighead}
-													className="h-64 mt-7 drop-shadow-3xl"
-												></img>
+												<div className="md:h-64 mt-7"></div>
 												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
 													<a
 														href="https://github.com/gauravtajanpure"
