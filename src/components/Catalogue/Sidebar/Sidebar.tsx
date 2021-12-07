@@ -28,6 +28,13 @@ const Sidebar: React.FC = () => {
 
 	const MIN_LANGUAGE_ITEMS = 3;
 
+	const searchTerm = useMemo(() => {
+		const parsed = parse(search);
+		if (Array.isArray(parsed["s"]) || parsed["s"] === null) return "";
+
+		return parsed["s"] || "";
+	}, [search]);
+
 	const selectedGenre = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
 		return parsed["genre"] || [];
@@ -87,6 +94,7 @@ const Sidebar: React.FC = () => {
 												language: newSelectedLanguage,
 												page,
 												genre: selectedGenre,
+												s: searchTerm,
 											},
 											{ arrayFormat: "comma" }
 										);
@@ -122,6 +130,7 @@ const Sidebar: React.FC = () => {
 									genre: newSelectedGenre,
 									page,
 									language: selectedLanguages,
+									s: searchTerm,
 								},
 								{ arrayFormat: "comma" }
 							);

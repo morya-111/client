@@ -5,20 +5,53 @@ import Card from "components/Catalogue/Card";
 import Pagination from "components/Pagination";
 import { useHistory, useLocation } from "react-router";
 import { parse, stringify } from "query-string";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
+
+type ImageResponseType = {
+	id: number;
+	url: string;
+	label: string | null;
+};
+type BookType = {
+	id: number;
+	name: string;
+	description: string | null;
+	genre: string;
+	author: string;
+	publisher: string;
+	language: {
+		id: number;
+		name: string;
+		priority: number;
+	};
+	image: ImageResponseType;
+};
+type BookResponseType = {
+	data: {
+		books: BookType[];
+		pagination: any;
+	};
+};
 
 const Catalogue: React.FC = () => {
 	const { search } = useLocation();
 
 	const history = useHistory();
 
+	const queryClient = useQueryClient();
+
 	const setPage = (page: number) => {
 		const queryParam = stringify(
-			{ page, genre: selectedGenre, language: selectedLanguages },
+			{
+				page,
+				s: searchTerm,
+				genre: selectedGenre,
+				language: selectedLanguages,
+			},
 			{ arrayFormat: "comma" }
 		);
 		history.push({
@@ -26,6 +59,13 @@ const Catalogue: React.FC = () => {
 			search: `?${queryParam}`,
 		});
 	};
+
+	const searchTerm = useMemo(() => {
+		const parsed = parse(search);
+		if (Array.isArray(parsed["s"]) || parsed["s"] === null) return null;
+
+		return parsed["s"] || null;
+	}, [search]);
 
 	const selectedGenre = useMemo(() => {
 		const parsed = parse(search, { arrayFormat: "comma" });
@@ -45,21 +85,32 @@ const Catalogue: React.FC = () => {
 
 		return parseInt(parsed["page"]) || 1;
 	}, [search]);
-
 	const { data, isLoading, isPreviousData } = useQuery(
-		["books", selectedGenre.join(","), page, selectedLanguages.join(",")],
+		[
+			"books",
+			selectedGenre.join(","),
+			page,
+			searchTerm,
+			selectedLanguages.join(","),
+		],
 		() =>
-			api.get("/books", {
+			api.get<BookResponseType>("/books", {
 				params: {
 					genre__in: selectedGenre.join(",") || undefined,
 					page,
 					language__in: selectedLanguages.join(",") || undefined,
+					s: searchTerm || undefined,
 				},
 			}),
 		{
-			select: (data) => data.data.data,
 			keepPreviousData: true,
 			refetchOnWindowFocus: false,
+			staleTime: 30000,
+			onSuccess: (data) => {
+				data.data.data.books.map((book) => {
+					queryClient.setQueryData(["book", book.id], book);
+				});
+			},
 		}
 	);
 
@@ -68,56 +119,62 @@ const Catalogue: React.FC = () => {
 			<NavigationBar />
 			<div
 				style={{ minHeight: "100vh" }}
-				className="grid w-full grid-cols-12 gap-2 px-2 md:px-12 bg-light"
+				className="grid w-full grid-cols-12 gap-2 px-2 md:px-14 bg-light"
 			>
-				{isLoading ? (
-					<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-						<Loader />
-					</div>
-				) : (
-					<>
-						<div
-							style={{ borderRightWidth: "1px" }}
-							className="hidden col-span-2 md:block xl:col-span-1 border-opacity-20 border-r-dark"
-						>
-							<Sidebar />
+				<div
+					style={{ borderRightWidth: "1px" }}
+					className="hidden col-span-2 md:block xl:col-span-1 border-opacity-20 border-r-dark"
+				>
+					<Sidebar />
+				</div>
+				<div className="flex flex-col col-span-full md:col-start-3 md:col-end-13 xl:col-start-2">
+					<Search />
+					{isLoading ? (
+						<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+							<Loader />
 						</div>
-						<div className="flex flex-col col-span-full md:col-start-3 md:col-end-13 xl:col-start-2">
-							<Search />
+					) : (
+						<>
 							<div className="grid gap-5 mx-8 my-4 sm:m-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
-								{(data.books as Array<any>).map((book, idx) => (
-									<Card
-										onClick={() =>
-											history.push(`/books/${book.id}`)
-										}
-										key={idx}
-										title={book.name}
-										description={book.description}
-										genre={book.genre}
-										imgUrl={book.image.url}
-									/>
-								))}
+								{(data?.data.data.books as Array<any>).map(
+									(book, idx) => (
+										<Card
+											onClick={() =>
+												history.push(
+													`/books/${book.id}`
+												)
+											}
+											key={idx}
+											title={book.name}
+											description={book.description}
+											genre={book.genre}
+											imgUrl={book.image.url}
+											borrow={book.rentListing !== null}
+											sell={book.sellListing !== null}
+										/>
+									)
+								)}
 							</div>
-
-							{data.pagination.pages > 1 && (
+							{data?.data.data.pagination.pages > 1 && (
 								<div className="flex justify-center md:justify-end mb-9">
 									<Pagination
-										count={data.pagination.pages}
+										count={data?.data.data.pagination.pages}
 										page={page}
 										onPageChange={(page) => setPage(page)}
 										previousDisabled={
-											!data.pagination.isPrevious
+											!data?.data.data.pagination
+												.isPrevious
 										}
 										nextDisabled={
-											!data.pagination.isNext ||
-											isPreviousData
+											!data?.data.data.pagination
+												.isNext || isPreviousData
 										}
 									/>
 								</div>
 							)}
-						</div>
-					</>
-				)}
+						</>
+					)}
+				</div>
 			</div>
 			<Footer />
 		</>
