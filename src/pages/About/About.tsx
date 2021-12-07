@@ -12,9 +12,11 @@ import Shelf5 from "assets/about/shelf_5.png";
 import jarrod from "assets/about/jarrod.png";
 import dinesh from "assets/about/dinesh.png";
 import gilfoyle from "assets/about/gilfoyle.png";
+import bighead from "assets/about/bighead.png";
 import athhb from "assets/about/athhb.png";
 import SbG from "assets/about/SbG.png";
 import PdS from "assets/about/PdS.png";
+import GsT from "assets/about/GsT.png";
 import instaIcon from "assets/common/insta-icon.png";
 import twitterIcon from "assets/common/twitter-icon.png";
 import githubIcon from "assets/common/github-icon.png";
@@ -122,9 +124,9 @@ const About = () => {
 			<div className="h-4 bg-dark"></div>
 			<div className="bg-shelf-bg">
 				<div className="relative overflow-hidden">
-					<div className="h-[2000px] md:h-[800px] lg:h-[800px] bg-shelf-bg">
+					<div className="h-[2700px] md:h-[800px] lg:h-[800px] bg-shelf-bg">
 						<div>
-							<div className="absolute z-50 flex flex-row justify-center h-[2000px] md:h-[800px] lg:h-[800px] w-full text-white">
+							<div className="absolute z-50 flex flex-row justify-center h-[2700px] md:h-[800px] lg:h-[800px] w-full text-white">
 								<div
 									className={
 										inHover
@@ -139,7 +141,7 @@ const About = () => {
 											</h1>
 										</div>
 										<div className="flex flex-col items-center mt-5 space-y-10 md:items-start md:space-y-0 md:justify-around md:flex-row ">
-											<div className="flex flex-col items-center w-72 divide-solid">
+											<div className="flex flex-col items-center w-52 lg:w-72 divide-solid">
 												<img
 													src={PdS}
 													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
@@ -148,9 +150,13 @@ const About = () => {
 													Prathamesh Sujgure
 												</h1>
 												<p className="text-center text-gray-300 opacity-75">
-													"If you are going to get
-													anywhere in life you have to
-													read a lot of books."
+													Aspiring Web Developer,
+													<br />
+													likes to play Guitar
+													<br />
+													<b>
+														"Just Keep Learning 🌱"
+													</b>
 												</p>
 												<img
 													src={jarrod}
@@ -195,7 +201,7 @@ const About = () => {
 													</a>
 												</div>
 											</div>
-											<div className="flex flex-col items-center w-72 ">
+											<div className="flex flex-col items-center w-52 lg:w-72 ">
 												<img
 													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
 													src={athhb}
@@ -204,9 +210,11 @@ const About = () => {
 													Atharva Bhange
 												</h1>
 												<p className="text-center text-gray-300 opacity-75">
-													"All the secrets of the
-													world are contained in
-													books."
+													Aspiring Web Developer,
+													<br /> likes to explore New
+													Tech
+													<br />
+													<b>"To The Moon 🚀"</b>
 												</p>
 												<img
 													src={dinesh}
@@ -251,7 +259,7 @@ const About = () => {
 													</a>
 												</div>
 											</div>
-											<div className="flex flex-col items-center w-72">
+											<div className="flex flex-col items-center w-52 lg:w-72">
 												<img
 													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
 													src={SbG}
@@ -260,8 +268,13 @@ const About = () => {
 													Shreyas Gangurde
 												</h1>
 												<p className="text-center text-gray-300 opacity-75">
-													"An hour spent reading is
-													one stolen from paradise."
+													Aspiring Web Developer,
+													<br /> likes to read Books
+													<br />
+													<b>
+														"Experience Everything
+														🧐"
+													</b>
 												</p>
 												<img
 													src={gilfoyle}
@@ -306,21 +319,80 @@ const About = () => {
 													</a>
 												</div>
 											</div>
+											<div className="flex flex-col items-center w-52 lg:w-72">
+												<img
+													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+													src={GsT}
+												></img>
+												<h1 className="text-lg font-semibold text-semiLight">
+													Gaurav Tajanpure
+												</h1>
+												<p className="text-center text-gray-300 opacity-75">
+													Aspiring Web Developer,
+													<br />
+													likes to hangout with
+													friends
+													<br />
+													<b>"Be Silent 🤫"</b>
+												</p>
+												<img
+													src={bighead}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img>
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/gauravtajanpure"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/gauravtajanpure/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													{/* <a
+														href="https://twitter.com/shreyasbg28"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a> */}
+													<a
+														href="https://www.instagram.com/gauravstajanpure/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div className="z-0 h-[2000px] md:h-[800px] lg:h-[800px]">
+						<div className="z-0 h-[2700px] md:h-[800px] lg:h-[800px]">
 							<img
 								id="1"
 								src={Shelf1}
 								alt="1"
 								className={
 									inHover
-										? "absolute duration-500 ease-linear transform -translate-x-16 -left-16 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
-										: "absolute duration-500 ease-linear transform translate-x-16 -left-16 z-20 h-[2000px] w-screen md:h-[800px] lg:h-[800px]"
+										? "absolute duration-500 ease-linear transform -translate-x-20 -left-20 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-500 ease-linear transform translate-x-20 -left-20 z-20 h-[2000px] w-screen md:h-[800px] lg:h-[800px]"
 								}
 							></img>
 							<img
@@ -329,8 +401,8 @@ const About = () => {
 								alt="2"
 								className={
 									inHover
-										? "absolute duration-1000 ease-linear transform -translate-x-36 -left-36 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
-										: "absolute duration-1000 ease-linear transform translate-x-36 -left-36 z-10 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										? "absolute duration-1000 ease-linear transform -translate-x-44 -left-44 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-1000 ease-linear transform translate-x-44 -left-44 z-10 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
 								}
 							></img>
 							<img
@@ -349,8 +421,8 @@ const About = () => {
 								alt="4"
 								className={
 									inHover
-										? "absolute duration-1000 ease-linear transform translate-x-44 -right-44 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
-										: "absolute duration-1000 ease-linear transform -translate-x-44 -right-44 z-10 h-[2000px] md:h-[800px] lg:h-[800px]  w-screen"
+										? "absolute duration-1000 ease-linear transform translate-x-52 -right-52 z-10 blur-[4px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-1000 ease-linear transform -translate-x-52 -right-52 z-10 h-[2000px] md:h-[800px] lg:h-[800px]  w-screen"
 								}
 							></img>
 							<img
@@ -359,8 +431,8 @@ const About = () => {
 								alt="5"
 								className={
 									inHover
-										? "absolute duration-500 ease-linear transform translate-x-16 -right-16 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
-										: "absolute duration-500 ease-linear transform -translate-x-16 -right-16 z-20 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										? "absolute duration-500 ease-linear transform translate-x-20 -right-20 z-20 blur-[6px] h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
+										: "absolute duration-500 ease-linear transform -translate-x-20 -right-20 z-20 h-[2000px] md:h-[800px] lg:h-[800px] w-screen"
 								}
 							></img>
 						</div>
@@ -382,7 +454,7 @@ export default About;
 						</h1>
 					</div>
 					<div className="flex flex-col items-center mt-5 space-y-10 md:items-start md:space-y-0 md:justify-around md:flex-row ">
-						<div className="flex flex-col items-center w-72 divide-solid">
+						<div className="flex flex-col items-center w-52 lg:w-72 divide-solid">
 							<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
 							<h1 className="text-lg font-semibold text-dark">
 								Atharva Bhange
@@ -392,7 +464,7 @@ export default About;
 								have to read a lot of books."
 							</p>
 						</div>
-						<div className="flex flex-col items-center w-72 ">
+						<div className="flex flex-col items-center w-52 lg:w-72 ">
 							<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
 							<h1 className="text-lg font-semibold text-dark">
 								Shreyas Gangurde
@@ -402,7 +474,7 @@ export default About;
 								books."
 							</p>
 						</div>
-						<div className="flex flex-col items-center w-72">
+						<div className="flex flex-col items-center w-52 lg:w-72">
 							<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
 							<h1 className="text-lg font-semibold text-dark">
 								Prathamesh Sujgure
@@ -412,7 +484,7 @@ export default About;
 								paradise."
 							</p>
 						</div>
-						<div className="flex flex-col items-center w-72 ">
+						<div className="flex flex-col items-center w-52 lg:w-72 ">
 							<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
 							<h1 className="text-lg font-semibold text-dark">
 								Gaurav Tajanpure
@@ -424,7 +496,7 @@ export default About;
 					</div> */
 }
 {
-	/* <div className="flex flex-col items-center w-72 ">
+	/* <div className="flex flex-col items-center w-52 lg:w-72 ">
 										<img className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"></img>
 										<h1 className="text-lg font-semibold text-dark">
 											Gaurav Tajanpure
