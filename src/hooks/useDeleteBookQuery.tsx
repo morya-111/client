@@ -11,8 +11,6 @@ const useDeleteBookQuery = ({
 	onSuccess = () => {},
 	onError = () => {},
 }: props) => {
-	const [isWaitingForConfirmation, setIsWaitingForConfirmation] =
-		useState(true);
 	const queryFunc = (bookId: number) => {
 		return api.delete(`/books/${bookId}`);
 	};
@@ -30,15 +28,7 @@ const useDeleteBookQuery = ({
 			},
 		}
 	);
-	const resolveConfirmation = (isOk: boolean) => {
-		if (!isWaitingForConfirmation) {
-			if (isOk) {
-				triggerDelQuery();
-			} else {
-				console.log("Delete Cancelled");
-			}
-		}
-	};
+
 	const triggerDelQuery = () => {
 		mutate();
 	};
@@ -50,7 +40,6 @@ const useDeleteBookQuery = ({
 		error,
 		status,
 		mutate,
-		resolveConfirmation,
 	};
 };
 

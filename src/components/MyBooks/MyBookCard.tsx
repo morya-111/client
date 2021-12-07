@@ -29,7 +29,13 @@ const MyBookCard: React.FC<Props> = (props) => {
 	};
 
 	if (isDeleted) {
-		return null;
+		return (
+			<>
+				<div className="flex justify-center text-xl text-red-800 rounded-md xs:text-xs bg-semiLight">
+					<span>Book deleted from your collection.</span>
+				</div>
+			</>
+		);
 	}
 
 	return (
@@ -94,7 +100,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 		</div>
 	);
 };
-// TODO: last working on, 5-12-21, 3:53 AM
+
 type props = {
 	bookId: number;
 	closeModal: () => any;
@@ -105,23 +111,23 @@ const DelBookConfirmation = ({
 	closeModal,
 	handleParentDeletion,
 }: props) => {
-	const { triggerDelQuery, isSuccess, status } = useDeleteBookQuery({
+	const { triggerDelQuery, status } = useDeleteBookQuery({
 		bookId,
+		onSuccess: () => {
+			handleParentDeletion();
+		},
 	});
 
 	const handleClickOnYes = () => {
 		triggerDelQuery();
 		closeModal();
-		if (isSuccess) {
-			handleParentDeletion();
-		}
 	};
 
 	return (
-		<Modal isOpen={true} onClose={closeModal}>
-			<div className="w-full bg-white rounded-md h-50">
+		<Modal isOpen={true} onClose={closeModal} className="">
+			<div className="w-full h-full pb-3 rounded-md bg-semiLight">
 				<div className="flex justify-between">
-					<span className="pt-2 pl-3">
+					<span className="pt-2 pl-3 lg:text-lg">
 						You sure you want to delete this book?
 					</span>
 					<span
