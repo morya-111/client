@@ -94,8 +94,8 @@ const MyBooks = () => {
 							<div className="hidden md:flex ">
 								<ProfileSideBar showEmail={false} />
 							</div>
-							<div className="relative flex flex-col md:w-4/5">
-								<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
+							<div className="relative flex flex-col w-full lg:mr-10 lg:w-4/5">
+								<div className="left-0 min-h-screen mb-10 border-l-2 border-gray-400 lg:w-full lg:mr-12">
 									<div className="flex justify-center w-full">
 										<button className="px-3 text-lg font-semibold text-center duration-700 ease-out rounded-lg shadow bg-semiLight hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80">
 											<NavLink to="/book/create">
@@ -108,11 +108,11 @@ const MyBooks = () => {
 											(book, idx) => (
 												<div className="cursor-pointer">
 													<MyBookCard
-														onClick={() =>
+														onClick={() => {
 															history.push(
 																`/books/${book.id}`
-															)
-														}
+															);
+														}}
 														key={idx}
 														title={book.name}
 														bookId={book.id}

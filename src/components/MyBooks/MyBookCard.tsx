@@ -9,7 +9,7 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 	genre: string;
 	imgUrl: string;
 	bookId: number;
-  sell: boolean;
+	sell: boolean;
 	borrow: boolean;
 	price?: number;
 	fees?: number;
@@ -30,7 +30,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 		deposit,
 		duration,
 		durationUnit,
-    bookId,
+		bookId,
 		...rest
 	} = props;
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,22 +49,22 @@ const MyBookCard: React.FC<Props> = (props) => {
 	if (isDeleted) {
 		return (
 			<>
-				<div className="flex justify-center text-xl text-red-800 rounded-md xs:text-xs bg-semiLight">
-					<span>Book deleted from your collection.</span>
+				<div className="flex text-xl text-center bg-white rounded-md text-dark xs:text-xs hover:cursor-default">
+					<span>
+						<b>{title}</b> book deleted from your collection.
+					</span>
 				</div>
 			</>
 		);
-  }
+	}
 	return (
 		<div
 			{...rest}
 			className="relative flex p-5 bg-white rounded-lg shadow md:py-5 md:pl-5 md:pr-3 hover:shadow-xl "
 		>
-
-			<div className="flex flex-col items-center w-full md:items-start md:flex-row">
+			<div className="flex flex-col items-center w-full lg:items-start lg:flex-row">
 				<div className="mx-auto my-auto shadow md:flex-shrink-0">
 					<img className="w-auto h-44 sm:h-60 md:h-36" src={imgUrl} />
-
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
@@ -124,13 +124,22 @@ const MyBookCard: React.FC<Props> = (props) => {
 					</div>
 				</div>
 
-				<div className="flex justify-center space-x-2">
-					<button className="inline-flex">
+				<div className="absolute top-0 right-0 items-center p-5 space-x-2 lg:p-0 lg:pr-1 lg:static lg:flex lg:flex-row">
+					<button
+						className="hover:scale-125"
+						onClick={(e: any) => {
+							console.log("editClicked");
+							e.stopPropagation();
+						}}
+					>
 						<EditIcon />
 					</button>
 					<button
-						className="inline-flex"
-						onClick={openDelConfirmation}
+						className="hover:scale-125"
+						onClick={(e: any) => {
+							openDelConfirmation();
+							e.stopPropagation();
+						}}
 					>
 						<DeleteIcon />
 					</button>
@@ -143,7 +152,6 @@ const MyBookCard: React.FC<Props> = (props) => {
 							/>
 						</div>
 					) : null}
-
 				</div>
 			</div>
 		</div>
