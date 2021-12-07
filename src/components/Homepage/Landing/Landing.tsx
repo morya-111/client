@@ -27,19 +27,19 @@ const Landing = () => {
 						</h2>
 
 						<div className="grid grid-rows-2 gap-2 mt-5 place-content-start">
-							<button className="px-4 py-1 rounded bg-semiLight text-light">
+							<button className="px-4 py-1 rounded bg-semiLight text-light hover:drop-shadow-md">
 								<NavLink to="/catalogue">
 									Go To Catalogue
 								</NavLink>
 							</button>
 							{isLoggedIn ? (
-								<button className="px-4 py-1 rounded text-light bg-semiLight">
+								<button className="px-4 py-1 rounded text-light bg-semiLight hover:drop-shadow-md">
 									<NavLink to="/book/create">
 										Add A Book
 									</NavLink>
 								</button>
 							) : (
-								<button className="px-4 py-1 rounded text-light bg-semiLight">
+								<button className="px-4 py-1 rounded text-light bg-semiLight hover:drop-shadow-md">
 									<NavLink to="/signup">Sign Up</NavLink>
 								</button>
 							)}

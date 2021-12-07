@@ -106,10 +106,10 @@ const NavigationBar: React.FC = () => {
 						</>
 					) : (
 						<>
-							<div className="hidden md:block">
+							<div className="hidden md:flex md:flex-row">
 								<NavLink
 									to="/about"
-									className="p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-110"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -120,7 +120,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/catalogue"
-									className="p-4 motion-safe:hover:scale-110 "
+									className="block p-4 motion-safe:hover:scale-110 "
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -131,7 +131,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/contact"
-									className="p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-110"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -142,7 +142,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/signin"
-									className="p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-110"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
