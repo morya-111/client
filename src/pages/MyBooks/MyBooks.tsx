@@ -70,11 +70,9 @@ const MyBooks = () => {
 			retry: false,
 			refetchOnWindowFocus: false,
 			onSuccess: (data) => {
-				console.log("succesddd");
 				console.log(data);
 			},
 			onError: (error) => {
-				console.log("ERRROER");
 				console.log(error);
 			},
 		}
@@ -82,7 +80,6 @@ const MyBooks = () => {
 	console.log(isLoading);
 	const userName = "ok";
 	console.log(userName);
-
 	return (
 		<>
 			<NavigationBar />
@@ -165,6 +162,27 @@ const MyBooks = () => {
 											</div>
 										</div>
 									</div>
+								</div>
+							</div>
+							<div className="left-0 w-full min-h-screen mb-10 border-l-2 border-gray-400 lg:mr-12">
+								<div className="flex justify-center w-full">
+									<button className="px-3 text-lg font-semibold text-center rounded-lg shadow bg-semiLight hover:drop-shadow-xl">
+										<NavLink to="/book/create">
+											+ Add A Book
+										</NavLink>
+									</button>
+								</div>
+								<div className="m-10 mt-4 mb-4 space-y-10">
+									{data?.data.data.books.map((book, idx) => (
+										<MyBookCard
+											key={idx}
+											bookId={book.id}
+											title={book.name}
+											description={book.description}
+											genre={book.genre}
+											imgUrl={book.image.url}
+										/>
+									))}
 								</div>
 							</div>
 						</div>

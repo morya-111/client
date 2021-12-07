@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as DeleteIcon } from "assets/common/delete-icon.svg";
 import { ReactComponent as EditIcon } from "assets/common/edit-icon.svg";
+import DeleteBookConfirmation from "./DeleteBookConfirmation";
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
 	title: string;
 	description: string | null;
 	genre: string;
 	imgUrl: string;
-	sell: boolean;
+	bookId: number;
+  sell: boolean;
 	borrow: boolean;
 	price?: number;
 	fees?: number;
@@ -28,16 +30,41 @@ const MyBookCard: React.FC<Props> = (props) => {
 		deposit,
 		duration,
 		durationUnit,
+    bookId,
 		...rest
 	} = props;
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isDeleted, setIsDeleted] = useState(false);
+
+	const openDelConfirmation = () => {
+		setIsModalOpen(true);
+	};
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+	const handleDeletion = () => {
+		setIsDeleted(true);
+	};
+
+	if (isDeleted) {
+		return (
+			<>
+				<div className="flex justify-center text-xl text-red-800 rounded-md xs:text-xs bg-semiLight">
+					<span>Book deleted from your collection.</span>
+				</div>
+			</>
+		);
+  }
 	return (
 		<div
 			{...rest}
 			className="relative flex p-5 bg-white rounded-lg shadow md:py-5 md:pl-5 md:pr-3 hover:shadow-xl "
 		>
+
 			<div className="flex flex-col items-center w-full md:items-start md:flex-row">
 				<div className="mx-auto my-auto shadow md:flex-shrink-0">
 					<img className="w-auto h-44 sm:h-60 md:h-36" src={imgUrl} />
+
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
@@ -96,18 +123,31 @@ const MyBookCard: React.FC<Props> = (props) => {
 						)}
 					</div>
 				</div>
-				<div className="absolute top-0 right-0 h-6 mx-3 my-5 md:m-0 w-14 md:w-[90px] md:relative md:flex md:h-auto">
-					<div className="container absolute top-0 right-0 space-x-2">
-						<button className="inline-flex">
-							<EditIcon />
-						</button>
-						<button className="inline-flex">
-							<DeleteIcon />
-						</button>
-					</div>
+
+				<div className="flex justify-center space-x-2">
+					<button className="inline-flex">
+						<EditIcon />
+					</button>
+					<button
+						className="inline-flex"
+						onClick={openDelConfirmation}
+					>
+						<DeleteIcon />
+					</button>
+					{isModalOpen ? (
+						<div>
+							<DeleteBookConfirmation
+								bookId={bookId}
+								closeModal={closeModal}
+								handleParentDeletion={handleDeletion}
+							/>
+						</div>
+					) : null}
+
 				</div>
 			</div>
 		</div>
 	);
 };
+
 export default MyBookCard;

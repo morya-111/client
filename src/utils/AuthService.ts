@@ -1,6 +1,6 @@
 import { AuthDataType } from "types/authTypes";
 import { SignUpFormData } from "types/formTypes";
-import axiosClient from "./axiosClient";
+import api from "api";
 import * as yup from "yup";
 class AuthService {
 	// private _isLoggedIn: boolean = false;
@@ -8,7 +8,7 @@ class AuthService {
 		console.log("authservice initiated");
 	}
 	public login = (email: string, password: string) => {
-		return axiosClient.post<any>(
+		return api.post<any>(
 			"/user/login",
 			{
 				email: email,
@@ -25,14 +25,14 @@ class AuthService {
 		// this._isLoggedIn = true;
 	};
 	public logout = () => {
-		return axiosClient.post<any>("/user/logout");
+		return api.post<any>("/user/logout");
 	};
 
 	public registerUser = (formData: SignUpFormData) => {
 		const options = {
 			...formData,
 		};
-		return axiosClient.post("/user/register", {
+		return api.post("/user/register", {
 			first_name: options.firstName,
 			last_name: options.lastName,
 			email: options.emailId,
@@ -63,15 +63,15 @@ class AuthService {
 		return isLoggedIn;
 	};
 	public updateUserInfo = (updatedData: any) => {
-		return axiosClient.put<any>("/user/updateuser", { ...updatedData });
+		return api.put<any>("/user/updateuser", { ...updatedData });
 	};
 
 	public delAccount = () => {
-		return axiosClient.delete<any>("/user/deleteuser");
+		return api.delete<any>("/user/deleteuser");
 	};
 
 	public getAuthInfo = () => {
-		return axiosClient.get<any>("/user/loggedinusing");
+		return api.get<any>("/user/loggedinusing");
 	};
 }
 
