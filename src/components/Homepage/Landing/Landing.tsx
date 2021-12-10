@@ -5,7 +5,7 @@ import Third from "assets/homepage/WCIDH-1.png";
 import First from "assets/homepage/WCIDH-2.png";
 import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 
 const Landing = () => {
@@ -70,12 +70,12 @@ const Landing = () => {
 								/>
 								{/* <First className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<a
+									<Link
 										className="text-lg font-bold text-light hover:underline w-max"
-										href="/catalogue"
+										to="/catalogue"
 									>
 										Books Catalogue
-									</a>
+									</Link>
 
 									<h2 className="text-base text-light">
 										Explore huge catalogue of new and used
@@ -92,10 +92,10 @@ const Landing = () => {
 								/>
 								{/* <Second className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<a
+									<Link
 										onMouseEnter={() => setHover(true)}
 										onMouseLeave={() => setHover(false)}
-										href={
+										to={
 											isLoggedIn
 												? "/mybooks"
 												: "javascript:void(0)"
@@ -112,17 +112,17 @@ const Landing = () => {
 												<div className="absolute left-0 bottom-0 h-[53%] w-[10px] skew-x-[50deg] bg-semiLight rounded-sm"></div>
 												<div className="absolute left-0 top-0 h-1/2 w-[10px] skew-x-[-50deg]  bg-semiLight rounded-sm"></div>
 												<h1>
-													<a
-														href="/signup"
+													<Link
+														to="/signup"
 														className="underline hover:text-dark"
 													>
 														Sign Up
-													</a>
+													</Link>
 													&nbsp;to continue.
 												</h1>
 											</div>
 										)}
-									</a>
+									</Link>
 									<h2 className="text-base text-light">
 										Are you a huge book worm? You can sell
 										or rent your books on our book listing.
@@ -137,12 +137,12 @@ const Landing = () => {
 								/>
 								{/* <Third className="h-auto w-72" /> */}
 								<div className="mt-3">
-									<a
-										href="/about"
+									<Link
+										to="/about"
 										className="text-lg font-bold text-light w-max hover:underline"
 									>
 										Join Community
-									</a>
+									</Link>
 									<h2 className="text-base text-light">
 										Join huge community of book geeks
 										sharing books and experience with other.
