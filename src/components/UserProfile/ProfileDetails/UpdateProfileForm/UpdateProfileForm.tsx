@@ -215,7 +215,7 @@ const UpdateProfileForm: React.FC = () => {
 									</div>
 								</>
 							) : null}
-							<div className="mt-4 mb-4 ml-4 w-96">
+							<div className="mt-4 mb-4 ml-4">
 								<AuthInfo
 									setPasswordVisibility={setIsAuthBookEx}
 								/>
