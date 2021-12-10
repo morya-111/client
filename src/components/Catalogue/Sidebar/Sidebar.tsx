@@ -63,12 +63,12 @@ const Sidebar: React.FC = () => {
 
 	return (
 		<div className="flex flex-col ">
-			<div className="sidebar-element">
+			{/* <div className="sidebar-element">
 				<Checkbox label="For Sale" />
 			</div>
 			<div className="sidebar-element">
 				<Checkbox label="For Rent" />
-			</div>
+			</div> */}
 			<span className="title">Language</span>
 			{isLoading && !isSuccess ? (
 				<Loader size="sm" />

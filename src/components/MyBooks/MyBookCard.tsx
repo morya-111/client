@@ -64,7 +64,11 @@ const MyBookCard: React.FC<Props> = (props) => {
 		>
 			<div className="flex flex-col items-center w-full lg:items-start lg:flex-row">
 				<div className="mx-auto my-auto shadow md:flex-shrink-0">
-					<img className="w-auto h-44 sm:h-60 md:h-36" src={imgUrl} />
+					<img
+						alt="bookImage"
+						className="w-auto h-44 sm:h-60 md:h-36"
+						src={imgUrl}
+					/>
 				</div>
 				<div className="flex flex-col w-full pr-3 ml-5">
 					<div className="relative">
@@ -125,7 +129,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 				</div>
 
 				<div className="absolute top-0 right-0 items-center p-5 space-x-2 lg:p-0 lg:pr-1 lg:static lg:flex lg:flex-row">
-					<button
+					{/* <button
 						className="hover:scale-125"
 						onClick={(e: any) => {
 							console.log("editClicked");
@@ -133,7 +137,7 @@ const MyBookCard: React.FC<Props> = (props) => {
 						}}
 					>
 						<EditIcon />
-					</button>
+					</button> */}
 					<button
 						className="hover:scale-125"
 						onClick={(e: any) => {
