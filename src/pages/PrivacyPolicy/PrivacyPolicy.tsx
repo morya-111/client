@@ -15,11 +15,11 @@ const PrivacyPolicy = () => {
 					</h1>
 
 					<p>
-						At www.bookex.com, accessible from
-						http://localhost:3000/, one of our main priorities is
-						the privacy of our visitors. This Privacy Policy
+						At bookex.netlify.app, accessible from
+						https://bookex.netlify.app/, one of our main priorities
+						is the privacy of our visitors. This Privacy Policy
 						document contains types of information that is collected
-						and recorded by www.bookex.com and how we use it.
+						and recorded by bookex.netlify.app and how we use it
 					</p>
 
 					<p>
@@ -32,9 +32,9 @@ const PrivacyPolicy = () => {
 						This Privacy Policy applies only to our online
 						activities and is valid for visitors to our website with
 						regards to the information that they shared and/or
-						collect in www.bookex.com. This policy is not applicable
-						to any information collected offline or via channels
-						other than this website.
+						collect in bookex.netlify.app. This policy is not
+						applicable to any information collected offline or via
+						channels other than this website.
 					</p>
 					<ul className="list-disc list-">
 						<li>
@@ -117,20 +117,20 @@ const PrivacyPolicy = () => {
 							</h2>
 
 							<p>
-								www.bookex.com follows a standard procedure of
-								using log files. These files log visitors when
-								they visit websites. All hosting companies do
-								this and a part of hosting services' analytics.
-								The information collected by log files include
-								internet protocol (IP) addresses, browser type,
-								Internet Service Provider (ISP), date and time
-								stamp, referring/exit pages, and possibly the
-								number of clicks. These are not linked to any
-								information that is personally identifiable. The
-								purpose of the information is for analyzing
-								trends, administering the site, tracking users'
-								movement on the website, and gathering
-								demographic information.
+								bookex.netlify.app follows a standard procedure
+								of using log files. These files log visitors
+								when they visit websites. All hosting companies
+								do this and a part of hosting services'
+								analytics. The information collected by log
+								files include internet protocol (IP) addresses,
+								browser type, Internet Service Provider (ISP),
+								date and time stamp, referring/exit pages, and
+								possibly the number of clicks. These are not
+								linked to any information that is personally
+								identifiable. The purpose of the information is
+								for analyzing trends, administering the site,
+								tracking users' movement on the website, and
+								gathering demographic information.
 							</p>
 						</li>
 						<li>
@@ -139,7 +139,7 @@ const PrivacyPolicy = () => {
 							</h2>
 
 							<p>
-								Like any other website, www.bookex.com uses
+								Like any other website, bookex.netlify.app uses
 								'cookies'. These cookies are used to store
 								information including visitors' preferences, and
 								the pages on the website that the visitor
@@ -166,7 +166,7 @@ const PrivacyPolicy = () => {
 							<p>
 								You may consult this list to find the Privacy
 								Policy for each of the advertising partners of
-								www.bookex.com.
+								bookex.netlify.app.
 							</p>
 
 							<p>
@@ -174,7 +174,7 @@ const PrivacyPolicy = () => {
 								technologies like cookies, JavaScript, or Web
 								Beacons that are used in their respective
 								advertisements and links that appear on
-								www.bookex.com, which are sent directly to
+								bookex.netlify.app, which are sent directly to
 								users' browser. They automatically receive your
 								IP address when this occurs. These technologies
 								are used to measure the effectiveness of their
@@ -184,7 +184,7 @@ const PrivacyPolicy = () => {
 							</p>
 
 							<p>
-								Note that www.bookex.com has no access to or
+								Note that bookex.netlify.app has no access to or
 								control over these cookies that are used by
 								third-party advertisers.
 							</p>
@@ -195,13 +195,13 @@ const PrivacyPolicy = () => {
 							</h2>
 
 							<p>
-								www.bookex.com's Privacy Policy does not apply
-								to other advertisers or websites. Thus, we are
-								advising you to consult the respective Privacy
-								Policies of these third-party ad servers for
-								more detailed information. It may include their
-								practices and instructions about how to opt-out
-								of certain options.{" "}
+								bookex.netlify.app's Privacy Policy does not
+								apply to other advertisers or websites. Thus, we
+								are advising you to consult the respective
+								Privacy Policies of these third-party ad servers
+								for more detailed information. It may include
+								their practices and instructions about how to
+								opt-out of certain options.
 							</p>
 
 							<p>
@@ -307,14 +307,14 @@ const PrivacyPolicy = () => {
 							</p>
 
 							<p>
-								www.bookex.com does not knowingly collect any
-								Personal Identifiable Information from children
-								under the age of 13. If you think that your
-								child provided this kind of information on our
-								website, we strongly encourage you to contact us
-								immediately and we will do our best efforts to
-								promptly remove such information from our
-								records.
+								bookex.netlify.app does not knowingly collect
+								any Personal Identifiable Information from
+								children under the age of 13. If you think that
+								your child provided this kind of information on
+								our website, we strongly encourage you to
+								contact us immediately and we will do our best
+								efforts to promptly remove such information from
+								our records.
 							</p>
 						</li>
 					</ul>

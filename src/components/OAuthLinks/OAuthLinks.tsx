@@ -4,6 +4,10 @@ import { AiFillFacebook } from "react-icons/ai";
 
 import "components/SignUpForm/SignUpForm.css";
 
+const {
+	backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000",
+} = process.env;
+
 type OAuthLinksPropsType = {
 	titleText: string;
 };
@@ -16,13 +20,13 @@ const OAuthLinks: React.FC<OAuthLinksPropsType> = ({ titleText }) => {
 			<div className="flex justify-center">
 				<a
 					className="std-icon-wrapper"
-					href="http://localhost:4000/v1/auth/google"
+					href={`${backendUrl}/v1/auth/google`}
 				>
 					<FcGoogle className="w-12 h-12 cursor-pointer" />
 				</a>
 				<a
 					className="std-icon-wrapper"
-					href="http://localhost:4000/v1/auth/facebook"
+					href={`${backendUrl}/v1/auth/facebook`}
 				>
 					<AiFillFacebook className="w-12 h-12 " />
 				</a>
