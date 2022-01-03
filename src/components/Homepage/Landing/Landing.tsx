@@ -95,11 +95,7 @@ const Landing = () => {
 									<Link
 										onMouseEnter={() => setHover(true)}
 										onMouseLeave={() => setHover(false)}
-										to={
-											isLoggedIn
-												? "/mybooks"
-												: "javascript:void(0)"
-										}
+										to={isLoggedIn ? "/mybooks" : ""}
 										className="text-lg font-bold text-light hover:underline w-max"
 									>
 										Books Listing
