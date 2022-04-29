@@ -7,6 +7,11 @@ import api from "api";
 import { useParams, useHistory } from "react-router-dom";
 import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
+import MyProfile from "../../components/NavigationBar/MyProfile";
+
+// import { ReactComponent as ChatIconFloat } from "assets/2.0/common/chat_icon_float.svg";
+import { ReactComponent as ChatIconUp } from "assets/2.0/common/chat_icon_up.svg";
+import { ReactComponent as ChatIconDown } from "assets/2.0/common/chat_icon_down.svg";
 
 type ParamType = {
 	id: string;
@@ -100,9 +105,11 @@ const BookDisplay: React.FC = () => {
 			: data?.data.data.book.description;
 	const userName = data?.data.data.book.user.first_name;
 
+	const [openChat, setOpenChat] = useState(false);
+
 	return (
 		<>
-			<div className="bg-dark">
+			<div className="relative bg-dark">
 				<div className="flex flex-col min-h-screen bg-light">
 					<NavigationBar />
 					{isLoading ? (
@@ -133,7 +140,10 @@ const BookDisplay: React.FC = () => {
 													}
 													className="inline-flex items-center text-sm font-semibold text-dark"
 												>
-													Uploaded by {userName}{" "}
+													Uploaded by{" "}
+													{userName === "Chintu"
+														? "BotUser"
+														: userName}{" "}
 													<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
 													{inHover && (
 														<div className="relative inline-flex items-center px-2 ml-2 text-xs font-normal rounded-sm bg-semiLight md:text-sm text-light ">
@@ -286,6 +296,32 @@ const BookDisplay: React.FC = () => {
 											className="hidden object-cover object-center mx-auto mt-4 rounded md:inline-flex md:w-1/5 md:h-1/4"
 											src={data?.data.data.book.image.url}
 										/>
+									</div>
+									<div className="fixed bottom-0 right-0 z-50 mr-0.5 rounded-t-lg shadow-lg  ">
+										<div className="flex justify-between min-w-[300px] bg-semiLight rounded-t-lg">
+											<div>
+												<MyProfile />
+											</div>
+											<div
+												className="hover:cursor-pointer"
+												onClick={() => {
+													setOpenChat(!openChat);
+												}}
+											>
+												{openChat ? (
+													<ChatIconDown />
+												) : (
+													<ChatIconUp />
+												)}
+											</div>
+										</div>
+										<div
+											className={
+												openChat
+													? "h-[400px] bg-gray-400"
+													: "hidden"
+											}
+										></div>
 									</div>
 								</div>
 								<div className="">

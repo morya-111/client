@@ -76,7 +76,7 @@ const NavigationBar: React.FC = () => {
 					{isLoggedIn ? (
 						<>
 							<>
-								<div className="flex flex-row">
+								<div className="flex flex-row items-center">
 									<NavLink
 										to="/catalogue"
 										className="hidden p-4 motion-safe:hover:scale-110 md:block"
@@ -99,8 +99,9 @@ const NavigationBar: React.FC = () => {
 									>
 										My Books
 									</NavLink>
-
-									<MyProfile onClick={openPopUp} />
+									<div className="motion-safe:hover:scale-125">
+										<MyProfile onClick={openPopUp} />
+									</div>
 								</div>
 							</>
 						</>
