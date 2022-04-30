@@ -9,9 +9,7 @@ import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import MyProfile from "../../components/NavigationBar/MyProfile";
 
-// import { ReactComponent as ChatIconFloat } from "assets/2.0/common/chat_icon_float.svg";
-import { ReactComponent as ChatIconUp } from "assets/2.0/common/chat_icon_up.svg";
-import { ReactComponent as ChatIconDown } from "assets/2.0/common/chat_icon_down.svg";
+import ChatBox from "components/ChatBox";
 
 type ParamType = {
 	id: string;
@@ -58,9 +56,11 @@ type BookResponseType = {
 		};
 	};
 };
+
 const BookDisplay: React.FC = () => {
 	const history = useHistory();
 	const params = useParams<ParamType>();
+
 	const { data, isLoading, status } = useQuery(
 		"fetchABook",
 		() => api.get<BookResponseType>(`/books/${params.id}`),
@@ -297,32 +297,7 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
-									<div className="fixed bottom-0 right-0 z-50 mr-0.5 rounded-t-lg shadow-lg  ">
-										<div className="flex justify-between min-w-[300px] bg-semiLight rounded-t-lg">
-											<div>
-												<MyProfile />
-											</div>
-											<div
-												className="hover:cursor-pointer"
-												onClick={() => {
-													setOpenChat(!openChat);
-												}}
-											>
-												{openChat ? (
-													<ChatIconDown />
-												) : (
-													<ChatIconUp />
-												)}
-											</div>
-										</div>
-										<div
-											className={
-												openChat
-													? "h-[400px] bg-gray-400"
-													: "hidden"
-											}
-										></div>
-									</div>
+									<ChatBox></ChatBox>
 								</div>
 								<div className="">
 									<Footer />

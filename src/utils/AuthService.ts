@@ -18,12 +18,6 @@ class AuthService {
 		);
 	};
 
-	// all the rituals we need to perform after log in is successful
-	public logInSuccessful = (userData: AuthDataType) => {
-		// const userDataCopy = { ...userData };
-		// localStorage.setItem("user", JSON.stringify(userDataCopy));
-		// this._isLoggedIn = true;
-	};
 	public logout = () => {
 		return api.post<any>("/user/logout");
 	};
