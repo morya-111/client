@@ -7,6 +7,10 @@ import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
 import { NavLink, Link } from "react-router-dom";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
+import Typewriter from "typewriter-effect";
+
+//new
+import NewHeroImg from "assets/2.0/landinghero.png";
 
 const Landing = () => {
 	const isLoggedIn = useCachedLoginStatus();
@@ -15,39 +19,78 @@ const Landing = () => {
 	return (
 		<div>
 			<NavigationBar />
-			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-light bigMonitor:items-center">
+			<div className="flex min-w-full min-h-screen -ml-4 overflow-hidden md:ml-0 bg-bgGrey45 bigMonitor:items-center">
 				<div className="flex content-center pt-10 mb-5 ml-7 md:ml-16 md:flex flex-nowrap">
-					<div className="w-[23ch] md:w-[30ch] lg:w-full">
-						<h1 className="text-3xl font-semibold md:text-4xl lg:text-6xl text-dark">
+					<div>
+						<img
+							src={NewHeroImg}
+							alt="LandingHero"
+							className="flex flex-none flex-shrink-0 "
+						/>
+					</div>
+					<div className="w-[23ch] md:w-[30ch] lg:w-[75ch]">
+						<h1
+							className="text-3xl font-black text-black md:text-4xl lg:text-6xl font-martel "
+							style={{
+								textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+								lineHeight: "136.9%",
+							}}
+						>
 							Trying To Find Your Favorite book?
 						</h1>
-						<h2 className="mt-2 text-base md:text-xl lg:text-3xl text-dark">
-							Browse large catalogue of books to rent or buy from
-							people close to you!
+						<h2
+							className="flex justify-end mt-2 text-base font-bold text-right md:text-xl lg:text-3xl text-dark font-martel"
+							style={{ lineHeight: "136.9%" }}
+						>
+							At one place&nbsp;
+							<Typewriter
+								options={{
+									strings: ["Buy", "Sell", "Rent", "Borough"],
+									autoStart: true,
+									loop: true,
+									cursor: "|",
+								}}
+							/>
+							used Books...
 						</h2>
 
-						<div className="grid grid-rows-2 gap-2 mt-5 place-content-start">
-							<button className="px-4 py-1 rounded bg-semiLight text-light hover:drop-shadow-md">
+						<div className="grid grid-rows-2 gap-2 mt-5 place-content-end">
+							{/* <button className="px-4 py-1 rounded bg-semiLight text-light hover:drop-shadow-md">
 								<NavLink to="/catalogue">
 									Go To Catalogue
 								</NavLink>
-							</button>
+							</button> */}
 							{isLoggedIn ? (
-								<button className="px-4 py-1 rounded text-light bg-semiLight hover:drop-shadow-md">
+								<button
+									className="items-center px-8 py-2 text-center text-white bg-black rounded-[6px] font-imFell hover:scale-[102%] "
+									style={{
+										boxShadow:
+											"0px 4px 4px rgba(0, 0, 0, 0.25)",
+									}}
+								>
 									<NavLink to="/book/create">
 										Add A Book
 									</NavLink>
 								</button>
 							) : (
-								<button className="px-4 py-1 rounded text-light bg-semiLight hover:drop-shadow-md">
-									<NavLink to="/signup">Sign Up</NavLink>
-								</button>
+								<NavLink to="/signup">
+									<button
+										className="items-center px-8 py-2 text-center text-white bg-black rounded-[6px] font-imFell hover:scale-[102%] "
+										style={{
+											boxShadow:
+												"0px 4px 4px rgba(0, 0, 0, 0.25)",
+										}}
+									>
+										Sign Up
+									</button>
+								</NavLink>
 							)}
 						</div>
 					</div>
-					<div>
+
+					{/* <div>
 						<HeroImg className="flex flex-none flex-shrink-0 " />
-					</div>
+					</div> */}
 					{/* <img
 						src={Hero}
 						className="flex flex-none flex-shrink-0 "

@@ -11,6 +11,10 @@ module.exports = {
 				semiLight: "#51C4D3",
 				light: "#D8E3E7",
 				greyText: "#424242",
+				bgGrey100: "rgba(168, 168, 168, 1)",
+				bgGrey45: "rgba(168, 168, 168, 0.45)",
+				bgGrey32: "rgba(168, 168, 168, 0.32)",
+				bgGrey22: "rgba(168, 168, 168, 0.22)",
 			},
 			screens: {
 				bigMonitor: "1600px",
@@ -34,12 +38,12 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: ["Nunito", "sans-serif"],
+			imFell: ["IM Fell English", "serif"],
+			martel: ["Martel Sans", "sans-serif"],
 		},
 	},
 	variants: {
-
 		extend: { animation: ["responsive", "motion-safe", "motion-reduce"] },
-
 	},
 	plugins: [require("@tailwindcss/line-clamp")],
 };

@@ -56,12 +56,18 @@ const NavigationBar: React.FC = () => {
 			<div
 				className={
 					isOpen
-						? "relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 duration-[0ms] bg-semiLight"
-						: "relative flex items-center justify-between h-24 md:pl-14 lg:pr-14 md:pr-5 bg-light"
+						? "relative flex items-center justify-between h-[79px] md:pl-14 lg:pr-14 md:pr-5 duration-[0ms] bg-bgGrey100"
+						: "relative flex items-center justify-between h-[79px] md:pl-14 lg:pr-14 md:pr-5 bg-bgGrey100"
 				}
 			>
-				<NavLink to="/">
+				{/* <NavLink to="/">
 					<LogoDark className="w-auto h-24 p-2" />
+				</NavLink> */}
+				<NavLink
+					to="/"
+					className="font-imFell font-[400] text-[32px] leading-[41px] text-black"
+				>
+					BookEx
 				</NavLink>
 				{!isLoggedIn && (
 					<div
@@ -79,7 +85,7 @@ const NavigationBar: React.FC = () => {
 								<div className="flex flex-row">
 									<NavLink
 										to="/catalogue"
-										className="hidden p-4 motion-safe:hover:scale-110 md:block"
+										className="hidden p-4 motion-safe:hover:scale-105 md:block font-imFell"
 										style={(isActive) => ({
 											textDecoration: isActive
 												? "underline"
@@ -90,7 +96,7 @@ const NavigationBar: React.FC = () => {
 									</NavLink>
 									<NavLink
 										to="/mybooks"
-										className="hidden p-4 mr-2 md:block motion-safe:hover:scale-110 "
+										className="hidden p-4 mr-2 md:block motion-safe:hover:scale-105 font-imFell"
 										style={(isActive) => ({
 											textDecoration: isActive
 												? "underline"
@@ -109,7 +115,7 @@ const NavigationBar: React.FC = () => {
 							<div className="items-center hidden md:flex md:flex-row">
 								<NavLink
 									to="/about"
-									className="block p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-105 font-[400] font-imFell"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -120,7 +126,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/catalogue"
-									className="block p-4 motion-safe:hover:scale-110 "
+									className="block p-4 motion-safe:hover:scale-105  font-[400] font-imFell"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -131,7 +137,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/contact"
-									className="block p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-105 font-[400] font-imFell"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -142,7 +148,7 @@ const NavigationBar: React.FC = () => {
 								</NavLink>
 								<NavLink
 									to="/signin"
-									className="block p-4 motion-safe:hover:scale-110"
+									className="block p-4 motion-safe:hover:scale-105 font-[400] font-imFell"
 									style={(isActive) => ({
 										textDecoration: isActive
 											? "underline"
@@ -151,7 +157,9 @@ const NavigationBar: React.FC = () => {
 								>
 									Sign In
 								</NavLink>
-								<SignUp />
+								<div className="ml-7">
+									<SignUp />
+								</div>
 							</div>
 						</>
 					)}
