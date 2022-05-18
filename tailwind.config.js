@@ -17,6 +17,23 @@ module.exports = {
 				bgGrey22: "rgba(168, 168, 168, 0.22)",
 			},
 			screens: {
+				sm: "640px",
+				// => @media (min-width: 640px) { ... }
+
+				md: "768px",
+				// => @media (min-width: 768px) { ... }
+
+				mdsemi: "900px",
+				// => @media (min-width: 900px) { ... }
+
+				lg: "1024px",
+				// => @media (min-width: 1024px) { ... }
+
+				xl: "1280px",
+				// => @media (min-width: 1280px) { ... }
+
+				"2xl": "1536px",
+				// => @media (min-width: 1536px) { ... }
 				bigMonitor: "1600px",
 			},
 			keyframes: {
@@ -25,9 +42,21 @@ module.exports = {
 
 					"70%": { transform: "scale(1.1)" },
 				},
+				float: {
+					"0%": { transform: "translate(0,  0px)" },
+					"50%": { transform: "translate(0, -15px)" },
+					"100% ": { transform: "translate(0, -0px)" },
+				},
+				float2: {
+					"0%": { transform: "translate(0,  0px)" },
+					"50%": { transform: "translate(0, 15px)" },
+					"100% ": { transform: "translate(0, -0px)" },
+				},
 			},
 			animation: {
 				"scale-reveal": "scale 0.5s ease-in-out ",
+				float: "float 3s ease-in-out infinite",
+				float2: "float2 5s ease-in-out infinite",
 			},
 			backgroundImage: {
 				"shelf-bg": "url('assets/about/shelf_bg.png')",
