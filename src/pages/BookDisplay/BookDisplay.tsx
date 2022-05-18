@@ -10,6 +10,7 @@ import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import MyProfile from "../../components/NavigationBar/MyProfile";
 
 import ChatTab from "components/ChatTab";
+import useAuthData from "hooks/useAuthData";
 
 type ParamType = {
 	id: string;
@@ -60,7 +61,7 @@ type BookResponseType = {
 const BookDisplay: React.FC = () => {
 	const history = useHistory();
 	const params = useParams<ParamType>();
-
+	const { email } = useAuthData();
 	const { data, isLoading, status } = useQuery(
 		"fetchABook",
 		() => api.get<BookResponseType>(`/books/${params.id}`),
@@ -104,8 +105,7 @@ const BookDisplay: React.FC = () => {
 			? "Description Not Available 🧐"
 			: data?.data.data.book.description;
 	const userName = data?.data.data.book.user.first_name;
-
-	const [openChat, setOpenChat] = useState(false);
+	const bookUserEmail = data?.data.data.book.user.email;
 
 	return (
 		<>
@@ -297,7 +297,9 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
-									{isLoggedIn ? <ChatTab></ChatTab> : null}
+									{isLoggedIn && email !== bookUserEmail ? (
+										<ChatTab></ChatTab>
+									) : null}
 								</div>
 								<div className="">
 									<Footer />

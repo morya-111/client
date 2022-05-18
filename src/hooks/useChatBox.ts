@@ -13,6 +13,7 @@ export const useChatBox = () => {
 	const timestamp = new Date();
 
 	const connectTheSocket = () => {
+		console.log("connectTheSocket | useChatBox :", id);
 		clientSocket.auth = { userId: id };
 		clientSocket.connect();
 	};
