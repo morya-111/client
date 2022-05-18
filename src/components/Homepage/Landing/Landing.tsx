@@ -143,7 +143,7 @@ const Landing = () => {
 	return (
 		<div>
 			{/* LandingPart1 */}
-			<div className="flex justify-center h-screen min-w-full -ml-4 overflow-hidden md:ml-0 bg-bgGrey45">
+			<div className="flex justify-center h-screen min-w-full -ml-4 overflow-hidden md:ml-0 bg-bgGrey100">
 				<div className="absolute top-0 right-0 min-w-full">
 					<NavigationBar />
 				</div>
@@ -283,7 +283,7 @@ const Landing = () => {
 
 			{/* LandingPart2 */}
 			<div
-				className="w-auto h-[282px] bg-bgGrey32 flex justify-center items-center"
+				className="w-auto h-[282px] bg-bgGrey45 flex justify-center items-center"
 				style={{
 					boxShadow: "0px 4px 100px rgba(0, 0, 0, 0.25)",
 				}}
@@ -313,7 +313,7 @@ const Landing = () => {
 			</div>
 
 			{/* LandingPart3 */}
-			<div className="w-auto min-h-screen bg-clip-padding bg-bgGrey22">
+			<div className="w-auto min-h-screen bg-clip-padding bg-bgGrey45">
 				<div className="flex justify-center">
 					<div className="w-screen mt-10 md:mt-24">
 						<h1 className="text-5xl font-bold text-center text-black font-imFell">
