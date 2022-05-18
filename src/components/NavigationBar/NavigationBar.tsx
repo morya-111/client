@@ -23,7 +23,7 @@ const NavigationBar: React.FC = () => {
 	const toggle = () => {
 		setIsOpen(!isOpen);
 		menuBtn.current?.classList.toggle("open");
-		console.log(menuBtn);
+		// console.log(menuBtn);
 	};
 
 	const openPopUp = () => {
@@ -193,17 +193,38 @@ const NavigationBar: React.FC = () => {
 							<NavLink
 								to="/catalogue"
 								className={buttonClassnames}
+								onClick={() => {
+									setIsOpen(!isOpen);
+								}}
 							>
 								Catalogue 📖
 							</NavLink>
 
-							<NavLink to="/about" className={buttonClassnames}>
+							<NavLink
+								to="/about"
+								className={buttonClassnames}
+								onClick={() => {
+									setIsOpen(!isOpen);
+								}}
+							>
 								About 🫂
 							</NavLink>
-							<NavLink to="/contact" className={buttonClassnames}>
+							<NavLink
+								to="/contact"
+								className={buttonClassnames}
+								onClick={() => {
+									setIsOpen(!isOpen);
+								}}
+							>
 								Contact 📞
 							</NavLink>
-							<NavLink to="/signUp" className={buttonClassnames}>
+							<NavLink
+								to="/signUp"
+								className={buttonClassnames}
+								onClick={() => {
+									setIsOpen(!isOpen);
+								}}
+							>
 								Sign Up ✔️
 							</NavLink>
 						</div>

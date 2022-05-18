@@ -120,7 +120,7 @@ const Catalogue: React.FC = () => {
 			<NavigationBar />
 			<div
 				style={{ minHeight: "100vh" }}
-				className="grid w-full grid-cols-12 gap-2 px-2 md:px-14 bg-light"
+				className="grid w-full grid-cols-12 gap-2 px-2 md:px-14 bg-bgGrey45"
 			>
 				<div
 					style={{ borderRightWidth: "1px" }}
