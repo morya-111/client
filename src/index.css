@@ -10,6 +10,14 @@
 		@apply duration-[400ms];
 	}
 }
+@layer utilities {
+	.noneed {
+		@apply duration-[0ms];
+	}
+}
+.okok {
+	overflow: auto;
+}
 .button {
 	display: block;
 	background: rgb(0, 0, 0, 0.7);

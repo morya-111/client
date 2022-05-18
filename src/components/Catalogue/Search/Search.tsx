@@ -51,11 +51,11 @@ const Search: React.FC = () => {
 	};
 
 	return (
-		<div className="flex w-full ">
+		<div className="flex w-full h-[35px] ">
 			<div className="mr-3 md:hidden">
 				<FaFilter
 					size={30}
-					className="cursor-pointer text-dark"
+					className="hidden cursor-pointer text-dark"
 					onClick={() => setDrawerOpen(true)}
 				/>
 			</div>
@@ -65,15 +65,15 @@ const Search: React.FC = () => {
 					setSearchTerm(formData.search);
 				}}
 			>
-				<Form className="flex flex-grow rounded-lg md:mx-4 bg-semiLight hover:shadow-xl">
-					<div className="flex-grow">
+				<Form className="flex flex-grow w-full max-h-full bg-white rounded-lg md:mx-4 hover:shadow-xl">
+					<div className="flex-grow max-h-[35px] w-full">
 						<TextInput name="search" />
 					</div>
 					<button type="submit">
 						<div className="flex items-center justify-center px-2 py-1 cursor-pointer ">
 							<BiSearchAlt
-								size={35}
-								className="text-light hover:drop-shadow-xl"
+								size={25}
+								className="text-black hover:drop-shadow-xl"
 							/>
 						</div>
 					</button>

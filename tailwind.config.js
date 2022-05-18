@@ -12,9 +12,11 @@ module.exports = {
 				light: "#D8E3E7",
 				greyText: "#424242",
 				bgGrey100: "rgba(168, 168, 168, 1)",
+				bgGrey50: "rgba(168, 168, 168, 0.50)",
 				bgGrey45: "rgba(168, 168, 168, 0.45)",
 				bgGrey32: "rgba(168, 168, 168, 0.32)",
 				bgGrey22: "rgba(168, 168, 168, 0.22)",
+				bgScreen: "rgba(0,0,0, 0.5)",
 			},
 			screens: {
 				sm: "640px",

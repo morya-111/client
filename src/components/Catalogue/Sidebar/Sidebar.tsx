@@ -62,14 +62,15 @@ const Sidebar: React.FC = () => {
 	);
 
 	return (
-		<div className="flex flex-col ">
+		<div className="flex flex-col ml-14 max-h-[full]">
 			{/* <div className="sidebar-element">
 				<Checkbox label="For Sale" />
 			</div>
 			<div className="sidebar-element">
 				<Checkbox label="For Rent" />
 			</div> */}
-			<span className="title">Language</span>
+
+			<span className="mt-6 text-lg font-imFell">Language</span>
 			{isLoading && !isSuccess ? (
 				<Loader size="sm" />
 			) : (
@@ -107,14 +108,14 @@ const Sidebar: React.FC = () => {
 							</div>
 						))}
 					<div
-						className="text-sm cursor-pointer text-dark hover:text-semiDark"
+						className="text-sm cursor-pointer text-dark hover:underline font-martel"
 						onClick={() => setExpanded(!expanded)}
 					>
 						{expanded ? "Show Less" : "Show More"}
 					</div>
 				</>
 			)}
-			<span className="title">Genre</span>
+			<span className="mt-4 text-lg font-imFell">Genre</span>
 			{GENRES.map((genre, idx) => (
 				<div className="sidebar-element" key={idx}>
 					<Checkbox
