@@ -9,7 +9,7 @@ import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
 import MyProfile from "../../components/NavigationBar/MyProfile";
 
-import ChatBox from "components/ChatBox";
+import ChatTab from "components/ChatTab";
 
 type ParamType = {
 	id: string;
@@ -297,7 +297,7 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
-									<ChatBox></ChatBox>
+									{isLoggedIn ? <ChatTab></ChatTab> : null}
 								</div>
 								<div className="">
 									<Footer />

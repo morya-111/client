@@ -10,7 +10,7 @@ const useAuthData = () => {
 	let first_name,
 		last_name,
 		email = "NOT_LOGGED_IN";
-
+	let id = -1;
 	if (authService.checkIfLoggedIn(authData)) {
 		if (authData.avatarUrl) {
 			avatarUrl = authData.avatarUrl;
@@ -18,9 +18,10 @@ const useAuthData = () => {
 		first_name = authData.first_name;
 		last_name = authData.last_name;
 		email = authData.email;
+		id = authData.id;
 	}
 
-	return { first_name, last_name, email, avatarUrl };
+	return { first_name, last_name, email, avatarUrl, id };
 };
 
 // Usage Example -
