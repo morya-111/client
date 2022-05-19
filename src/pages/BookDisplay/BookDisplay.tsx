@@ -107,6 +107,11 @@ const BookDisplay: React.FC = () => {
 	const userName = data?.data.data.book.user.first_name;
 	const bookUserEmail = data?.data.data.book.user.email;
 
+	const bookDataForChat = {
+		bookId: data?.data.data.book.id,
+		bookUserId: data?.data.data.book.user.id,
+	};
+
 	return (
 		<>
 			<div className="relative bg-dark">
@@ -297,8 +302,9 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
-									{isLoggedIn && email !== bookUserEmail ? (
-										<ChatTab></ChatTab>
+									{isLoggedIn ? (
+										// && email !== bookUserEmail
+										<ChatTab bookData={bookDataForChat} />
 									) : null}
 								</div>
 								<div className="">

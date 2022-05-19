@@ -29,7 +29,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 				>
 					{msg}
 				</div>
-				<div className="text-xs font-thin">{date?.getDate()}</div>
+				<div className="text-xs font-thin">{JSON.stringify(date)}</div>
 			</div>
 		</div>
 	);

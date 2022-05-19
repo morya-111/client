@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { clientSocket } from "utils/ChatSocketService";
 import useAuthData from "./useAuthData";
@@ -8,9 +8,16 @@ export type ChatMessageType = {
 	fromSelf: boolean;
 };
 
-export const useChatBox = () => {
+export const useChatBox = ({
+	chatWith,
+	bookId = -1,
+}: {
+	chatWith: number;
+	bookId?: number;
+}) => {
 	const { id } = useAuthData();
 	const timestamp = new Date();
+	const [chatArr, setChatArr] = useState<ChatMessageType[]>([]);
 
 	const connectTheSocket = () => {
 		console.log("connectTheSocket | useChatBox :", id);
@@ -18,19 +25,39 @@ export const useChatBox = () => {
 		clientSocket.connect();
 	};
 
-	const [chatArr, setChatArr] = useState<ChatMessageType[]>([
-		{ msg: "Hey There 0", timestamp: timestamp, fromSelf: true },
-		{ msg: "Hey There 5", timestamp: timestamp, fromSelf: false },
-		{ msg: "Hey There6", timestamp: timestamp, fromSelf: true },
-		{ msg: "Heasdasdy There", timestamp: timestamp, fromSelf: true },
-		{ msg: "Hey There", timestamp: timestamp, fromSelf: false },
-		{ msg: "Hey There", timestamp: timestamp, fromSelf: true },
-		{ msg: "Hey There", timestamp: timestamp, fromSelf: false },
-		{ msg: "Hey Theradsasde", timestamp: timestamp, fromSelf: true },
-		{ msg: "Hey There", timestamp: timestamp, fromSelf: false },
-		{ msg: "Hey There", timestamp: timestamp, fromSelf: false },
-		{ msg: "Hey Therasdasde", timestamp: timestamp, fromSelf: true },
-	]);
+	const sendMessage = (msgBody: string) => {
+		console.log("sendMessage | useChatBox :", chatWith, msgBody);
+		clientSocket.emit("message:send", {
+			to: chatWith === id ? 23 : 22,
+			message: msgBody,
+			bookId: bookId,
+		});
+	};
 
-	return { chatArr, setChatArr, connectTheSocket };
+	useEffect(() => {
+		const transformPayloadToMesssage = (payload: any) => {
+			let result: ChatMessageType[] = [];
+			payload.forEach((msg: any) => {
+				result.push({
+					msg: msg.message,
+					timestamp: msg.createdDate,
+					fromSelf: msg.sender.id === id,
+				});
+			});
+			return result;
+		};
+		const onReceiveMessage = (payload: any) => {
+			console.log("onReceiveMessage | useChatBox :", payload);
+			console.count();
+			const newMsg = transformPayloadToMesssage(payload);
+			setChatArr([...chatArr, ...newMsg]);
+		};
+		clientSocket.on("message:receive", onReceiveMessage);
+
+		return () => {
+			clientSocket.removeAllListeners();
+		};
+	}, [chatArr, id]);
+
+	return { chatArr, setChatArr, connectTheSocket, sendMessage };
 };

@@ -3,8 +3,17 @@ import { useChatBox, ChatMessageType } from "hooks/useChatBox";
 import { useState, useRef, useEffect } from "react";
 import ChatMessage from "./ChatMessage";
 
-const ChatBox = ({ isChatOpen }: { isChatOpen: Boolean }) => {
-	const { chatArr, setChatArr, connectTheSocket } = useChatBox();
+const ChatBox = ({
+	isChatOpen,
+	bookData,
+}: {
+	isChatOpen: Boolean;
+	bookData: any;
+}) => {
+	const { chatArr, setChatArr, connectTheSocket, sendMessage } = useChatBox({
+		chatWith: bookData.bookUserId,
+		bookId: bookData.bookId,
+	});
 	const [inputMsg, setinputMsg] = useState("");
 	const sendMsgRef = useRef<HTMLInputElement>(null);
 	const chatBoxParentRef = useRef<HTMLDivElement>(null);
@@ -15,7 +24,7 @@ const ChatBox = ({ isChatOpen }: { isChatOpen: Boolean }) => {
 		return () => {
 			console.log("ChatBox | UnMounted");
 		};
-	}, [connectTheSocket]);
+	}, []);
 
 	useEffect(() => {
 		console.log("chatBoxParentRef | useEffect | Scrolled to Bottom");
@@ -68,18 +77,11 @@ const ChatBox = ({ isChatOpen }: { isChatOpen: Boolean }) => {
 						}}
 						className="p-1 m-1 w-80"
 						onKeyDown={(event) => {
-							console.log(event.key, event.code);
+							// console.log(event.key, event.code);
 							if (event.key === "Enter") {
 								event.preventDefault();
 								if (inputMsg && inputMsg.length) {
-									setChatArr([
-										...chatArr,
-										{
-											msg: inputMsg,
-											timestamp: new Date(),
-											fromSelf: true,
-										},
-									]);
+									sendMessage(inputMsg);
 									setinputMsg("");
 								} else {
 									console.log(
@@ -97,14 +99,8 @@ const ChatBox = ({ isChatOpen }: { isChatOpen: Boolean }) => {
 						value={"Send"}
 						onClick={() => {
 							console.log("Button Kicked");
-							setChatArr([
-								...chatArr,
-								{
-									msg: sendMsgRef.current?.value || "",
-									timestamp: new Date(),
-									fromSelf: true,
-								},
-							]);
+							sendMessage(inputMsg);
+							setinputMsg("");
 						}}
 					/>
 				</div>
