@@ -10,7 +10,13 @@ const ChatBox = ({
 	isChatOpen: Boolean;
 	bookData: any;
 }) => {
-	const { chatArr, setChatArr, connectTheSocket, sendMessage } = useChatBox({
+	const {
+		chatArr,
+		setChatArr,
+		connectTheSocket,
+		disConnectTheSocket,
+		sendMessage,
+	} = useChatBox({
 		chatWith: bookData.bookUserId,
 		bookId: bookData.bookId,
 	});
@@ -23,6 +29,7 @@ const ChatBox = ({
 		connectTheSocket();
 		return () => {
 			console.log("ChatBox | UnMounted");
+			disConnectTheSocket();
 		};
 	}, []);
 
@@ -33,12 +40,13 @@ const ChatBox = ({
 			0,
 			chatBoxParentRef.current.scrollHeight
 		);
-	});
+	}, [chatArr]);
 
 	const renderChats = (chatArr: ChatMessageType[]) => {
-		return chatArr.map((msg: ChatMessageType) => {
+		return chatArr.map((msg: ChatMessageType, index: number) => {
 			return (
 				<ChatMessage
+					key={index}
 					msg={msg.msg}
 					fromSelf={msg.fromSelf}
 					date={msg.timestamp}
