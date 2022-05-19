@@ -63,7 +63,7 @@ const Card: React.FC<Props> = (props) => {
 				{description}
 			</div>
 			<div className="z-10 flex justify-between">
-				<Badge label={genre} />
+				<Badge bgColor="#A8A8A8" label={genre} />
 				<BookIndicator borrow={borrow} sell={sell} />
 			</div>
 		</div>

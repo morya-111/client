@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useField } from "formik";
+import { ReactComponent as CloseIconCircle } from "assets/2.0/closeiconcircle.svg";
 
 type Props = Omit<React.ComponentPropsWithoutRef<"input">, "name"> & {
 	placeholder?: string;
@@ -42,7 +43,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 				{...field}
 				ref={ref}
 				className={`disabled:opacity-50  min-w-full focus:border-b-2 focus:ring-0 ring-semiLight ring-opacity-50 px-2 py-2 text-lg sm:text-sm font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid border-black outline-none font-martel text-dark  ${inputErrorClass} ${inputMargins}`}
-			/>
+			/>{" "}
 			<div className="absolute right-2 top-10">{right}</div>
 			{isError && (
 				<span className="ml-1 text-sm text-red-600 ">{meta.error}</span>

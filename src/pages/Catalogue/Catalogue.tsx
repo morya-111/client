@@ -13,6 +13,7 @@ import Footer from "components/Footer";
 import { ReactComponent as FilterIcon } from "assets/2.0/filtericon.svg";
 import { ReactComponent as SearchIcon } from "assets/2.0/searchicon.svg";
 import { ReactComponent as CloseIcon } from "assets/2.0/closeicon.svg";
+import Badge from "components/Badge";
 
 type ImageResponseType = {
 	id: number;
@@ -122,9 +123,10 @@ const Catalogue: React.FC = () => {
 
 	const [openSidebar, setOpenSidebar] = useState(false);
 	const [openSearchBar, setOpenSearchBar] = useState(false);
-	const [searchInputClicked, setSearchInputClicked] = useState(false);
 
 	const [scrollPosition, setScrollPosition] = useState(0);
+
+	const [stopOpen, setStopOpen] = useState(false);
 
 	const handleScroll = () => {
 		const position = window.pageYOffset;
@@ -139,6 +141,9 @@ const Catalogue: React.FC = () => {
 		};
 	}, []);
 	var t: any;
+
+	const [filterCount, setFilterCount] = useState<number>(0);
+
 	return (
 		<>
 			<div className="overflow-y-hidden ">
@@ -164,30 +169,46 @@ const Catalogue: React.FC = () => {
 									>
 										<h2 className="flex items-center h-full text-lg ml-14 font-imFell">
 											Filter
-											<div className="ml-2 infinite hover:animate-scale-reveal">
+											<div className="ml-2 mr-2 hover:animate-scale-reveal">
 												<FilterIcon />
+											</div>
+											<div className="hover:animate-scale-reveal">
+												<Badge
+													bgColor="#000"
+													label={filterCount}
+												/>
 											</div>
 										</h2>
 									</button>
 									<button className="h-full px-3 ">
 										{" "}
 										{openSearchBar ? (
-											<CloseIcon
+											<div
+												className="flex items-center justify-center h-full px-2 "
 												onClick={() => {
 													setOpenSearchBar(false);
-													setOpenSearchBar(false);
+													setStopOpen(true);
 												}}
-											/>
+											>
+												<CloseIcon />
+											</div>
 										) : (
-											<SearchIcon
-												onMouseEnter={() => {
-													setOpenSearchBar(true);
+											<div
+												className="flex items-center justify-center h-full px-2 "
+												onMouseMove={() => {
+													!stopOpen &&
+														setOpenSearchBar(true);
+												}}
+												onMouseLeave={() => {
+													setStopOpen(false);
 												}}
 												onClick={() => {
 													!openSearchBar &&
 														setOpenSearchBar(true);
 												}}
-											/>
+											>
+												<SearchIcon />
+											</div>
 										)}
 									</button>
 								</div>
@@ -215,7 +236,6 @@ const Catalogue: React.FC = () => {
 									</svg>
 									<div
 										onClick={() => {
-											setSearchInputClicked(true);
 											clearTimeout(t);
 											console.log(t);
 											setOpenSearchBar(true);
@@ -246,7 +266,10 @@ const Catalogue: React.FC = () => {
 												openSidebar ? "" : "hidden"
 											}
 										>
-											<Sidebar />
+											<Sidebar
+												filterCount={filterCount}
+												setFilterCount={setFilterCount}
+											/>
 										</div>
 									</div>
 								</div>

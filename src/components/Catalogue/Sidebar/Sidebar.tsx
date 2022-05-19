@@ -8,6 +8,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import api from "api";
 import Loader from "components/Loader";
+import { useEffect } from "react";
 
 function toggleValueInArray<T>(arr: T[] | T, value: T) {
 	if (!Array.isArray(arr)) {
@@ -20,7 +21,15 @@ function toggleValueInArray<T>(arr: T[] | T, value: T) {
 	}
 }
 
-const Sidebar: React.FC = () => {
+type SidebarPropsType = {
+	filterCount?: number;
+	setFilterCount?: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const Sidebar: React.FC<SidebarPropsType> = ({
+	filterCount = 0,
+	setFilterCount = () => {},
+}) => {
 	const { search } = useLocation();
 	const history = useHistory();
 
@@ -60,7 +69,14 @@ const Sidebar: React.FC = () => {
 			refetchOnWindowFocus: false,
 		}
 	);
-
+	useEffect(() => {
+		const totalFilterCount =
+			(typeof selectedLanguages === "string"
+				? 1
+				: selectedLanguages.length) +
+			(typeof selectedGenre === "string" ? 1 : selectedGenre.length);
+		setFilterCount(totalFilterCount);
+	});
 	return (
 		<div className="flex flex-col ml-14 max-h-[full] mb-20">
 			{/* <div className="sidebar-element">
