@@ -67,7 +67,7 @@ const Search: React.FC = () => {
 			>
 				<Form className="flex flex-grow w-full max-h-full bg-white rounded-lg md:mx-4 hover:shadow-xl">
 					<div className="flex-grow max-h-[35px] w-full">
-						<TextInput name="search" />
+						<TextInput name="search" placeholder="Search Book" />
 					</div>
 					<button type="submit">
 						<div className="flex items-center justify-center px-2 py-1 cursor-pointer ">

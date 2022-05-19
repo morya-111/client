@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
 	);
 
 	return (
-		<div className="flex flex-col ml-14 max-h-[full]">
+		<div className="flex flex-col ml-14 max-h-[full] mb-20">
 			{/* <div className="sidebar-element">
 				<Checkbox label="For Sale" />
 			</div>

@@ -1,13 +1,13 @@
 .active-page {
-	@apply bg-semiDark hover:bg-semiDark;
+	@apply bg-black hover:bg-black hover:opacity-80;
 }
 
 .inactive-page {
-	@apply bg-semiLight hover:bg-semiDark;
+	@apply bg-bgGrey100 hover:bg-bgGrey50;
 }
 
 .page {
-	@apply px-3 py-1 rounded-lg text-light font-bold mx-1 cursor-pointer transition-colors;
+	@apply px-3 py-1 rounded-lg text-light font-bold mx-1 cursor-pointer transition-colors font-martel;
 }
 
 .btn {

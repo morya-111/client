@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useField } from "formik";
 
 type Props = Omit<React.ComponentPropsWithoutRef<"input">, "name"> & {
+	placeholder?: string;
 	label?: string;
 	right?: React.ReactNode;
 	left?: React.ReactNode;
@@ -10,7 +11,7 @@ type Props = Omit<React.ComponentPropsWithoutRef<"input">, "name"> & {
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
-	const { label, right, left, ...rest } = props;
+	const { placeholder, label, right, left, ...rest } = props;
 
 	const [field, meta] = useField(props.name);
 
@@ -35,6 +36,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 			)}
 			<div className="absolute top-9">{left}</div>
 			<input
+				placeholder={placeholder}
 				style={{ height: "35px", width: "100%" }}
 				{...rest}
 				{...field}
