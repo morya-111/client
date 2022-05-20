@@ -96,7 +96,10 @@ const MyBooks = () => {
 					<>
 						<div className="flex flex-row pt-5 noneed">
 							<div className="hidden md:flex ">
-								<ProfileSideBar showEmail={false} />
+								<ProfileSideBar
+									showEmail={false}
+									page="Books"
+								/>
 							</div>
 							<div className="relative flex flex-col w-full lg:mr-10 lg:w-4/5 ">
 								<div className="left-0 min-h-screen mb-10 border-l-2 border-gray-400 lg:w-full lg:mr-12">

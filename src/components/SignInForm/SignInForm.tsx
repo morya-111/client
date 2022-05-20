@@ -156,7 +156,14 @@ const SignInForm: React.FC = () => {
 							)}
 						</div>
 						<div className="my-4 text-center">
-							<div className={formMsg.type}>{formMsg.msg}</div>
+							<div
+								className={formMsg.type}
+								style={{
+									backgroundColor: "#A8A8A8",
+								}}
+							>
+								{formMsg.msg}
+							</div>
 
 							<span className="mr-1 font-imFell">
 								Don't Have An Account ?

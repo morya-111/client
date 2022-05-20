@@ -5,8 +5,9 @@ import { render } from "@testing-library/react";
 
 type Props = {
 	showEmail?: boolean;
+	page?: string;
 };
-const ProfileSideBar: React.FC<Props> = ({ showEmail = true }) => {
+const ProfileSideBar: React.FC<Props> = ({ showEmail = true, page }) => {
 	const { avatarUrl, first_name, email } = useAuthData();
 	const singleQuote =
 		manyQuotes[Math.floor(Math.random() * manyQuotes.length)];
@@ -31,7 +32,7 @@ const ProfileSideBar: React.FC<Props> = ({ showEmail = true }) => {
 				</div>
 				<div className="text-center">
 					<h1 className="text-2xl font-bold font-martel">
-						{first_name}'s Books
+						{first_name}'s {page}
 					</h1>
 					{showEmail && (
 						<h3 className="text-sm text-gray-500 font-martel">
