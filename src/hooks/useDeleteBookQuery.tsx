@@ -13,20 +13,23 @@ const useDeleteBookQuery = ({
 	const queryFunc = (bookId: number) => {
 		return api.delete(`/books/${bookId}`);
 	};
-	const { isSuccess, data, isError, error, status, mutate } = useMutation(
-		() => {
-			return queryFunc(bookId);
-		},
-		{
-			onSuccess: () => {
-				onSuccess();
+	const { isSuccess, data, isError, error, status, mutate, reset } =
+		useMutation(
+			() => {
+				return queryFunc(bookId);
 			},
-			onError: (err) => {
-				console.log("error occurred in Delete Book Query");
-				onError();
-			},
-		}
-	);
+			{
+				mutationKey: "delBook",
+				onSuccess: () => {
+					onSuccess();
+					reset();
+				},
+				onError: (err) => {
+					console.log("error occurred in Delete Book Query");
+					onError();
+				},
+			}
+		);
 
 	const triggerDelQuery = () => {
 		mutate();
@@ -39,6 +42,7 @@ const useDeleteBookQuery = ({
 		error,
 		status,
 		mutate,
+		reset,
 	};
 };
 

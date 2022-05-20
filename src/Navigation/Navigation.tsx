@@ -7,7 +7,7 @@ import {
 	SignUppage,
 	Catalogue,
 	BookDisplay,
-  About,
+	About,
 	Contact,
 	PrivacyPolicy,
 	CreateBook,

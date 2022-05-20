@@ -1,7 +1,7 @@
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import MyBookCard from "components/MyBooks/MyBookCard";
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -10,6 +10,7 @@ import Loader from "components/Loader";
 import singleQuote from "utils/quotes";
 import useAuthData from "hooks/useAuthData";
 import ProfileSideBar from "components/UserProfile/ProfileSideBar";
+import EmptyShelf from "assets/2.0/emptyshelf.png";
 
 type ParamType = {
 	id: string;
@@ -57,7 +58,7 @@ type BookResponseType = {
 		books: BookType[];
 	};
 };
-console.log(singleQuote.text);
+// console.log(singleQuote.text);
 const MyBooks = () => {
 	const { first_name, avatarUrl } = useAuthData();
 	const history = useHistory();
@@ -80,29 +81,53 @@ const MyBooks = () => {
 	console.log(isLoading);
 	const userName = "ok";
 	console.log(userName);
+	useEffect(() => {
+		console.log(data?.data.data.books);
+	});
 	return (
 		<>
 			<NavigationBar />
-			<div className="min-w-full min-h-screen bg-light">
+			<div className="min-w-full min-h-screen bg-bgGrey45 noneed">
 				{isLoading ? (
-					<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+					<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 noneed">
 						<Loader />
 					</div>
 				) : (
 					<>
-						<div className="flex flex-row">
+						<div className="flex flex-row pt-5 noneed">
 							<div className="hidden md:flex ">
 								<ProfileSideBar showEmail={false} />
 							</div>
-							<div className="relative flex flex-col w-full lg:mr-10 lg:w-4/5">
+							<div className="relative flex flex-col w-full lg:mr-10 lg:w-4/5 ">
 								<div className="left-0 min-h-screen mb-10 border-l-2 border-gray-400 lg:w-full lg:mr-12">
 									<div className="flex justify-center w-full">
-										<button className="px-3 text-lg font-semibold text-center duration-700 ease-out rounded-lg shadow bg-semiLight hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80">
+										<button
+											style={{
+												boxShadow:
+													"0px 3px 0px rgba(0, 0, 0, 0.25)",
+											}}
+											className="px-5 py-2 text-lg font-semibold text-center text-white duration-700 ease-out bg-black rounded-lg shadow hover:drop-shadow-xl hover:scale-110 hover:bg-opacity-80 font-imFell"
+										>
 											<NavLink to="/book/create">
 												+ Add A Book
 											</NavLink>
 										</button>
 									</div>
+									{data?.data.data.books === undefined && (
+										<div className="flex flex-col items-center justify-center w-full h-[calc(100vh-200px)]">
+											<img
+												alt="emptyshelf"
+												src={EmptyShelf}
+												className="opacity-90 animate-scale-reveal"
+											/>
+											<h2 className="mt-4 text-xl text-center font-martel text-greyText">
+												Your empty shelf is not looking
+												good. <br />
+												Add books now and fill it!!!
+											</h2>
+										</div>
+									)}
+
 									<div className="m-10 mt-4 mb-4 space-y-10 ">
 										{data?.data.data.books.map(
 											(book, idx) => (
@@ -158,10 +183,10 @@ const MyBooks = () => {
 									</div>
 									<div>
 										<div className="flex flex-col items-center pt-2 mx-5 mt-5 mb-4 font-bold text-center border-t md:hidden border-opacity-40 border-dark">
-											<div>"{singleQuote.text}"</div>
+											{/* <div>"{newSingleQuote?.text}"</div>
 											<div className="text-sm font-semibold text-opacity-70 text-dark">
-												-{singleQuote.author}
-											</div>
+												-{newSingleQuote?.author}
+											</div> */}
 										</div>
 									</div>
 								</div>

@@ -5,7 +5,13 @@ type Props = React.ComponentPropsWithoutRef<"button"> & {
 	left?: React.ReactNode;
 	right?: React.ReactNode;
 	full?: boolean;
-	color?: "dark" | "semiDark" | "semiLight" | "error";
+	color?:
+		| "error-black"
+		| "black"
+		| "dark"
+		| "semiDark"
+		| "semiLight"
+		| "error";
 };
 
 const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
@@ -16,8 +22,10 @@ const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
 			ref={ref}
 			{...rest}
 			className={classNames(
-				"flex text-light items-center justify-center px-8 py-1 text-base md:text-lg lg:text-xl align-text-top rounded-md hover:shadow-lg transition",
+				"flex text-light items-center justify-center px-16 py-1.5 text-base md:text-lg lg:text-lg font-bold align-text-top rounded-md hover:shadow-xl transition font-martel ",
 				{ "w-full": full },
+				{ "bg-black hover:bg-opacity-75": color === "black" },
+				{ "hover:bg-red-500 bg-black": color === "error-black" },
 				{ "bg-dark": color === "dark" },
 				{ "bg-semiDark": color === "semiDark" },
 				{ "bg-semiLight": color === "semiLight" },

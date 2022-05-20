@@ -103,7 +103,7 @@ const AddBook = () => {
 				}}
 				validationSchema={createBookValidation}
 			>
-				<div className="w-full pt-4 bg-light">
+				<div className="w-full pt-4 bg-bgGrey45">
 					<Form className="flex flex-col min-h-screen mx-14">
 						<div className="flex ">
 							<div
@@ -112,7 +112,7 @@ const AddBook = () => {
 							/>
 							<div
 								style={{ flex: 2 }}
-								className="text-4xl font-bold text-center md:text-5xl text-dark"
+								className="text-4xl font-bold text-center md:text-5xl text-dark font-imFell"
 							>
 								Create Book
 							</div>

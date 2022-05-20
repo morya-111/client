@@ -19,16 +19,17 @@ const ScrollToTop = () => {
 	const [inHover, setHover] = useState(false);
 	return (
 		<div
+			onClick={scrollToTop}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
-			className="flex flex-col items-center w-16 animate-bounce"
+			className="flex flex-col items-center w-16 cursor-pointer hover:animate-scale-reveal"
 		>
 			{inHover && <h1 className="text-sm">Top</h1>}
 			<button
-				onClick={scrollToTop}
+				style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.53)" }}
 				className={classNames(
 					isVisible
-						? "block bg-semiLight bg-opacity-60 p-1 "
+						? "block bg-bgGrey100 bg-opacity-60 p-1 "
 						: "hidden"
 				)}
 			>

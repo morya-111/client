@@ -387,7 +387,6 @@ const Catalogue: React.FC = () => {
 						<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
 							<ScrollToTop />
 						</div>
-
 						<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
 							<ScrollToBottom />
 						</div>
