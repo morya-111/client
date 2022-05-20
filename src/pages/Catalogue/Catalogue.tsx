@@ -13,7 +13,10 @@ import Footer from "components/Footer";
 import { ReactComponent as FilterIcon } from "assets/2.0/filtericon.svg";
 import { ReactComponent as SearchIcon } from "assets/2.0/searchicon.svg";
 import { ReactComponent as CloseIcon } from "assets/2.0/closeicon.svg";
-import Badge from "components/Badge";
+import { ReactComponent as HomeIcon } from "assets/2.0/homeicon.svg";
+import { NavLink } from "react-router-dom";
+import { ScrollToTop } from "components/Scroll";
+import { ScrollToBottom } from "components/Scroll";
 
 type ImageResponseType = {
 	id: number;
@@ -159,27 +162,49 @@ const Catalogue: React.FC = () => {
 										: " "
 								}
 							>
-								{" "}
 								<div className="h-[40px] bg-[#bababa] sticky top-0 w-screen flex justify-center items-center z-50">
-									<button
-										className="absolute left-0 mainbutton"
-										onClick={() => {
-											setOpenSidebar(!openSidebar);
-										}}
-									>
-										<h2 className="flex items-center h-full text-lg ml-14 font-imFell">
-											Filter
-											<div className="ml-2 mr-2 hover:animate-scale-reveal">
-												<FilterIcon />
-											</div>
-											<div className="hover:animate-scale-reveal">
-												<Badge
-													bgColor="#000"
-													label={filterCount}
-												/>
-											</div>
-										</h2>
-									</button>
+									<div className="absolute left-0 flex items-center justify-center">
+										<button
+											className={
+												scrollPosition > 70
+													? "z-50 w-full h-full ml-5  border-r-2 border-black"
+													: "hidden"
+											}
+										>
+											<NavLink to="/">
+												<HomeIcon className="mr-2 hover:animate-scale-reveal" />
+											</NavLink>
+										</button>
+										<button
+											className="absolute left-0 z-40 mainbutton"
+											onClick={() => {
+												setOpenSidebar(!openSidebar);
+											}}
+										>
+											<h2 className="flex items-center h-full text-lg ml-14 font-imFell hover:underline">
+												Filter
+												<div className="ml-2 mr-2 hover:animate-scale-reveal">
+													<FilterIcon />
+												</div>
+												<div className="hover:animate-scale-reveal">
+													<div
+														style={{
+															boxShadow:
+																"0px 3px 0px rgba(0, 0, 0, 0.25)",
+														}}
+														className={
+															filterCount === 0
+																? "px-4 py-[0.2rem] flex items-center text-xs text-center bg-bgGrey100 rounded-xl text-white capitalize font-martel"
+																: "px-4 py-[0.2rem] flex items-center text-xs text-center bg-black rounded-xl text-white capitalize font-martel"
+														}
+													>
+														{filterCount}
+													</div>
+												</div>
+											</h2>
+										</button>
+									</div>
+
 									<button className="h-full px-3 ">
 										{" "}
 										{openSearchBar ? (
@@ -358,6 +383,13 @@ const Catalogue: React.FC = () => {
 									</>
 								)}
 							</div>
+						</div>
+						<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
+							<ScrollToTop />
+						</div>
+
+						<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
+							<ScrollToBottom />
 						</div>
 						<div className="z-40">
 							<Footer />
