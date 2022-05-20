@@ -32,7 +32,8 @@ const ProfileSideBar: React.FC<Props> = ({ showEmail = true, page }) => {
 				</div>
 				<div className="text-center">
 					<h1 className="text-2xl font-bold font-martel">
-						{first_name}'s {page}
+						{first_name}'{first_name?.slice(-1) !== "s" && "s"}{" "}
+						{page}
 					</h1>
 					{showEmail && (
 						<h3 className="text-sm text-gray-500 font-martel">
