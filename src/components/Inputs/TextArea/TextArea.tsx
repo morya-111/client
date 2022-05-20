@@ -31,7 +31,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
 				{...rest}
 				{...field}
 				ref={ref}
-				className={`disabled:opacity-50  focus:ring-2 ring-semiLight ring-opacity-50 w-full px-2 py-2 text-lg sm:text-xl font-normal transition-all shadow-sm  bg-white  border-opacity-80 border-solid rounded-lg outline-none  focus:border-opacity-100 text-dark focus:shadow-md hover:shadow-md ${inputErrorClass}`}
+				className={`disabled:opacity-50  focus:ring-0 ring-semiLight ring-opacity-50 w-full px-2 py-2 text-lg sm:text-sm font-normal transition-all shadow-sm  bg-white  focus:border-opacity-100 text-dark focus:shadow-md hover:shadow-md font-martel focus:border-b-2 border-opacity-80 border-solid border-black outline-none  ${inputErrorClass}`}
 			/>
 			{isError && (
 				<span className="ml-1 text-sm text-red-600 ">

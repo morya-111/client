@@ -13,9 +13,11 @@ const RentInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 	return (
 		<div
 			style={{ borderTopWidth: "1px" }}
-			className="mt-2 border-opacity-50 border-dark"
+			className="mt-12 border-opacity-50 border-dark"
 		>
-			<div className="mt-2 text-lg text-dark">Rent Information</div>
+			<div className="mt-2 text-lg text-dark font-martel">
+				Rent Information
+			</div>
 			<div className="flex flex-col xl:flex-row">
 				<div className="flex-1 xl:mr-2">
 					<TextInput
@@ -26,7 +28,7 @@ const RentInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 						disabled={disabled}
 						left={
 							<FaRupeeSign
-								size={20}
+								size={18}
 								className="mb-3 ml-2 text-dark "
 							/>
 						}
@@ -42,7 +44,7 @@ const RentInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 							type="number"
 						/>
 					</div>
-					<div className="ml-2">
+					<div className="ml-2 ">
 						<Select
 							disabled={disabled}
 							name="durationUnit"
@@ -58,17 +60,17 @@ const RentInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex mt-2">
+			<div className="flex mt-4">
 				<div>
 					<TextInput
 						disabled={disabled}
 						name="fees"
-						label={`Fees Per ${values.durationUnit}`}
+						label={`Fees Per ${values.durationUnit.slice(0, -1)}`}
 						required
 						type="number"
 						left={
 							<FaRupeeSign
-								size={20}
+								size={18}
 								className="mb-3 ml-2 text-dark "
 							/>
 						}
