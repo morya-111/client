@@ -53,7 +53,7 @@ const SignUpForm: React.FC = () => {
 		return <Redirect to="/" />;
 	}
 	return (
-		<div className="signupform-main">
+		<div className="signupform-main bg-bgGrey100 ">
 			<OAuthLinks titleText="Sign Up To BookEx" />
 			<Formik
 				initialValues={{
@@ -74,7 +74,7 @@ const SignUpForm: React.FC = () => {
 							<div className="mx-4  mr-0.5">
 								<label
 									htmlFor="firstName"
-									className="std-label"
+									className="text-base std-label font-martel"
 								>
 									First Name :
 								</label>
@@ -83,10 +83,10 @@ const SignUpForm: React.FC = () => {
 									name="firstName"
 									type="text"
 									placeholder="First Name"
-									className="std-input"
+									className="std-input font-martel"
 									// validate={validateFirstName}
 								/>
-								<div className="validation-msg">
+								<div className="text-xs text-right validation-msg font-martel">
 									<ErrorMessage
 										className="validation-msg"
 										name="firstName"
@@ -94,7 +94,10 @@ const SignUpForm: React.FC = () => {
 								</div>
 							</div>
 							<div className="mx-4 ">
-								<label htmlFor="lastName" className="std-label">
+								<label
+									htmlFor="lastName"
+									className="text-base std-label font-martel"
+								>
 									Last Name :
 								</label>
 								<Field
@@ -102,15 +105,18 @@ const SignUpForm: React.FC = () => {
 									name="lastName"
 									type="text"
 									placeholder="Last Name"
-									className="std-input"
+									className="std-input font-martel"
 								/>
-								<div className="validation-msg">
+								<div className="text-xs text-right validation-msg font-martel">
 									<ErrorMessage name="lastName" />
 								</div>
 							</div>
 						</div>
 						<div className="mx-4 ">
-							<label htmlFor="emailid" className="std-label">
+							<label
+								htmlFor="emailid"
+								className="text-base std-label font-martel"
+							>
 								Email :
 							</label>
 							<Field
@@ -118,14 +124,17 @@ const SignUpForm: React.FC = () => {
 								name="emailId"
 								type="text"
 								placeholder="Email ID"
-								className="std-input"
+								className="std-input font-martel"
 							/>
-							<div className="validation-msg">
+							<div className="text-xs text-right validation-msg font-martel">
 								<ErrorMessage name="emailId" />
 							</div>
 						</div>
 						<div className="mx-4 ">
-							<label htmlFor="password" className="std-label">
+							<label
+								htmlFor="password"
+								className="text-base std-label font-martel"
+							>
 								Password :
 							</label>
 							<Field
@@ -133,16 +142,16 @@ const SignUpForm: React.FC = () => {
 								name="password"
 								type="password"
 								placeholder="Password"
-								className="std-input"
+								className="std-input font-martel"
 							/>
-							<div className="validation-msg">
+							<div className="text-xs text-right validation-msg font-martel">
 								<ErrorMessage name="password" />
 							</div>
 						</div>
 						<div className="mx-4 ">
 							<label
 								htmlFor="confirmPassword"
-								className="std-label"
+								className="text-base std-label font-martel"
 							>
 								Confirm Password :
 							</label>
@@ -151,9 +160,9 @@ const SignUpForm: React.FC = () => {
 								name="confirmPassword"
 								type="password"
 								placeholder="Confirm Password"
-								className="std-input"
+								className="std-input font-martel"
 							/>
-							<div className="validation-msg">
+							<div className="text-xs text-right validation-msg font-martel">
 								<ErrorMessage name="confirmPassword" />
 							</div>
 						</div>
@@ -169,10 +178,10 @@ const SignUpForm: React.FC = () => {
 						</div>
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
-							<span className="mr-1">
+							<span className="mr-1 font-imFell">
 								Already Have An Account ?
 							</span>
-							<span className="font-bold underline">
+							<span className="font-bold underline font-imFell">
 								<Link to="/signin">Sign In</Link>
 							</span>
 							<br />

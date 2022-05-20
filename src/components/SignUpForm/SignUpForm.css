@@ -4,11 +4,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
 
 .std-input {
-	@apply w-full px-2 py-2 mb-2 mt-0 text-sm h-9 bg-white border-0 rounded shadow outline-none placeholder-light text-greyText focus:outline-none focus:ring;
+	@apply w-full px-2 py-2 mb-2 mt-0 text-sm h-9 bg-white border-0 rounded shadow outline-none placeholder-bgGrey100 text-greyText focus:outline-none focus:ring;
 }
 
 .std-btn {
-	@apply bg-semiDark text-white active:bg-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150;
+	@apply bg-black text-white active:bg-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 font-imFell;
 }
 
 .std-label {
@@ -33,16 +33,16 @@
 }
 
 .formMsgs-success {
-	@apply text-green-600 bg-light;
+	@apply text-green-700 bg-light;
 }
 .formMsgs-fail {
 	@apply text-red-500 bg-light;
 }
 
 .validation-msg {
-	@apply text-red-900 text-sm;
+	@apply text-red-600 text-sm;
 }
 
 .std-icon-wrapper {
-	@apply w-14 h-14 p-1 mx-6 my-3 rounded bg-blue-50 bg-opacity-60;
+	@apply w-14 h-14 p-1 mx-6 my-3 rounded bg-blue-50 bg-opacity-60 hover:animate-scale-reveal;
 }

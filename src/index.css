@@ -2,9 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;600;700;800;900&display=swap");
 
 @layer base {
 	div {
 		@apply duration-[400ms];
 	}
+}
+@layer utilities {
+	.noneed {
+		@apply duration-[0ms];
+	}
+}
+.okok {
+	overflow: auto;
+}
+.button {
+	display: block;
+	background: rgb(0, 0, 0, 0.7);
+	border: 0;
+	top: 0;
+	width: 50px;
+	height: 200px;
+	color: #fff;
+	font-size: 3rem;
+	font-weight: 800;
+	cursor: pointer;
+	outline: none;
+	transition: all 0.7s;
+	user-select: none;
+	:hover {
+		opacity: 0.5;
+	}
+}
+.forward {
+	color: red;
+	right: 0;
+	border-radius: 1.5vw 0 0 1.5vw;
+}
+.menu-btn {
+	width: 70px;
+	height: 70px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger {
+	width: 35px;
+	height: 5px;
+	background: #000;
+	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+	content: "";
+	position: absolute;
+	width: 35px;
+	height: 5px;
+	background: #000;
+	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before {
+	transform: translateY(-10px);
+}
+
+.menu-btn__burger::after {
+	transform: translateY(10px);
+}
+
+.menu-btn.open .menu-btn__burger {
+	transform: translateX(-50px);
+	background: transparent;
+}
+
+.menu-btn.open .menu-btn__burger::before {
+	transform: rotate(45deg) translate(35px, -35px);
+	background: #fff;
+}
+
+.menu-btn.open .menu-btn__burger::after {
+	transform: rotate(-45deg) translate(35px, 35px);
+	background: #fff;
 }
