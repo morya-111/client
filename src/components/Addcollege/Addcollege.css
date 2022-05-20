@@ -1,0 +1,85 @@
+.addcollege-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1.5rem;
+}
+
+.addcollege-heading {
+	margin: 4rem;
+	font-weight: 900;
+	line-height: 4.5rem;
+	font-size: 3.5rem;
+	color: #333;
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.addcollege-form_container {
+	margin: 4rem;
+	background: rgba(168, 168, 168, 0.99);
+	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+	width: 27rem;
+	height: 25rem;
+	border-radius: 1.2rem;
+}
+
+.addcollege-form_heading {
+	padding: 1.5rem;
+	color: #333;
+	font-weight: Bold;
+	font-size: 32px;
+}
+
+.pattern-one {
+	z-index: -1;
+	background: url("/src/assets/addcollege/medium.svg");
+	position: absolute;
+	width: 503px;
+	height: 503px;
+	left: 603px;
+	top: -2px;
+}
+
+.pattern-two {
+	z-index: -1;
+	background: url("/src/assets/addcollege/large.svg");
+	position: absolute;
+	position: absolute;
+	width: 619px;
+	height: 619px;
+	left: 292px;
+	top: 100px;
+}
+
+.pattern-three {
+	z-index: -1;
+	background: url("/src/assets/addcollege/small.svg");
+	position: absolute;
+	width: 323px;
+	height: 323px;
+	left: 1085px;
+	top: 380px;
+}
+
+.addcollege-form_select {
+	position: absolute;
+	width: 368px;
+	height: 59px;
+	left: 865px;
+	top: 427px;
+	border: #333;
+	border-radius: 0.5rem;
+}
+
+.skip-btn {
+	position: absolute;
+	width: 32px;
+	height: 14px;
+	left: 1200px;
+	top: 490px;
+	font-family: "Martel Sans";
+	font-style: normal;
+	font-weight: 900;
+	font-size: 12px;
+	line-height: 136.9%;
+	color: rgba(255, 255, 255, 0.54);
+}

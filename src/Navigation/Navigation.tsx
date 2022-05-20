@@ -7,7 +7,7 @@ import {
 	SignUppage,
 	Catalogue,
 	BookDisplay,
-  About,
+	About,
 	Contact,
 	PrivacyPolicy,
 	CreateBook,
@@ -23,8 +23,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "./NotFound";
 import ServerDown from "./ServerDown";
 import UserProfilePage from "pages/UserProfilePage";
-
 import Loader from "components/Loader";
+import Addcollege from "components/Addcollege";
 
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
@@ -72,6 +72,7 @@ const Navigation = () => {
 				<Route path="/signup" exact component={SignUppage} />
 				<Route path="/signin" exact component={SignInpage} />
 				<Route path="/catalogue" exact component={Catalogue} />
+				<Route path="/addcollege" exact component={Addcollege} />
 
 				<ProtectedRoute
 					path="/book/create"
