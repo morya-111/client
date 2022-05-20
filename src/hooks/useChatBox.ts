@@ -26,7 +26,8 @@ export const useChatBox = ({
 	const { data, fetchNextPage, fetchPreviousPage } = useInfiniteQuery(
 		"getChatHistory",
 		({ pageParam }) => {
-			return getChatHistory(chatWith, currentPage);
+			const orderBy = "+createdDate";
+			return getChatHistory(24, currentPage, orderBy);
 		},
 		{
 			refetchOnWindowFocus: false,
@@ -37,11 +38,7 @@ export const useChatBox = ({
 					data.pages[0].data.data.chats
 				);
 				setChatArr([...history]);
-				setLastPageIndex(data.pages[0].data.data.pagination.pages);
-				if (data.pages[0].data.data.pagination.isNext) {
-					// fetchNextPage();
-					// setCurrentPage(currentPage + 1);
-				}
+				// setLastPageIndex(data.pages[0].data.data.pagination.pages);
 			},
 		}
 	);
@@ -59,7 +56,7 @@ export const useChatBox = ({
 	const sendMessage = (msgBody: string) => {
 		console.log("sendMessage | useChatBox :", chatWith, msgBody);
 		clientSocket.emit("message:send", {
-			to: chatWith === id ? 23 : 22,
+			to: chatWith === id ? 24 : 22,
 			message: msgBody,
 			bookId: bookId,
 		});

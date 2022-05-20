@@ -5,8 +5,13 @@ export const ChatSocketService = {};
 
 export const clientSocket = io("http://localhost:4000", { autoConnect: false });
 
-export const getChatHistory = (userId: number, pageParam: number) => {
+export const getChatHistory = (
+	userId: number,
+	pageParam: number,
+	orderBy: string
+) => {
 	return api.get<any>(`/chats/${userId}`, {
-		params: { page: pageParam },
+		// params: { page: pageParam, order: orderBy },
+		params: { pagination: false, order: orderBy },
 	});
 };
