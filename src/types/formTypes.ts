@@ -1,7 +1,7 @@
 export enum formMsgsTypeEnum {
 	None = "",
-	Success = "formMsgs-success",
-	Fail = "formMsgs-fail",
+	Success = "formMsgs-success font-martel",
+	Fail = "formMsgs-fail font-martel",
 }
 export type FormMessageType = {
 	msg: string;
