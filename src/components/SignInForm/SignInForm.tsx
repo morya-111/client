@@ -86,7 +86,7 @@ const SignInForm: React.FC = () => {
 		return <Redirect exact to="/" />;
 	}
 	return (
-		<div className="signupform-main">
+		<div className="bg-bgGrey100 signupform-main">
 			<OAuthLinks titleText="Sign In to BookEx" />
 			<Formik
 				initialValues={{
@@ -102,7 +102,10 @@ const SignInForm: React.FC = () => {
 					<Form>
 						<div className="flex"></div>
 						<div className="mx-4 ">
-							<label htmlFor="emailid" className="std-label">
+							<label
+								htmlFor="emailid"
+								className="text-base std-label font-martel"
+							>
 								Email :
 							</label>
 							<Field
@@ -110,14 +113,17 @@ const SignInForm: React.FC = () => {
 								name="emailId"
 								type="text"
 								placeholder="Email ID"
-								className="std-input"
+								className="bg-white std-input font-martel"
 							/>
-							<div className="validation-msg">
+							<div className="text-right validation-msg font-martel">
 								<ErrorMessage name="emailId" />
 							</div>
 						</div>
 						<div className="mx-4 ">
-							<label htmlFor="password" className="std-label">
+							<label
+								htmlFor="password"
+								className="text-base std-label font-martel"
+							>
 								Password :
 							</label>
 							<Field
@@ -125,7 +131,7 @@ const SignInForm: React.FC = () => {
 								name="password"
 								type={showPassword ? "text" : "password"}
 								placeholder="Password"
-								className="std-input"
+								className="std-input font-martel"
 							/>
 							<span
 								className="cursor-pointer eye-span"
@@ -133,7 +139,7 @@ const SignInForm: React.FC = () => {
 							>
 								{showPassword ? <FaEye /> : <FaEyeSlash />}
 							</span>
-							<div className=" validation-msg pass-validation-msg">
+							<div className="text-right validation-msg pass-validation-msg font-martel">
 								<ErrorMessage name="password" />
 							</div>
 						</div>
@@ -151,10 +157,10 @@ const SignInForm: React.FC = () => {
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
 
-							<span className="mr-1">
+							<span className="mr-1 font-imFell">
 								Don't Have An Account ?
 							</span>
-							<span className="font-bold underline">
+							<span className="font-bold underline font-imFell">
 								<Link to="/signup">Sign Up</Link>
 							</span>
 							<br />

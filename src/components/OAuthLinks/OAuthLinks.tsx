@@ -14,7 +14,7 @@ type OAuthLinksPropsType = {
 const OAuthLinks: React.FC<OAuthLinksPropsType> = ({ titleText }) => {
 	return (
 		<div className="m-50">
-			<div className="flex justify-center m-auto mt-3 text-xl font-bold">
+			<div className="flex justify-center m-auto mt-3 text-xl font-bold font-imFell">
 				{titleText || "Title Text"}
 			</div>
 			<div className="flex justify-center">
@@ -36,9 +36,11 @@ const OAuthLinks: React.FC<OAuthLinksPropsType> = ({ titleText }) => {
 					{
 						//NOTE: xxxxxxxxxxx are css hacks for horizontal lines
 					}
-					<span className="line-span">xxxxxxxxxxx</span>
-					<span className="">or do it via E-mail</span>
-					<span className="line-span">xxxxxxxxxxx</span>
+					<span className="line-span text-bgGrey50">xxxxxxxxxxx</span>
+					<span className="italic font-imFell">
+						or do it via E-mail
+					</span>
+					<span className="line-span text-bgGrey50">xxxxxxxxxxx</span>
 				</div>
 			</div>
 		</div>
