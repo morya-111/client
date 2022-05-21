@@ -1,0 +1,138 @@
+import Button from "components/Buttons/Button";
+import { useChatBox, ChatMessageType } from "hooks/useChatBox";
+import { UserType } from "pages/Chat/Chat";
+import { useState, useRef, useEffect } from "react";
+import ChatMessage from "./ChatMessage";
+import { IoSend } from "react-icons/io5";
+
+const ChatBox = ({
+	isChatOpen,
+	bookData,
+	root,
+	user,
+}: {
+	isChatOpen: Boolean;
+	bookData: any;
+	user: UserType;
+	root: "BOOKPAGE" | "INBOX";
+}) => {
+	const {
+		chatArr,
+		setChatArr,
+		connectTheSocket,
+		disConnectTheSocket,
+		sendMessage,
+		isLoading,
+	} = useChatBox(
+		{
+			chatWith: bookData.bookUserId,
+			bookId: bookData.bookId,
+		},
+		root
+	);
+	const [inputMsg, setinputMsg] = useState("");
+	const sendMsgRef = useRef<HTMLInputElement>(null);
+	const chatBoxParentRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		console.log("ChatBox | Mounted");
+		connectTheSocket();
+		return () => {
+			console.log("ChatBox | UnMounted");
+			disConnectTheSocket();
+		};
+	}, [connectTheSocket, disConnectTheSocket]);
+
+	useEffect(() => {
+		console.log("chatBoxParentRef | useEffect | Scrolled to Bottom");
+		chatBoxParentRef.current?.scrollTo(
+			0,
+			chatBoxParentRef.current.scrollHeight
+		);
+	}, [chatArr]);
+
+	const renderChats = (chatArr: ChatMessageType[]) => {
+		console.log("render chats called");
+		return chatArr.map((msg: ChatMessageType, index: number) => {
+			return (
+				<ChatMessage
+					key={index}
+					msg={msg.msg}
+					fromSelf={msg.fromSelf}
+					date={msg.timestamp as unknown as string}
+					type={msg.type}
+					user={user}
+				/>
+			);
+		});
+	};
+
+	return (
+		<div>
+			<div
+				ref={chatBoxParentRef}
+				className={`${
+					isChatOpen ? "h-[500px] " : "hidden"
+				} transition flex flex-col overflow-scroll overflow-x-hidden`}
+				style={{ backgroundColor: "#E6E6E6" }}
+			>
+				{renderChats(chatArr)}
+			</div>
+			<form
+				action="none"
+				autoComplete="none"
+				onSubmit={(e) => {
+					e.preventDefault();
+					console.log("FORM SUBMIT");
+				}}
+			>
+				<div className="flex">
+					<div style={{ flex: 90 }}>
+						<input
+							autoComplete="none"
+							ref={sendMsgRef}
+							name="msgInput"
+							type="text"
+							value={inputMsg}
+							onChange={(e) => {
+								setinputMsg(e.currentTarget.value);
+							}}
+							className="p-1 m-1 rounded-lg"
+							style={{ width: "98%", backgroundColor: "#A8A8A8" }}
+							onKeyDown={(event) => {
+								// console.log(event.key, event.code);
+								if (event.key === "Enter") {
+									event.preventDefault();
+									if (inputMsg && inputMsg.length) {
+										sendMessage(inputMsg);
+										setinputMsg("");
+									} else {
+										console.log(
+											"Invalid Input Message | Cant Be Empty"
+										);
+									}
+								}
+							}}
+							onSubmit={(event) => {
+								event.preventDefault();
+								console.log("SUBMIT");
+							}}
+						/>
+					</div>
+					<div
+						onClick={() => {
+							console.log("Button Kicked");
+							sendMessage(inputMsg);
+							setinputMsg("");
+						}}
+						className="flex justify-center w-20 align-middle cursor-pointer"
+						style={{ flex: 10 }}
+					>
+						<IoSend className="self-center" size={30} />
+					</div>
+				</div>
+			</form>
+		</div>
+	);
+};
+export default ChatBox;

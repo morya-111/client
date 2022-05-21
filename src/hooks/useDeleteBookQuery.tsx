@@ -13,6 +13,7 @@ const useDeleteBookQuery = ({
 	const queryFunc = (bookId: number) => {
 		return api.delete(`/books/${bookId}`);
 	};
+
 	const { isSuccess, data, isError, error, status, mutate, reset } =
 		useMutation(
 			() => {

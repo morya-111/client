@@ -12,7 +12,7 @@ const MyProfile: React.FC<React.ComponentPropsWithoutRef<"button">> = ({
 			<img
 				src={avatarUrl}
 				alt="P"
-				className="duration-[300ms] rounded-full bg-light motion-safe:hover:scale-125"
+				className="duration-[300ms] rounded-full bg-light "
 				style={{ height: "40px" }}
 			/>
 		</button>

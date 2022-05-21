@@ -7,6 +7,10 @@ import api from "api";
 import { useParams, useHistory } from "react-router-dom";
 import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
+import MyProfile from "../../components/NavigationBar/MyProfile";
+
+import ChatTab from "components/ChatTab";
+import useAuthData from "hooks/useAuthData";
 
 type ParamType = {
 	id: string;
@@ -53,9 +57,11 @@ type BookResponseType = {
 		};
 	};
 };
+
 const BookDisplay: React.FC = () => {
 	const history = useHistory();
 	const params = useParams<ParamType>();
+	const { email } = useAuthData();
 	const { data, isLoading, status } = useQuery(
 		"fetchABook",
 		() => api.get<BookResponseType>(`/books/${params.id}`),
@@ -99,10 +105,16 @@ const BookDisplay: React.FC = () => {
 			? "Description Not Available 🧐"
 			: data?.data.data.book.description;
 	const userName = data?.data.data.book.user.first_name;
+	const bookUserEmail = data?.data.data.book.user.email;
+
+	const bookDataForChat = {
+		bookId: data?.data.data.book.id,
+		bookUserId: data?.data.data.book.user.id,
+	};
 
 	return (
 		<>
-			<div className="bg-dark">
+			<div className="relative bg-dark">
 				<div className="flex flex-col min-h-screen bg-light">
 					<NavigationBar />
 					{isLoading ? (
@@ -133,7 +145,10 @@ const BookDisplay: React.FC = () => {
 													}
 													className="inline-flex items-center text-sm font-semibold text-dark"
 												>
-													Uploaded by {userName}{" "}
+													Uploaded by{" "}
+													{userName === "Chintu"
+														? "BotUser"
+														: userName}{" "}
 													<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
 													{inHover && (
 														<div className="relative inline-flex items-center px-2 ml-2 text-xs font-normal rounded-sm bg-semiLight md:text-sm text-light ">
@@ -287,6 +302,12 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
+									{isLoggedIn && email !== bookUserEmail ? (
+										<ChatTab
+											bookData={bookDataForChat}
+											user={data?.data.data.book.user!}
+										/>
+									) : null}
 								</div>
 								<div className="">
 									<Footer />

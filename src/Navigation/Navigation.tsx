@@ -25,6 +25,7 @@ import ServerDown from "./ServerDown";
 import UserProfilePage from "pages/UserProfilePage";
 
 import Loader from "components/Loader";
+import Chat from "pages/Chat";
 
 const Navigation = () => {
 	const { authDataDispatch } = React.useContext(AuthDataContext);
@@ -85,8 +86,8 @@ const Navigation = () => {
 				<Route path="/contact" exact component={Contact} />
 				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
 
+				<ProtectedRoute path="/chat" exact component={Chat} />
 				<ProtectedRoute path="/mybooks" exact component={MyBooks} />
-
 				<ProtectedRoute
 					exact
 					path="/myprofile"

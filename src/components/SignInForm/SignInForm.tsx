@@ -67,7 +67,6 @@ const SignInForm: React.FC = () => {
 			},
 			onSuccess: (data) => {
 				console.log(data.data.data.user);
-				authService.logInSuccessful(data.data.data.user);
 				setFormMsg({
 					msg: `Sign In Successful. Redirecting To Home Page...`,
 					type: formMsgsTypeEnum.Success,
