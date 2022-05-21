@@ -45,20 +45,22 @@ module.exports = {
 					"70%": { transform: "scale(1.1)" },
 				},
 				float: {
-					"0%": { transform: "translate(0,  0px)" },
+					"0%": { transform: "translate(0,  0px)"  },
 					"50%": { transform: "translate(0, -15px)" },
 					"100% ": { transform: "translate(0, -0px)" },
 				},
 				float2: {
 					"0%": { transform: "translate(0,  0px)" },
-					"50%": { transform: "translate(0, 15px)" },
+					"50%": { transform: "translate(0, 15px)"},
 					"100% ": { transform: "translate(0, -0px)" },
 				},
+				
 			},
 			animation: {
 				"scale-reveal": "scale 0.5s ease-in-out ",
 				float: "float 3s ease-in-out infinite",
 				float2: "float2 5s ease-in-out infinite",
+			
 			},
 			backgroundImage: {
 				"shelf-bg": "url('assets/about/shelf_bg.png')",

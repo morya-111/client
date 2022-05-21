@@ -3,6 +3,7 @@ import NavigationBar from "components/NavigationBar";
 import { useQuery } from "react-query";
 import { getChatUsers } from "utils/ChatSocketService";
 import ChatBox from "components/ChatTab/ChatBox";
+import Loader from "components/Loader"
 
 type ChatProps = {};
 export type UserType = {
@@ -14,7 +15,7 @@ export type UserType = {
 	role?: string;
 };
 
-const defaultNullUser = {
+export const defaultNullUser = {
 	first_name: "",
 	avatarUrl: "",
 	email: "",
@@ -45,6 +46,7 @@ const Chat: React.FC<ChatProps> = ({}) => {
 	const [chatWithState, setChatWithState] = React.useState({
 		...defaultNullUser,
 	});
+	
 
 	const renderChatList = (chatUsers: any) => {
 		return chatUsers.map((user: any, index: number) => {
@@ -52,8 +54,8 @@ const Chat: React.FC<ChatProps> = ({}) => {
 				<ChatWithUser
 					key={index}
 					chatMetaData={user}
-					chatWithState={chatWithState}
-					setChatWithState={setChatWithState}
+					// chatWithState={chatWithState}
+					activeChatSelector={setChatWithState}
 				/>
 			);
 		});
@@ -85,8 +87,8 @@ const Chat: React.FC<ChatProps> = ({}) => {
 const ChatBoxWrapper = ({ chatMetaData }: { chatMetaData: UserType }) => {
 	return (
 		<div className="w-full bg-white rounded-tr-lg">
-			<div className="w-full border-gray-900 rounded-tr-lg">
-				<div className="p-5 text-2xl border-gray-900 rounded-tr-lg border-b-1 font-imFell">
+			<div className="w-full border-gray-900 rounded-tr-lg border-b-0">
+				<div className="p-5 text-2xl border-gray-900 rounded-tr-lg border-b-2 font-imFell">
 					{chatMetaData.first_name} {chatMetaData.last_name}
 				</div>
 			</div>
@@ -122,36 +124,73 @@ const SelectAMessage = () => {
 	);
 };
 
+
+
+
+
+type RecipientList ={
+	setActiveRecipient: Function
+}
+
+export const RecipientList: React.FC<RecipientList> = ({setActiveRecipient})=>{
+
+	const {data, isLoading} = useQuery(
+		"getRecipientList",
+		() => {
+			return getChatUsers();
+		},
+		{
+			refetchOnWindowFocus: false,
+			retry: false,
+			onSuccess: (data) => {
+				console.log("CHAT USERS", data);
+				// setchatUsers([...data.data.data.users]);
+			},
+		}
+	);
+	
+	if(isLoading) {
+		return <div><Loader/></div>
+	}
+
+	return data?.data.data.users.map((user: any, index: number)=>{
+		return (<ChatWithUser
+		key={index}
+		chatMetaData={user}
+		activeChatSelector={setActiveRecipient}
+	/>)
+	})
+}
+
 type ChatWithUserPropsType = {
 	chatMetaData: UserType;
-	setChatWithState: Function;
-	chatWithState: any;
+	activeChatSelector?: Function
 };
-
+// userful
 const ChatWithUser: React.FC<ChatWithUserPropsType> = ({
 	chatMetaData,
-	setChatWithState,
-	chatWithState,
+	// chatWithState, // ONLY FOR HIGHLIGHTING
+	activeChatSelector,
 }) => {
 	return (
 		<div
 			className={`flex flex-row border-b-2 bg-bgGrey100 ${
-				chatMetaData.id === chatWithState.id ? "bg-gray-300" : ""
+				true ? "bg-gray-300" : ""
 			} border-gray-800 cursor-pointer`}
 			onClick={() => {
-				setChatWithState({
+				// console.log("chatwithuser : onclick", chatMetaData);
+				activeChatSelector!({
 					first_name: chatMetaData.first_name,
 					avatarUrl: chatMetaData.avatarUrl,
 					email: chatMetaData.email,
 					last_name: chatMetaData.last_name,
 					id: chatMetaData.id,
 					role: chatMetaData.role,
-				});
+				})
 			}}
 		>
 			<img
 				src={chatMetaData.avatarUrl}
-				alt="P"
 				className="duration-[300ms] rounded-full bg-light m-2 "
 				style={{ height: "40px" }}
 			/>
@@ -162,5 +201,6 @@ const ChatWithUser: React.FC<ChatWithUserPropsType> = ({
 		</div>
 	);
 };
+
 
 export default Chat;

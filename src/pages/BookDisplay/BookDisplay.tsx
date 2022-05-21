@@ -126,7 +126,7 @@ const BookDisplay: React.FC = () => {
 					) : (
 						<>
 							<section className="bigMonitor:h-[90vh] bg-white body-font h-screen">
-								<div className="container h-[90%] mx-auto pb-10 align-middle min-w-screen bg-bgGrey45">
+								<div className="container h-[90%] pb-10 align-middle min-w-full bg-bgGrey45">
 									<div className="flex flex-wrap px-0 py-3 md:ml-14 md:min-w-screen">
 										<div className="w-full px-2 mb-6 md:w-4/6 md:pr-10 md:py-6 md:mb-0">
 											<div className="relative ">
@@ -151,7 +151,7 @@ const BookDisplay: React.FC = () => {
 													}
 													className="inline-flex items-center text-sm font-semibold text-dark font-martel"
 												>
-													Uploaded by userName{" "}
+													Uploaded by {userName}{" "}
 													<InfoIcon className="inline-flex ml-2 hover:animate-pulse" />
 													{inHover && (
 														<div className="relative inline-flex items-center px-2 ml-2 text-xs font-normal bg-black rounded-sm md:text-sm text-light ">
@@ -304,10 +304,10 @@ const BookDisplay: React.FC = () => {
 											className="hidden object-cover object-center mx-auto mt-4 rounded md:inline-flex md:w-1/5 md:h-1/4"
 											src={data?.data.data.book.image.url}
 										/>
-										<div className="absolute bottom-[70px] right-3 ">
+										<div className="absolute bottom-[67px] right-3 ">
 											{isLoggedIn &&
 											email !== bookUserEmail ? (
-												<ChatTab
+												<ChatTab 
 													bookData={bookDataForChat}
 													user={
 														data?.data.data.book

@@ -44,7 +44,7 @@ const About = () => {
 						>
 							BookEx
 						</NavLink>
-						<div className="absolute bottom-0 bg-light w-[140px] h-[40px]">
+						<div className="absolute bottom-0 bg-bgGrey100 w-[140px] h-[40px]">
 							<div className="absolute bottom-0 left-0 w-[71px] h-[140px] bg-black -skew-y-12 rounded-bl-sm "></div>
 							<div className="absolute bottom-0 right-0 w-[71px] h-[140px] bg-black skew-y-12 rounded-br-sm"></div>
 						</div>
@@ -323,7 +323,7 @@ const About = () => {
 													</a>
 												</div>
 											</div>
-											<div className="flex flex-col items-center w-72 ">
+											<div className="flex flex-col items-center w-52 lg:w-72">
 												<img
 													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
 													src={GsT}
@@ -332,10 +332,57 @@ const About = () => {
 													Gaurav Tajanpure
 												</h1>
 												<p className="text-center text-gray-300 opacity-75">
-													"Reading is a discount
-													ticket to everywhere."
+													Aspiring Web Developer,
+													<br /> likes to Code
+													<br />
+													<b>
+														"Keep exploring"
+													</b>
 												</p>
+												{/* <img
+													src={gilfoyle}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img> */}
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/shreyasg-git"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/shreyas-gangurde-1438981a1/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													<a
+														href="https://twitter.com/shreyasbg28"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.instagram.com/_shreyas_gangurde/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
 											</div>
+											
 										</div>
 									</div>
 								</div>

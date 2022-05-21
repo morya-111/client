@@ -111,7 +111,7 @@ const NavigationBar: React.FC = () => {
 										</NavLink>
 										<NavLink
 											to="/mybooks"
-											className="hidden p-4 mr-2 md:block motion-safe:hover:scale-105 font-[400] font-imFell"
+											className="hidden p-4  md:block motion-safe:hover:scale-105 font-[400] font-imFell"
 											style={(isActive) => ({
 												textDecoration: isActive
 													? "underline"
@@ -193,7 +193,7 @@ const NavigationBar: React.FC = () => {
 					{isPopUpOpen ? (
 						<ProfilePopUp
 							// NOTE: Popup position adjustments
-							className="fixed z-50 mr-16 top-12 lg:right-0 md:right-3 sm:hidden md:flex lg:flex"
+							className="fixed z-50 mr-16 top-12 lg:right-0 md:right-3  md:flex lg:flex"
 							closerFunc={closePopUp}
 						/>
 					) : null}

@@ -18,7 +18,7 @@ const ChatBox = ({
 	const { chatArr, connectTheSocket, disConnectTheSocket, sendMessage } =
 		useChatBox(
 			{
-				chatWith: bookData.bookUserId,
+				chatWith: user.id,
 				bookId: bookData.bookId,
 			},
 			root
@@ -71,7 +71,7 @@ const ChatBox = ({
 				ref={chatBoxParentRef}
 				className={`${
 					isChatOpen ? "h-[400px] max-w-full" : "hidden"
-				} transition flex flex-col justify-end overflow-scroll overflow-x-hidden border-t-2 border-b-2 border-black `}
+				} transition flex flex-col justify-end overflow-scroll overflow-x-hidden border-b-2 border-black `}
 				style={{ backgroundColor: "#E6E6E6" }}
 			>
 				<div

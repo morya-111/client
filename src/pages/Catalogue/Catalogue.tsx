@@ -110,6 +110,7 @@ const Catalogue: React.FC = () => {
 						limit: 40,
 						language__in: selectedLanguages.join(",") || undefined,
 						s: searchTerm || undefined,
+						order : "-id"
 					},
 				}),
 			{
