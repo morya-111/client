@@ -12,11 +12,11 @@ const FormikFieldWithErrMsg: React.FC<props> = ({
 }) => {
 	return (
 		<>
-			<label htmlFor="" className="std-label">
+			<label htmlFor="" className="std-label font-martel">
 				{labelName}
 			</label>
-			<Field className="std-input" {...rest} />
-			<div className="validation-msg">
+			<Field className=" std-input font-martel" {...rest} />
+			<div className="text-right validation-msg font-martel">
 				<ErrorMessage name={rest.name} />
 			</div>
 		</>
