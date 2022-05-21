@@ -1,10 +1,8 @@
 import React from "react";
 import NavigationBar from "components/NavigationBar";
-import singleQuote from "utils/quotes";
 import { useQuery } from "react-query";
-import { ChatSocketService, getChatUsers } from "utils/ChatSocketService";
+import { getChatUsers } from "utils/ChatSocketService";
 import ChatBox from "components/ChatTab/ChatBox";
-import useAuthData from "hooks/useAuthData";
 
 type ChatProps = {};
 export type UserType = {
@@ -26,8 +24,6 @@ const defaultNullUser = {
 };
 
 const Chat: React.FC<ChatProps> = ({}) => {
-	const { id } = useAuthData();
-
 	const [chatUsers, setchatUsers] = React.useState<UserType[]>([
 		{ ...defaultNullUser },
 	]);
@@ -112,12 +108,12 @@ const SelectAMessage = () => {
 			<div className="p-10 text-4xl">
 				Select a message to start a new chapter now...
 			</div>
-			<div className="font-sans text-xl text-right">
+			{/* <div className="font-sans text-xl text-right">
 				{singleQuote.text}
 			</div>
 			<div className="font-sans text-lg text-right">
 				-{singleQuote.author}
-			</div>
+			</div> */}
 		</div>
 	);
 };

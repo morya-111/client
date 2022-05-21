@@ -11,6 +11,7 @@ type ChatMessageProps = {
 	type: "NORMAL" | "EMBEDDED";
 	user: UserType;
 	bookId: number;
+	bookName: string;
 };
 
 const colorsOfThisPage = {
@@ -26,6 +27,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 	type,
 	user,
 	bookId,
+	bookName,
 }) => {
 	const history = useHistory();
 
@@ -93,7 +95,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 			>
 				<div>
 					<div
-						className={`flex cursor-pointer p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white`}
+						className={`flex flex-col cursor-pointer p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white`}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
 						onClick={() => {
 							history.push({
@@ -101,12 +103,18 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 							});
 						}}
 					>
-						{msg
-							.replace(`<<${id}>>`, `${first_name} ${last_name}`)
-							.replace(
-								`<<${user.id}>>`,
-								`${user.first_name} ${user.last_name}`
-							)}
+						<span className="text-xl">Book: {bookName}</span>
+						<span>
+							{msg
+								.replace(
+									`<<${id}>>`,
+									`${first_name} ${last_name}`
+								)
+								.replace(
+									`<<${user.id}>>`,
+									`${user.first_name} ${user.last_name}`
+								)}
+						</span>
 					</div>
 					<div className="pr-2 text-xs font-thin text-right">
 						{moment(dateObj).fromNow()}
@@ -124,7 +132,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 			>
 				<div>
 					<div
-						className={`flex cursor-pointer p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
+						className={`flex flex-col cursor-pointer p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
 						onClick={() => {
 							history.push({
@@ -132,12 +140,18 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 							});
 						}}
 					>
-						{msg
-							.replace(`<<${id}>>`, `${first_name} ${last_name}`)
-							.replace(
-								`<<${user.id}>>`,
-								`${user.first_name} ${user.last_name}`
-							)}
+						<span className="text-xl">Book: {bookName}</span>
+						<span>
+							{msg
+								.replace(
+									`<<${id}>>`,
+									`${first_name} ${last_name}`
+								)
+								.replace(
+									`<<${user.id}>>`,
+									`${user.first_name} ${user.last_name}`
+								)}
+						</span>
 					</div>
 					<div className="pl-2 text-xs font-thin">
 						{moment(dateObj).fromNow()}

@@ -7,8 +7,6 @@ import api from "api";
 import { useParams, useHistory } from "react-router-dom";
 import { ReactComponent as InfoIcon } from "assets/common/info-icon.svg";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
-import MyProfile from "../../components/NavigationBar/MyProfile";
-
 import ChatTab from "components/ChatTab";
 import useAuthData from "hooks/useAuthData";
 

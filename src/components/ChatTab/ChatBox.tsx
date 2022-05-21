@@ -1,4 +1,3 @@
-import Button from "components/Buttons/Button";
 import { useChatBox, ChatMessageType } from "hooks/useChatBox";
 import { UserType } from "pages/Chat/Chat";
 import { useState, useRef, useEffect } from "react";
@@ -16,20 +15,14 @@ const ChatBox = ({
 	user: UserType;
 	root: "BOOKPAGE" | "INBOX";
 }) => {
-	const {
-		chatArr,
-		setChatArr,
-		connectTheSocket,
-		disConnectTheSocket,
-		sendMessage,
-		isLoading,
-	} = useChatBox(
-		{
-			chatWith: bookData.bookUserId,
-			bookId: bookData.bookId,
-		},
-		root
-	);
+	const { chatArr, connectTheSocket, disConnectTheSocket, sendMessage } =
+		useChatBox(
+			{
+				chatWith: bookData.bookUserId,
+				bookId: bookData.bookId,
+			},
+			root
+		);
 	const [inputMsg, setinputMsg] = useState("");
 	const sendMsgRef = useRef<HTMLInputElement>(null);
 	const chatBoxParentRef = useRef<HTMLDivElement>(null);
@@ -63,6 +56,7 @@ const ChatBox = ({
 					type={msg.type}
 					user={user}
 					bookId={msg.bookId!}
+					bookName={msg.bookName!}
 				/>
 			);
 		});

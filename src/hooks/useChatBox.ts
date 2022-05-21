@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
-import { io } from "socket.io-client";
+import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { clientSocket, getChatHistory } from "utils/ChatSocketService";
 import useAuthData from "./useAuthData";
 export type ChatMessageType = {
@@ -9,6 +8,7 @@ export type ChatMessageType = {
 	fromSelf: boolean;
 	type: "NORMAL" | "EMBEDDED";
 	bookId?: number;
+	bookName?: string;
 };
 
 export const useChatBox = (
@@ -23,7 +23,6 @@ export const useChatBox = (
 ) => {
 	const { id } = useAuthData();
 	const [chatArr, setChatArr] = useState<ChatMessageType[]>([]);
-	const [currentPage, setCurrentPage] = useState<number>(1);
 
 	// const { data, fetchNextPage, fetchPreviousPage } = useInfiniteQuery(
 	// 	"getChatHistory",
@@ -47,7 +46,7 @@ export const useChatBox = (
 	// 		},
 	// 	}
 	// );
-	const { data, isLoading } = useQuery(
+	const { isLoading } = useQuery(
 		["getChatHistory", id, chatWith, root],
 		() => {
 			const orderBy = "+createdDate";
@@ -107,6 +106,7 @@ export const useChatBox = (
 					fromSelf: msg.sender.id === id,
 					type: msg.type,
 					bookId: msg.book ? msg.book.id : null,
+					bookName: msg.book ? msg.book.name : null,
 				});
 			});
 			return result;
