@@ -66,17 +66,26 @@ const ChatBox = ({
 			);
 		});
 	};
+	useEffect(() => {
+		document.getElementById("chatbox")?.scrollTo({ top: 10000000 });
+	});
 
 	return (
 		<div>
 			<div
 				ref={chatBoxParentRef}
 				className={`${
-					isChatOpen ? "h-[500px] " : "hidden"
-				} transition flex flex-col overflow-scroll overflow-x-hidden`}
+					isChatOpen ? "h-[400px] max-w-full" : "hidden"
+				} transition flex flex-col justify-end overflow-scroll overflow-x-hidden border-t-2 border-b-2 border-black `}
 				style={{ backgroundColor: "#E6E6E6" }}
 			>
-				{renderChats(chatArr)}
+				<div
+					className="flex flex-col px-2 my-2 overflow-auto"
+					id="chatbox"
+				>
+					{" "}
+					{renderChats(chatArr)}
+				</div>
 			</div>
 			<form
 				action="none"

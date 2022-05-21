@@ -20,18 +20,30 @@ const ChatTab: React.FC<ChatBoxProps> = ({ bookData, user }) => {
 	const { id } = useAuthData();
 
 	return (
-		<div className="fixed bottom-0 right-0 z-50 mr-0.5 rounded-t-lg shadow-lg border-2 border-black border-b-0 bg-white 	">
-			<div className="flex justify-between align-center min-w-[400px] rounded-t-lg ">
-				<div className="flex pt-1 pl-3 font-medium text-center align-middle">
+		<div
+			className={
+				isChatOpen
+					? "z-50 mr-0.5 rounded-t-lg shadow-lg border-2 border-black border-b-0 bg-white h-[474px] max-w-[400px]"
+					: "z-50 mr-0.5 rounded-t-lg shadow-lg border-2 border-black border-b-0 bg-white h-[40px] max-w-[400px]"
+			}
+		>
+			<div
+				className="flex justify-between align-center min-w-[400px] rounded-t-lg hover:cursor-pointer"
+				onClick={() => {
+					setIsChatOpen(!isChatOpen);
+				}}
+			>
+				<div className="flex pt-1 pl-3 text-lg font-medium text-center align-middle font-imFell">
 					{`${user.first_name} ${user.last_name}`}
 				</div>
-				<div
-					className="hover:cursor-pointer"
-					onClick={() => {
-						setIsChatOpen(!isChatOpen);
-					}}
-				>
-					{isChatOpen ? <ChatIconDown /> : <ChatIconUp />}
+				<div>
+					<ChatIconUp
+						className={
+							isChatOpen
+								? "rotate-180 h-full mr-2"
+								: "rotate-0 h-full mr-2"
+						}
+					/>
 				</div>
 			</div>
 			{isChatOpen ? (
