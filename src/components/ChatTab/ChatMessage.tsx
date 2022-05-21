@@ -104,8 +104,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 							});
 						}}
 					>
-						<span className="text-xl">Book: {bookName}</span>
-						<span>
+						<span className="text-lg font-martel">
+							Book: {bookName}
+						</span>
+						<span className="text-sm font-martel">
 							{msg
 								.replace(
 									`<<${id}>>`,
@@ -142,8 +144,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 							});
 						}}
 					>
-						<span className="text-xl">Book: {bookName}</span>
-						<span>
+						<span className="text-lg font-martel">
+							Book: {bookName}
+						</span>
+						<span className="text-sm font-martel">
 							{msg
 								.replace(
 									`<<${id}>>`,

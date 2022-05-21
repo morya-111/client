@@ -6,12 +6,12 @@ import { NavLink } from "react-router-dom";
 const Contact = () => {
 	return (
 		<>
-			<div className="h-screen bg-light">
+			<div className="h-screen bg-bgGrey45 font-martel">
 				<NavigationBar />
 				<div className="relative mt-10 text-gray-600 h-max body-font">
 					<div className="container px-5 mx-auto ">
 						<div className="flex flex-col w-full mb-12 text-center">
-							<h1 className="mb-1 text-2xl font-bold text-gray-900 sm:text-4xl title-font">
+							<h1 className="mb-1 text-2xl font-bold text-gray-900 sm:text-4xl title-font font-imFell">
 								Contact Us
 							</h1>
 							<p className="mx-auto text-base leading-relaxed lg:w-2/3">
@@ -61,7 +61,7 @@ const Contact = () => {
 								<div className="w-full p-2">
 									<div className="flex flex-row justify-center md:mr-6 md:justify-end">
 										<NavLink to="/">
-											<button className="flex px-8 py-2 mx-auto mb-10 text-lg text-white border-0 rounded bg-semiDark focus:outline-none hover:bg-semiLight drop-shadow-lg">
+											<button className="flex px-8 py-2 mx-auto mb-10 text-lg text-white bg-black border-0 rounded font-imFell focus:outline-none hover:bg-opacity-70 drop-shadow-lg">
 												Submit
 											</button>
 										</NavLink>

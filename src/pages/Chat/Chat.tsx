@@ -64,8 +64,8 @@ const Chat: React.FC<ChatProps> = ({}) => {
 			<div>
 				<NavigationBar />
 			</div>
-			<div className="flex flex-row self-center h-full max-w-6xl m-5">
-				<div className="border-2 border-gray-900 rounded-tl-lg rounded-bl-lg w-96">
+			<div className="flex flex-row self-center max-w-6xl max-h-full m-5 bg-white rounded-tl-lg rounded-tr-lg rounded-bl-lg rounded-br-xl min-w-max">
+				<div className="border-2 border-gray-900 rounded-tl-lg rounded-bl-lg bg-bgGrey32 w-96">
 					<div className="p-5 text-2xl bg-white border-b-2 border-gray-900 rounded-tl-lg font-imFell">
 						Messages
 					</div>
@@ -84,9 +84,9 @@ const Chat: React.FC<ChatProps> = ({}) => {
 };
 const ChatBoxWrapper = ({ chatMetaData }: { chatMetaData: UserType }) => {
 	return (
-		<div className="w-full bg-white">
-			<div className="w-full border-gray-900">
-				<div className="p-5 text-2xl border-b-2 border-gray-900">
+		<div className="w-full bg-white rounded-tr-lg">
+			<div className="w-full border-gray-900 rounded-tr-lg">
+				<div className="p-5 text-2xl border-gray-900 rounded-tr-lg border-b-1 font-imFell">
 					{chatMetaData.first_name} {chatMetaData.last_name}
 				</div>
 			</div>
@@ -104,16 +104,20 @@ const ChatBoxWrapper = ({ chatMetaData }: { chatMetaData: UserType }) => {
 
 const SelectAMessage = () => {
 	return (
-		<div className="w-full p-5">
-			<div className="p-10 text-4xl">
-				Select a message to start a new chapter now...
+		<div className="w-full p-5 mt-10">
+			<div className="p-10 text-4xl font-imFell">
+				Select a message to start a <br /> new chapter now...
 			</div>
-			{/* <div className="font-sans text-xl text-right">
-				{singleQuote.text}
+			<div
+				style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}
+				className="flex justify-end w-full pr-4 text-2xl italic text-center font-imFell mb-60"
+			>
+				“Reading is a conversation
+				<br />
+				All books talk.
+				<br />
+				But a good book listens as well”
 			</div>
-			<div className="font-sans text-lg text-right">
-				-{singleQuote.author}
-			</div> */}
 		</div>
 	);
 };
@@ -131,7 +135,7 @@ const ChatWithUser: React.FC<ChatWithUserPropsType> = ({
 }) => {
 	return (
 		<div
-			className={`flex flex-row border-b-2  ${
+			className={`flex flex-row border-b-2 bg-bgGrey100 ${
 				chatMetaData.id === chatWithState.id ? "bg-gray-300" : ""
 			} border-gray-800 cursor-pointer`}
 			onClick={() => {
@@ -151,7 +155,7 @@ const ChatWithUser: React.FC<ChatWithUserPropsType> = ({
 				className="duration-[300ms] rounded-full bg-light m-2 "
 				style={{ height: "40px" }}
 			/>
-			<div className="flex flex-col justify-center ">
+			<div className="flex flex-col justify-center font-imFell">
 				<div>{`${chatMetaData.first_name} ${chatMetaData.last_name}`}</div>
 			</div>
 			<div className="flex flex-col justify-end"></div>

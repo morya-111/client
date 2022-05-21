@@ -6,7 +6,7 @@ import { ScrollToBottom } from "components/Scroll";
 const PrivacyPolicy = () => {
 	return (
 		<>
-			<div className="min-h-screen bg-light">
+			<div className="min-h-screen bg-bgGrey45 font-martel">
 				<NavigationBar />
 
 				<div className="flex flex-col mx-10 sm:mx-20 md:mx-40">
@@ -322,7 +322,7 @@ const PrivacyPolicy = () => {
 				<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
 					<ScrollToTop />
 				</div>
-				<div className="w-full h-10 mt-4 bg-semiDark"></div>
+				<div className="w-full h-10 mt-4 bg-black"></div>
 				<div className="fixed bottom-0 right-0 z-30 mb-12 mr-6">
 					<ScrollToBottom />
 				</div>

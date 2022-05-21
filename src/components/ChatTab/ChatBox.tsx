@@ -90,7 +90,7 @@ const ChatBox = ({
 					console.log("FORM SUBMIT");
 				}}
 			>
-				<div className="flex">
+				<div className="flex rounded-br-xl ">
 					<div style={{ flex: 90 }}>
 						<input
 							autoComplete="none"
@@ -101,7 +101,7 @@ const ChatBox = ({
 							onChange={(e) => {
 								setinputMsg(e.currentTarget.value);
 							}}
-							className="p-1 m-1 rounded-lg"
+							className="p-1 m-1 my-2 rounded-lg "
 							style={{ width: "98%", backgroundColor: "#A8A8A8" }}
 							onKeyDown={(event) => {
 								// console.log(event.key, event.code);
@@ -129,7 +129,7 @@ const ChatBox = ({
 							sendMessage(inputMsg);
 							setinputMsg("");
 						}}
-						className="flex justify-center w-20 align-middle cursor-pointer"
+						className="flex justify-center w-20 align-middle cursor-pointer "
 						style={{ flex: 10 }}
 					>
 						<IoSend className="self-center" size={30} />
