@@ -1,6 +1,7 @@
 import useAuthData from "hooks/useAuthData";
 import moment from "moment";
 import { UserType } from "pages/Chat/Chat";
+import { useHistory } from "react-router-dom";
 
 type ChatMessageProps = {
 	msg: string;
@@ -9,6 +10,7 @@ type ChatMessageProps = {
 	time?: Date;
 	type: "NORMAL" | "EMBEDDED";
 	user: UserType;
+	bookId: number;
 };
 
 const colorsOfThisPage = {
@@ -23,7 +25,12 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 	date,
 	type,
 	user,
+	bookId,
 }) => {
+	const history = useHistory();
+
+	// console.log(bookId);
+
 	const { first_name, last_name, id } = useAuthData();
 
 	const dateObj = new Date(date || "");
@@ -86,8 +93,13 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 			>
 				<div>
 					<div
-						className={`flex p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white`}
+						className={`flex cursor-pointer p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white`}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
+						onClick={() => {
+							history.push({
+								pathname: `/books/${bookId}`,
+							});
+						}}
 					>
 						{msg
 							.replace(`<<${id}>>`, `${first_name} ${last_name}`)
@@ -112,8 +124,13 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 			>
 				<div>
 					<div
-						className={`flex p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
+						className={`flex cursor-pointer p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
+						onClick={() => {
+							history.push({
+								pathname: `/books/${bookId}`,
+							});
+						}}
 					>
 						{msg
 							.replace(`<<${id}>>`, `${first_name} ${last_name}`)

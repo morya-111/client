@@ -8,6 +8,7 @@ export type ChatMessageType = {
 	timestamp: Date;
 	fromSelf: boolean;
 	type: "NORMAL" | "EMBEDDED";
+	bookId?: number;
 };
 
 export const useChatBox = (
@@ -105,6 +106,7 @@ export const useChatBox = (
 					timestamp: msg.createdDate,
 					fromSelf: msg.sender.id === id,
 					type: msg.type,
+					bookId: msg.book ? msg.book.id : null,
 				});
 			});
 			return result;

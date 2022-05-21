@@ -62,6 +62,7 @@ const ChatBox = ({
 					date={msg.timestamp as unknown as string}
 					type={msg.type}
 					user={user}
+					bookId={msg.bookId!}
 				/>
 			);
 		});

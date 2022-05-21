@@ -112,6 +112,8 @@ const BookDisplay: React.FC = () => {
 		bookUserId: data?.data.data.book.user.id,
 	};
 
+	console.log(">>>>>>>>>>>>>>>>>>>>>>", bookDataForChat.bookId);
+
 	return (
 		<>
 			<div className="relative bg-dark">
