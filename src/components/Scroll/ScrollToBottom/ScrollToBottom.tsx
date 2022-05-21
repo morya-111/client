@@ -19,15 +19,16 @@ const ScrollToBottom = () => {
 	const [inHover, setHover] = useState(false);
 	return (
 		<div
+			onClick={scrollToBottom}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
-			className="flex flex-col items-center w-16 animate-bounce"
+			className="flex flex-col items-center w-16 cursor-pointer hover:animate-scale-reveal"
 		>
 			<button
-				onClick={scrollToBottom}
+				style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.53)" }}
 				className={classNames(
 					isVisible
-						? "block  bg-opacity-60 p-1  bg-semiLight "
+						? "block  bg-opacity-60 p-1  bg-bgGrey100 "
 						: "hidden"
 				)}
 			>

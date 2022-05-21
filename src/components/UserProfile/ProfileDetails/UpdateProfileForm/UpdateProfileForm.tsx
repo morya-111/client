@@ -112,7 +112,11 @@ const UpdateProfileForm: React.FC = () => {
 		} else if (checkIfFormChanged(formValues)) {
 			return (
 				<div>
-					<Button type="submit" value="Save Changes"></Button>
+					<Button
+						color="black"
+						type="submit"
+						value="Save Changes"
+					></Button>
 				</div>
 			);
 		}
@@ -228,18 +232,23 @@ const UpdateProfileForm: React.FC = () => {
 							</div>
 							{checkIfFormChanged(values) ? null : (
 								<div className="flex mt-2 ml-4 text-xl font-semibold ">
-									<div className={formMsg.type}>
+									<div
+										className={formMsg.type}
+										style={{
+											backgroundColor:
+												"rgba(168, 168, 168, 0)",
+										}}
+									>
 										{formMsg.msg}
 									</div>
 								</div>
 							)}
+							<div className="m-4">
+								<DeleteAccountBtn />
+							</div>
 						</Form>
 					)}
 				</Formik>
-
-				<div className="m-4">
-					<DeleteAccountBtn />
-				</div>
 			</div>
 		</div>
 	);

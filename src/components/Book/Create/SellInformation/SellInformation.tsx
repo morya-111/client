@@ -13,7 +13,9 @@ const SellInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 			style={{ borderTopWidth: "1px" }}
 			className="mt-2 border-opacity-50 border-dark"
 		>
-			<div className="mt-2 text-lg text-dark">Sell Information</div>
+			<div className="mt-2 text-lg text-dark font-martel">
+				Sell Information
+			</div>
 			<div className="flex ">
 				<div>
 					<TextInput
@@ -24,7 +26,7 @@ const SellInformation: React.FC<{ disabled: boolean }> = ({ disabled }) => {
 						type="number"
 						left={
 							<FaRupeeSign
-								size={20}
+								size={18}
 								className="mb-3 ml-2 text-dark "
 							/>
 						}

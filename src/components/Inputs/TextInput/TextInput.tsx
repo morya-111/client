@@ -30,12 +30,12 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 	return (
 		<div className="relative flex flex-col w-full group h-[35px]">
 			{label && (
-				<span className="mb-1 ml-1 text-[#4E4E4E] text-sm font-bold text-opacity-80 group-focus-within:text-opacity-100">
+				<span className="mb-1 ml-1 text-[#4E4E4E] text-xs font-bold text-opacity-80 group-focus-within:text-opacity-100 font-martel">
 					{label}
 					{rest.required && <span>*</span>}
 				</span>
 			)}
-			<div className="absolute top-9">{left}</div>
+			<div className="absolute top-[78%]">{left}</div>
 			<input
 				placeholder={placeholder}
 				style={{ height: "35px", width: "100%" }}
@@ -46,7 +46,9 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 			/>{" "}
 			<div className="absolute right-2 top-10">{right}</div>
 			{isError && (
-				<span className="ml-1 text-sm text-red-600 ">{meta.error}</span>
+				<span className="ml-1 text-sm text-right text-red-600">
+					{meta.error}
+				</span>
 			)}
 		</div>
 	);

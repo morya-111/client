@@ -32,7 +32,7 @@ const DeleteAccountBtn: React.FC = () => {
 		<div>
 			<Button
 				value="Delete Account"
-				color="error"
+				color="error-black"
 				onClick={handleClick}
 				right={
 					delAccMutation.isLoading ? (

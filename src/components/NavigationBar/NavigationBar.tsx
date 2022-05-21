@@ -97,7 +97,7 @@ const NavigationBar: React.FC = () => {
 						{isLoggedIn ? (
 							<>
 								<>
-									<div className="flex flex-row items-center justify-center mr-20">
+									<div className="flex flex-row items-center justify-center mr-4 md:mr-20">
 										<NavLink
 											to="/catalogue"
 											className="hidden p-4 motion-safe:hover:scale-105 md:block font-[400] font-imFell"
@@ -193,7 +193,7 @@ const NavigationBar: React.FC = () => {
 					{isPopUpOpen ? (
 						<ProfilePopUp
 							// NOTE: Popup position adjustments
-							className="fixed z-50 mr-16 top-12 lg:right-12 md:right-3 sm:hidden md:flex lg:flex"
+							className="fixed z-50 mr-16 top-12 lg:right-0 md:right-3 sm:hidden md:flex lg:flex"
 							closerFunc={closePopUp}
 						/>
 					) : null}
