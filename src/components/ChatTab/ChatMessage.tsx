@@ -51,9 +51,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 				}`}
 				style={{ backgroundColor: colorsOfThisPage.stdChatboxBG }}
 			>
-				<div>
+				<div className="max-w-xs">
 					<div
-						className={`flex p-2 w-auto max-w-xl m-1 rounded-lg rounded-br-none bg-gray-700 w-100 `}
+						className={`flex p-2 w-auto max-w-xl m-1 rounded-lg rounded-br-none bg-gray-700 w-100 font-martel`}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG }}
 					>
 						{msg}
@@ -72,9 +72,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 				}`}
 				style={{ backgroundColor: colorsOfThisPage.stdChatboxBG }}
 			>
-				<div>
+				<div className="max-w-xs">
 					<div
-						className={`flex p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-700 w-100 `}
+						className={`flex p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-700 w-100 font-martel`}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG }}
 					>
 						{msg}
@@ -93,9 +93,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 				}`}
 				style={{ backgroundColor: colorsOfThisPage.stdChatboxBG }}
 			>
-				<div>
+				<div className="max-w-xs">
 					<div
-						className={`flex flex-col cursor-pointer p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white`}
+						className={`flex flex-col cursor-pointer p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white font-martel`}
+						// className={`flex p-2 w-auto m-1  max-w-xl rounded-lg rounded-br-none bg-gray-900 w-100 text-white `}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
 						onClick={() => {
 							history.push({
@@ -130,9 +131,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 				}`}
 				style={{ backgroundColor: colorsOfThisPage.stdChatboxBG }}
 			>
-				<div>
+				<div className="max-w-xs">
 					<div
-						className={`flex flex-col cursor-pointer p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
+						// className={`flex  p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white `}
+						className={`flex  flex-col cursor-pointer p-2 w-auto m-1 max-w-xl rounded-lg rounded-bl-none bg-gray-900  text-white font-martel`}
 						style={{ backgroundColor: colorsOfThisPage.stdMsgBG2 }}
 						onClick={() => {
 							history.push({

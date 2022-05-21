@@ -60,18 +60,18 @@ const Chat: React.FC<ChatProps> = ({}) => {
 	};
 
 	return (
-		<div className="flex flex-col ">
+		<div className="flex flex-col h-screen bg-bgGrey45">
 			<div>
 				<NavigationBar />
 			</div>
-			<div className="flex flex-row self-center max-w-6xl m-5">
+			<div className="flex flex-row self-center h-full max-w-6xl m-5">
 				<div className="border-2 border-gray-900 rounded-tl-lg rounded-bl-lg w-96">
-					<div className="p-5 text-2xl border-b-2 border-gray-900">
+					<div className="p-5 text-2xl bg-white border-b-2 border-gray-900 rounded-tl-lg font-imFell">
 						Messages
 					</div>
 					<div>{renderChatList(chatUsers)}</div>
 				</div>
-				<div className="w-full border-2 border-l-0 border-gray-900 rounded-tr-lg rounded-br-lg">
+				<div className="w-full bg-white border-2 border-l-0 border-gray-900 rounded-tr-lg rounded-br-lg">
 					{chatWithState.first_name ? (
 						<ChatBoxWrapper chatMetaData={chatWithState} />
 					) : (
@@ -84,7 +84,7 @@ const Chat: React.FC<ChatProps> = ({}) => {
 };
 const ChatBoxWrapper = ({ chatMetaData }: { chatMetaData: UserType }) => {
 	return (
-		<div className="w-full ">
+		<div className="w-full bg-white">
 			<div className="w-full border-gray-900">
 				<div className="p-5 text-2xl border-b-2 border-gray-900">
 					{chatMetaData.first_name} {chatMetaData.last_name}
@@ -131,7 +131,7 @@ const ChatWithUser: React.FC<ChatWithUserPropsType> = ({
 }) => {
 	return (
 		<div
-			className={`flex flex-row border-b-2 ${
+			className={`flex flex-row border-b-2  ${
 				chatMetaData.id === chatWithState.id ? "bg-gray-300" : ""
 			} border-gray-800 cursor-pointer`}
 			onClick={() => {
