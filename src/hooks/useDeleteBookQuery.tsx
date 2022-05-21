@@ -18,6 +18,7 @@ const useDeleteBookQuery = ({
 			return queryFunc(bookId);
 		},
 		{
+			mutationKey: "yooooo",
 			onSuccess: () => {
 				onSuccess();
 			},

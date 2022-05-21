@@ -120,6 +120,17 @@ const NavigationBar: React.FC = () => {
 										>
 											My Books
 										</NavLink>
+										<NavLink
+											to="/chat"
+											className="hidden p-4 mr-2 md:block motion-safe:hover:scale-105 font-[400] font-imFell"
+											style={(isActive) => ({
+												textDecoration: isActive
+													? "underline"
+													: "none",
+											})}
+										>
+											Inbox
+										</NavLink>
 
 										<MyProfile onClick={openPopUp} />
 									</div>

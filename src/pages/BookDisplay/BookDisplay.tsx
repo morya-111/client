@@ -302,9 +302,11 @@ const BookDisplay: React.FC = () => {
 											src={data?.data.data.book.image.url}
 										/>
 									</div>
-									{isLoggedIn ? (
-										// && email !== bookUserEmail
-										<ChatTab bookData={bookDataForChat} />
+									{isLoggedIn && email !== bookUserEmail ? (
+										<ChatTab
+											bookData={bookDataForChat}
+											user={data?.data.data.book.user!}
+										/>
 									) : null}
 								</div>
 								<div className="">

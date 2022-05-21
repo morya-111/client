@@ -10,55 +10,87 @@ export type ChatMessageType = {
 	type: "NORMAL" | "EMBEDDED";
 };
 
-export const useChatBox = ({
-	chatWith,
-	bookId = -1,
-}: {
-	chatWith: number;
-	bookId?: number;
-}) => {
+export const useChatBox = (
+	{
+		chatWith,
+		bookId = -1,
+	}: {
+		chatWith: number;
+		bookId?: number;
+	},
+	root: "BOOKPAGE" | "INBOX"
+) => {
 	const { id } = useAuthData();
-	const timestamp = new Date();
 	const [chatArr, setChatArr] = useState<ChatMessageType[]>([]);
-	const [lastPageIndex, setLastPageIndex] = useState(8);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 
-	const { data, fetchNextPage, fetchPreviousPage } = useInfiniteQuery(
-		"getChatHistory",
-		({ pageParam }) => {
+	// const { data, fetchNextPage, fetchPreviousPage } = useInfiniteQuery(
+	// 	"getChatHistory",
+	// 	({ pageParam }) => {
+	// 		const orderBy = "+createdDate";
+	// 		return getChatHistory(chatWith, 0, orderBy);
+	// 	},
+	// 	{
+	// 		refetchOnWindowFocus: false,
+	// 		retry: false,
+	// 		onSuccess: (data) => {
+	// 			console.log("CHAT HISTORY DATA: ", data);
+	// 			const history = transformPayloadToMesssage(
+	// 				data.pages[0].data.data.chats
+	// 			);
+	// 			setChatArr([...history]);
+	// 			// setLastPageIndex(data.pages[0].data.data.pagination.pages);
+	// 		},
+	// 		onError: (error) => {
+	// 			console.log("FETCH CHAT HISTORY ERROR");
+	// 		},
+	// 	}
+	// );
+	const { data, isLoading } = useQuery(
+		["getChatHistory", id, chatWith, root],
+		() => {
 			const orderBy = "+createdDate";
-			return getChatHistory(24, currentPage, orderBy);
+			return getChatHistory(chatWith, orderBy);
 		},
 		{
-			refetchOnWindowFocus: false,
+			refetchOnWindowFocus: true,
 			retry: false,
 			onSuccess: (data) => {
 				console.log("CHAT HISTORY DATA: ", data);
 				const history = transformPayloadToMesssage(
-					data.pages[0].data.data.chats
+					data.data.data.chats
 				);
 				setChatArr([...history]);
 				// setLastPageIndex(data.pages[0].data.data.pagination.pages);
 			},
+			onError: (error) => {
+				console.log("FETCH CHAT HISTORY ERROR");
+			},
+			refetchOnMount: "always",
 		}
 	);
 
-	const connectTheSocket = () => {
+	const connectTheSocket = useCallback(() => {
 		console.log("connectTheSocket | useChatBox :", id);
 		clientSocket.auth = { userId: id };
 		clientSocket.connect();
-	};
-	const disConnectTheSocket = () => {
-		console.log("DISconnectTheSocket | useChatBox :");
+	}, [id]);
+
+	const disConnectTheSocket = useCallback(() => {
+		console.log("DISconnectTheSocket | useChatBox :", id);
 		clientSocket.disconnect();
-	};
+	}, [id]);
 
 	const sendMessage = (msgBody: string) => {
+		if (msgBody.length === 0) {
+			return;
+		}
 		console.log("sendMessage | useChatBox :", chatWith, msgBody);
 		clientSocket.emit("message:send", {
-			to: chatWith === id ? 24 : 22,
+			to: chatWith,
 			message: msgBody,
-			bookId: bookId,
+			bookId: bookId === -1 ? undefined : bookId,
+			// bookId: 617,
 		});
 	};
 
@@ -66,6 +98,8 @@ export const useChatBox = ({
 		(payload: any) => {
 			let result: ChatMessageType[] = [];
 			payload.forEach((msg: any) => {
+				console.log("sender returned is ", msg.sender.id, id);
+
 				result.push({
 					msg: msg.message,
 					timestamp: msg.createdDate,
@@ -90,7 +124,7 @@ export const useChatBox = ({
 		return () => {
 			clientSocket.removeAllListeners();
 		};
-	}, [chatArr, id, transformPayloadToMesssage]);
+	}, [chatArr, id, transformPayloadToMesssage, root]);
 
 	return {
 		chatArr,
@@ -98,5 +132,6 @@ export const useChatBox = ({
 		connectTheSocket,
 		disConnectTheSocket,
 		sendMessage,
+		isLoading,
 	};
 };
