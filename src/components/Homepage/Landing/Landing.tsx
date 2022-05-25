@@ -1,9 +1,5 @@
 import React, { useMemo, useState } from "react";
 import NavigationBar from "components/NavigationBar/NavigationBar";
-import { ReactComponent as HeroImg } from "assets/homepage/homepage-img.svg";
-import Third from "assets/homepage/WCIDH-1.png";
-import First from "assets/homepage/WCIDH-2.png";
-import Second from "assets/homepage/WCIDH-3.png";
 import Footer from "components/Footer";
 import { NavLink, Link } from "react-router-dom";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
@@ -14,7 +10,7 @@ import { useHistory, useLocation } from "react-router";
 import { parse, stringify } from "query-string";
 import api from "api";
 import Loader from "components/Loader";
-import {BsArrowDown} from "react-icons/bs";
+import { BsArrowDown } from "react-icons/bs";
 
 //new
 import NewHeroImg from "assets/2.0/landinghero.png";
@@ -260,7 +256,7 @@ const Landing = () => {
 								</h1>
 							</div>
 						</div>
-						<div className="relative hidden mdsemi:flex items-center justify-center">
+						<div className="relative items-center justify-center hidden mdsemi:flex">
 							<h1
 								onClick={() => {
 									setLimit(limit + 54);
@@ -269,7 +265,9 @@ const Landing = () => {
 							>
 								“Wear the old coat and buy the new book.”
 							</h1>
-							<div className="absolute right-0 animate-float3" ><BsArrowDown size={30}/></div>
+							<div className="absolute right-0 animate-float3">
+								<BsArrowDown size={30} />
+							</div>
 						</div>
 					</div>
 
