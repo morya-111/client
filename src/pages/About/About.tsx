@@ -31,16 +31,22 @@ const About = () => {
 			<div
 				onMouseEnter={() => setHover(false)}
 				onMouseLeave={() => setHover(true)}
-				className="min-h-screen overflow-x-hidden bg-light"
+				className="min-h-screen overflow-x-hidden bg-bgGrey100"
 			>
 				<div className="relative w-full h-[600px] 2xl:h-screen ">
-					<div className="absolute bg-dark w-[140px] h-[500px] ml-3 md:ml-14 z-50">
+					<div className="absolute bg-black w-[140px] h-[500px] ml-3 md:ml-14 z-50">
 						<NavLink to="/">
-							<LogoLight className="w-auto h-24 p-2" />
+							{/* <LogoLight className="w-auto h-24 p-2" /> */}
 						</NavLink>
-						<div className="absolute bottom-0 bg-light w-[140px] h-[40px]">
-							<div className="absolute bottom-0 left-0 w-[71px] h-[140px] bg-dark -skew-y-12 rounded-bl-sm "></div>
-							<div className="absolute bottom-0 right-0 w-[71px] h-[140px] bg-dark skew-y-12 rounded-br-sm"></div>
+						<NavLink
+							to="/"
+							className="font-imFell font-[400] text-[32px] leading-[41px] text-white ml-4 md:ml-0 w-auto h-24 p-2 pl-3 "
+						>
+							BookEx
+						</NavLink>
+						<div className="absolute bottom-0 bg-bgGrey100 w-[140px] h-[40px]">
+							<div className="absolute bottom-0 left-0 w-[71px] h-[140px] bg-black -skew-y-12 rounded-bl-sm "></div>
+							<div className="absolute bottom-0 right-0 w-[71px] h-[140px] bg-black skew-y-12 rounded-br-sm"></div>
 						</div>
 					</div>
 
@@ -56,32 +62,30 @@ const About = () => {
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="currentColor"
-											className="inline-block w-8 h-8 mb-8 text-semiDark opacity-60"
+											className="inline-block w-8 h-8 mb-8 text-black opacity-60"
 											viewBox="0 0 975.036 975.036"
 										>
 											<path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
 										</svg>
-										<p className="text-lg font-bold leading-relaxed lg:text-2xl md:text-xl">
+										<p className="text-lg font-bold leading-relaxed lg:text-2xl md:text-xl font-imFell">
 											With reading, you have this
 											opportunity to learn whatever you
 											want from the greatest people who
 											ever lived along the dimension.
 										</p>
 										<span className="inline-block w-10 h-1 mt-8 mb-6 rounded bg-semiDark"></span>
-										<h2 className="text-xs font-medium tracking-wider md:text-sm text-dark title-font">
+										<h2 className="text-xs font-medium tracking-wider md:text-sm text-dark title-font font-martel">
 											JORDAN B. PETERSON
 										</h2>
-										<p className="text-xs italic text-dark opacity-40 md:text-base">
+										<p className="text-xs italic text-dark opacity-40 md:text-base font-martel">
 											Psychologist
 										</p>
-										<p className="hidden mt-10 overflow-hidden text-base font-semibold text-left sm:block md:text-xl text-dark">
-											<b className="text-semiDark">
-												BookEx
-											</b>{" "}
+										<p className="hidden mt-10 overflow-hidden text-base font-semibold text-left font-martel sm:block md:text-xl text-dark">
+											<b className="text-black">BookEx</b>{" "}
 											is a community made to connect
 											readers and encourage them to
 											<br />{" "}
-											<b className="opacity-75 text-semiDark">
+											<b className="text-black opacity-50">
 												Read Everyday
 											</b>{" "}
 											without any limitations of finding
@@ -319,6 +323,66 @@ const About = () => {
 													</a>
 												</div>
 											</div>
+											<div className="flex flex-col items-center w-52 lg:w-72">
+												<img
+													className="inline-block object-cover object-center w-40 h-40 mb-2 bg-gray-100 border-2 border-gray-200 rounded-full"
+													src={GsT}
+												></img>
+												<h1 className="text-lg font-semibold text-semiLight">
+													Gaurav Tajanpure
+												</h1>
+												<p className="text-center text-gray-300 opacity-75">
+													Aspiring Web Developer,
+													<br /> likes to Code
+													<br />
+													<b>
+														"Keep exploring"
+													</b>
+												</p>
+												{/* <img
+													src={gilfoyle}
+													className="h-64 mt-7 drop-shadow-3xl"
+												></img> */}
+												<div className="z-50 flex flex-row items-center mt-3 space-x-3 ">
+													<a
+														href="https://github.com/shreyasg-git"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={githubIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.linkedin.com/in/shreyas-gangurde-1438981a1/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={linkedinIcon}
+														></img>
+													</a>
+													<a
+														href="https://twitter.com/shreyasbg28"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={twitterIcon}
+														></img>
+													</a>
+													<a
+														href="https://www.instagram.com/_shreyas_gangurde/"
+														target="_blank"
+														rel="noopner noreferrer"
+													>
+														<img
+															src={instaIcon}
+														></img>
+													</a>
+												</div>
+											</div>
+											
 										</div>
 									</div>
 								</div>

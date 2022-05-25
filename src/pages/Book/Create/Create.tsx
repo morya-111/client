@@ -103,7 +103,7 @@ const AddBook = () => {
 				}}
 				validationSchema={createBookValidation}
 			>
-				<div className="w-full pt-4 bg-light">
+				<div className="w-full pt-8 bg-bgGrey45">
 					<Form className="flex flex-col min-h-screen mx-14">
 						<div className="flex ">
 							<div
@@ -112,7 +112,7 @@ const AddBook = () => {
 							/>
 							<div
 								style={{ flex: 2 }}
-								className="text-4xl font-bold text-center md:text-5xl text-dark"
+								className="text-4xl font-bold text-center md:text-5xl text-dark font-imFell"
 							>
 								Create Book
 							</div>
@@ -134,7 +134,7 @@ const AddBook = () => {
 										required
 									/>
 								</div>
-								<div className="flex-grow pt-2">
+								<div className="flex-grow pt-2 mt-8">
 									<TextArea
 										disabled={upload.isLoading}
 										name="description"
@@ -142,7 +142,7 @@ const AddBook = () => {
 										resizeable={false}
 									/>
 								</div>
-								<div className="flex flex-col md:flex-row">
+								<div className="flex flex-col mt-3 md:flex-row">
 									<div className="flex-grow mt-2 md:mr-2">
 										<TextInput
 											disabled={upload.isLoading}
@@ -160,8 +160,8 @@ const AddBook = () => {
 										/>
 									</div>
 								</div>
-								<div className="flex flex-col md:flex-row">
-									<div className="flex-grow mt-2 md:mr-2">
+								<div className="flex flex-col mt-8 md:flex-row">
+									<div className="flex-grow w-1/2 mt-2 md:mr-3">
 										<Select
 											disabled={upload.isLoading}
 											name="genre"
@@ -175,7 +175,7 @@ const AddBook = () => {
 											))}
 										</Select>
 									</div>
-									<div className="flex-grow mt-2 md:ml-2">
+									<div className="flex-grow w-1/2 mt-2 md:ml-2">
 										<Select
 											name="language"
 											label="Language"
@@ -196,7 +196,7 @@ const AddBook = () => {
 									</div>
 								</div>
 								<div className="flex mt-3 ">
-									<span className="mr-4 text-[#4E4E4E] text-sm font-bold opacity-80">
+									<span className="mr-4 text-[#4E4E4E] text-sm font-bold opacity-80 font-martel">
 										Mode
 									</span>
 									<div className="mr-4">
@@ -216,11 +216,11 @@ const AddBook = () => {
 								</div>
 								<SellInformation disabled={upload.isLoading} />
 								<RentInformation disabled={upload.isLoading} />
-								<div className="flex justify-center mt-4 pb-9">
+								<div className="flex justify-center mt-10 pb-9">
 									<Button
 										type="submit"
 										value="Create"
-										color="semiLight"
+										color="black"
 										disabled={upload.isLoading}
 										left={
 											upload.isLoading ? (

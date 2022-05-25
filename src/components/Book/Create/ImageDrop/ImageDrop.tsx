@@ -117,7 +117,7 @@ const ImageDrop: React.FC<Props> = () => {
 							<div>
 								<FiUpload size={50} />
 							</div>
-							<div className="text-center">
+							<div className="text-center font-imFell">
 								Drag N Drop Image Here To Upload
 							</div>
 						</div>
@@ -125,7 +125,7 @@ const ImageDrop: React.FC<Props> = () => {
 					<div className="flex justify-center mt-3">
 						<Button
 							value="Upload"
-							color="semiLight"
+							color="black"
 							left={<MdUpload size={25} className="mr-2" />}
 							onClick={open}
 						/>

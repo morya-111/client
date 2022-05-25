@@ -14,7 +14,8 @@ const Modal = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 	return ReactDOM.createPortal(
 		<div
-			className="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-opacity-80 bg-dark"
+			style={{ filter: "drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25))" }}
+			className="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-bgScreen"
 			onClick={() => {
 				if (disableDismiss) return;
 				onClose();

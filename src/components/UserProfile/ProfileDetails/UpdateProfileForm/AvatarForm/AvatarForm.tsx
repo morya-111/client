@@ -11,8 +11,10 @@ const AvatarForm: React.FC = () => {
 	};
 
 	return (
-		<div className="m-4 bg-white rounded-md ">
-			<span className="ml-4 ">Choose An Avatar : </span>
+		<div className="p-3 py-4 m-4 bg-white rounded-md">
+			<span className="ml-4 font-semibold font-martel">
+				Choose An Avatar :{" "}
+			</span>
 			<div className="grid grid-cols-4 grid-rows-2 ml-4">
 				{imgUrls.map((url, i) => {
 					if (meta.value === url) {
@@ -35,6 +37,9 @@ const AvatarForm: React.FC = () => {
 					return (
 						<div
 							key={i}
+							style={{
+								filter: "drop-shadow(0px 7px 3px rgba(0, 0, 0, 0.31))",
+							}}
 							className="inline-flex items-center justify-center w-20 h-20 my-4 rounded-full"
 						>
 							<img
