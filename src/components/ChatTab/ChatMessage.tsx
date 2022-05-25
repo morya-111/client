@@ -1,7 +1,7 @@
 import useAuthData from "hooks/useAuthData";
-import moment from "moment";
 import { UserType } from "pages/Chat/Chat";
 import { useHistory } from "react-router-dom";
+import { DatesHelper } from "utils/DatesHelper";
 
 type ChatMessageProps = {
 	msg: string;
@@ -36,7 +36,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 	const { first_name, last_name, id } = useAuthData();
 
 	const dateObj = new Date(date || "");
-	// console.log("________", fromSelf, msg, date);
+	// const fromNowString = moment(dateObj).fromNow();
+	const fromNowString = DatesHelper.fromNow(dateObj);
+
 	// fromSelf &&
 	// type embed
 	// type normal
@@ -59,7 +61,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 						{msg}
 					</div>
 					<div className="pr-2 text-xs font-thin text-right">
-						{moment(dateObj).fromNow()}
+						{fromNowString}
 					</div>
 				</div>
 			</div>
@@ -80,7 +82,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 						{msg}
 					</div>
 					<div className="pl-2 text-xs font-thin">
-						{moment(dateObj).fromNow()}
+						{fromNowString}
 					</div>
 				</div>
 			</div>
@@ -120,7 +122,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 						</span>
 					</div>
 					<div className="pr-2 text-xs font-thin text-right">
-						{moment(dateObj).fromNow()}
+						{/* {fromNowString} */}
+						{DatesHelper.fromNow(dateObj)}
 					</div>
 				</div>
 			</div>
@@ -160,7 +163,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 						</span>
 					</div>
 					<div className="pl-2 text-xs font-thin">
-						{moment(dateObj).fromNow()}
+						{fromNowString}
 					</div>
 				</div>
 			</div>
