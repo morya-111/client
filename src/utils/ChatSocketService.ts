@@ -3,7 +3,10 @@ import { io } from "socket.io-client";
 
 export const ChatSocketService = {};
 
-export const clientSocket = io("http://localhost:4000", { autoConnect: false });
+export const clientSocket = io(
+	process.env.REACT_APP_BACKEND_URL || "http://localhost:4000",
+	{ autoConnect: false }
+);
 
 export const getChatHistory = (
 	userId: number,
