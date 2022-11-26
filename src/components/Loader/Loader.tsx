@@ -37,27 +37,38 @@ const Loader: React.FC<Props> = ({
 	if (!loading) return <></>;
 
 	return (
-		<div className="flex items-center justify-center ">
-			<div
-				className={classNames(
-					"z-20 border-transparent rounded-full animate-spin ",
-					thicknessMap[thickness],
-					sizeMap[size],
-					colorMap[color]
-				)}
-			/>
-			<div
-				className={classNames(
-					"absolute border-opacity-40 border-solid rounded-full ",
-					thicknessMap[thickness],
-					sizeMap[size],
-					{ "border-dark": color === "dark" },
-					{ "border-semiLight": color === "semiLight" },
-					{ "border-semiDark": color === "semiDark" },
-					{ "border-light": color === "light" }
-				)}
-			></div>
-		</div>
+		// <div className="flex items-center justify-center ">
+		// 	<div
+		// 		className={classNames(
+		// 			"z-20 border-transparent rounded-full animate-spin ",
+		// 			thicknessMap[thickness],
+		// 			sizeMap[size],
+		// 			colorMap[color]
+		// 		)}
+		// 	/>
+		// 	<div
+		// 		className={classNames(
+		// 			"absolute border-opacity-40 border-solid rounded-full ",
+		// 			thicknessMap[thickness],
+		// 			sizeMap[size],
+		// 			{ "border-dark": color === "dark" },
+		// 			{ "border-semiLight": color === "semiLight" },
+		// 			{ "border-semiDark": color === "semiDark" },
+		// 			{ "border-light": color === "light" }
+		// 		)}
+		// 	></div>
+		// </div>
+		<div className="bookshelf_wrapper">
+  <ul className="books_list">
+    <li className="book_item first"></li>
+    <li className="book_item second"></li>
+    <li className="book_item third"></li>
+    <li className="book_item fourth"></li>
+    <li className="book_item fifth"></li>
+    <li className="book_item sixth"></li>
+  </ul>
+  <div className="shelf"></div>
+</div>
 	);
 };
 

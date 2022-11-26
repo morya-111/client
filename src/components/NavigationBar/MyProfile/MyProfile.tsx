@@ -6,14 +6,15 @@ const MyProfile: React.FC<React.ComponentPropsWithoutRef<"button">> = ({
 	const { avatarUrl } = useAuthData();
 	return (
 		<button
-			className="relative font-bold text-white rounded-full top-0.3 bg-light "
+			className="relative font-bold text-white rounded-full top-0.3 hover:scale-[105%] "
 			onClick={onClick}
 		>
 			<img
 				src={avatarUrl}
 				alt="P"
-				className="duration-[300ms] rounded-full bg-light motion-safe:hover:scale-125"
+				className="duration-[300ms] rounded-full  "
 				style={{ height: "40px" }}
+				
 			/>
 		</button>
 	);

@@ -9,10 +9,10 @@ const ProfilePopUp: React.FC<
 	const selfRef = useRef(null);
 	useClickedOutsideEffect(selfRef, closerFunc);
 	const popUpBtnClassName =
-		"p-1 pl-2 m-2 border-2 rounded-md border-semiLight hover:bg-semiDark hover:border-dark hover:text-white";
+		"p-1 pl-2 m-2 border-2 rounded-md border-bgGrey100 hover:bg-bgGrey100 hover:border-bgGrey100 hover:font-bold font-martel text-white hover:text-black";
 	return (
 		<div
-			className={`${className} bg-semiLight h-auto w-48 rounded-md rounded-tr-none rounded-bl-none flex flex-col shadow-xl -right-2 `}
+			className={`${className} bg-black h-auto w-48 rounded-lg rounded-tr-none  flex flex-col shadow-xl -right-2 z-[999]`}
 			ref={selfRef}
 		>
 			<NavLink to="/catalogue">
@@ -24,7 +24,7 @@ const ProfilePopUp: React.FC<
 			<NavLink to="/myprofile">
 				<div className={popUpBtnClassName}>My Profile</div>
 			</NavLink>
-			<div className="p-1 pl-2 m-2 border-2 rounded-md border-semiLight hover:bg-red-500 hover:opacity-100 hover:border-dark hover:text-white">
+			<div className="p-1 pl-2 m-2 border-2 rounded-md border-bgGrey100 hover:bg-red-500 hover:opacity-100 hover:border-dark hover:text-white">
 				<LogOutButton extraCleanUp={closerFunc} />
 			</div>
 		</div>

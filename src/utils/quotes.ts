@@ -124,5 +124,5 @@ const manyQuotes = [
 	},
 	{ text: "Just Keep Reading 📖", author: "from BookEx" },
 ];
-const singleQuote = manyQuotes[Math.floor(Math.random() * manyQuotes.length)];
-export default singleQuote;
+
+export default manyQuotes;

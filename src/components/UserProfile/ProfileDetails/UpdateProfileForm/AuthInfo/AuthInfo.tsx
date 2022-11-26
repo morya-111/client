@@ -56,7 +56,7 @@ const AuthInfo: React.FC<props> = ({ setPasswordVisibility }) => {
 				<Loader size="sm" />
 			) : (
 				<div className="flex items-center justify-between bg-white rounded-md">
-					<span className="inline-block ">
+					<span className="inline-block font-imFell">
 						&nbsp; &nbsp; You are logged in using -
 					</span>
 					{getIcon(authInfoQuery.data?.data.data.loggedInUsing)}

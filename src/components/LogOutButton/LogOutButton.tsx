@@ -45,7 +45,10 @@ const LogOutButton: React.FC<props> = ({ extraCleanUp = () => {} }) => {
 	}
 
 	return (
-		<div onClick={queryFetch} className="font-semibold cursor-pointer ">
+		<div
+			onClick={queryFetch}
+			className="font-semibold text-white cursor-pointer "
+		>
 			Logout
 		</div>
 	);
