@@ -18,6 +18,10 @@ class AuthService {
 		);
 	};
 
+	public guestLogin = () => {
+		return api.post<any>("/user/guest");
+	};
+
 	public logout = () => {
 		return api.post<any>("/user/logout");
 	};

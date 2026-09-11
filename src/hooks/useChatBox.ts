@@ -1,6 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { clientSocket, getChatHistory } from "utils/ChatSocketService";
+import {
+	getChatHistory,
+	openChatChannel,
+	sendChatMessage,
+} from "utils/ChatSocketService";
+import { RealtimeChannel } from "utils/RealtimeChannel";
 import useAuthData from "./useAuthData";
 export type ChatMessageType = {
 	msg: string;
@@ -70,28 +75,64 @@ export const useChatBox = (
 		}
 	);
 
+	const channelRef = useRef<RealtimeChannel | null>(null);
+	// identifies the latest connect call, so a late-resolving one is dropped
+	const connectToken = useRef<object | null>(null);
+	const [channel, setChannel] = useState<RealtimeChannel | null>(null);
+
 	const connectTheSocket = useCallback(() => {
 		console.log("connectTheSocket | useChatBox :", id);
-		clientSocket.auth = { userId: id };
-		clientSocket.connect();
+		const token = {};
+		connectToken.current = token;
+		openChatChannel()
+			.then((ch) => {
+				if (connectToken.current !== token) return ch.disconnect();
+				channelRef.current = ch;
+				setChannel(ch);
+			})
+			.catch((err) => console.log("CHAT CHANNEL ERROR", err));
 	}, [id]);
 
 	const disConnectTheSocket = useCallback(() => {
 		console.log("DISconnectTheSocket | useChatBox :", id);
-		clientSocket.disconnect();
+		connectToken.current = null;
+		channelRef.current?.disconnect();
+		channelRef.current = null;
+		setChannel(null);
 	}, [id]);
+
+	const appendMessages = useCallback(
+		(payload: any[]) => {
+			// the user's topic carries every conversation; keep this one
+			const relevant = payload.filter(
+				(msg: any) => msg.sender.id === chatWith || msg.sender.id === id
+			);
+			if (relevant.length === 0) return;
+			setChatArr((prev) => [
+				...prev,
+				...transformPayloadToMesssage(relevant),
+			]);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[chatWith, id]
+	);
 
 	const sendMessage = (msgBody: string) => {
 		if (msgBody.length === 0) {
 			return;
 		}
 		console.log("sendMessage | useChatBox :", chatWith, msgBody);
-		clientSocket.emit("message:send", {
+		sendChatMessage({
 			to: chatWith,
 			message: msgBody,
 			bookId: bookId === -1 ? undefined : bookId,
-			// bookId: 617,
-		});
+		})
+			.then((res) => {
+				// Show our own message from the response (Realtime echo to
+				// the sender is skipped to avoid duplicates).
+				appendMessages(res.data.data.chats);
+			})
+			.catch((err) => console.log("SEND MESSAGE ERROR", err));
 	};
 
 	const transformPayloadToMesssage = useCallback(
@@ -115,18 +156,18 @@ export const useChatBox = (
 	);
 
 	useEffect(() => {
-		const onReceiveMessage = (payload: any) => {
+		if (!channel) return;
+		const onReceiveMessage = (payload: { data: any[] }) => {
 			console.log("onReceiveMessage | useChatBox :", payload);
-			// console.count();
-			const newMsg = transformPayloadToMesssage(payload);
-			setChatArr([...chatArr, ...newMsg]);
+			// our own sends are appended from the HTTP response
+			appendMessages(payload.data.filter((msg) => msg.sender.id !== id));
 		};
-		clientSocket.on("message:receive", onReceiveMessage);
+		channel.on("message:receive", onReceiveMessage);
 
 		return () => {
-			clientSocket.removeAllListeners();
+			channel.off("message:receive", onReceiveMessage);
 		};
-	}, [chatArr, id, transformPayloadToMesssage, root]);
+	}, [channel, id, appendMessages]);
 
 	return {
 		chatArr,

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "create-react-app",
+  "buildCommand": "CI=false yarn build",
+  "outputDirectory": "build",
+  "rewrites": [
+    {
+      "source": "/v1/:path*",
+      "destination": "https://project-bookex-api.vercel.app/v1/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "installCommand": "yarn install"
+}

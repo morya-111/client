@@ -11,6 +11,10 @@
 	@apply bg-black text-white active:bg-dark font-bold  text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 font-imFell;
 }
 
+.std-btn-outline {
+	@apply bg-transparent text-black border-2 border-black font-bold text-sm px-6 py-2.5 rounded hover:bg-black hover:text-white outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 font-imFell;
+}
+
 .std-label {
 	@apply text-sm font-medium text-gray-700;
 }

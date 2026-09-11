@@ -25,7 +25,6 @@
 		"react-query": "^3.27.0",
 		"react-router-dom": "^5.3.0",
 		"react-scripts": "4.0.3",
-		"socket.io-client": "^4.5.1",
 		"source-map-explorer": "^2.5.2",
 		"styled-components": "^5.3.5",
 		"typescript": "^4.1.2",
@@ -34,8 +33,8 @@
 		"yup": "^0.32.11"
 	},
 	"scripts": {
-		"start": "cross-env TAILWIND_MODE=watch craco start",
-		"build": "craco build",
+		"start": "cross-env TAILWIND_MODE=watch NODE_OPTIONS=--openssl-legacy-provider craco start",
+		"build": "cross-env NODE_OPTIONS=--openssl-legacy-provider craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject",
 		"analyze": "source-map-explorer 'build/static/js/*.js'"
@@ -65,5 +64,6 @@
 		"postcss": "7",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat",
 		"webpack-bundle-analyzer": "^4.5.0"
-	}
+	},
+	"proxy": "http://localhost:4000"
 }

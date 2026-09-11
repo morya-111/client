@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: `${
-		process.env.REACT_APP_BACKEND_URL || "http://localhost:4000"
-	}/v1/`,
+	// Same-origin by default: CRA dev proxy locally, Vercel rewrite in prod.
+	baseURL: `${process.env.REACT_APP_BACKEND_URL || ""}/v1/`,
 	withCredentials: true,
 });
 

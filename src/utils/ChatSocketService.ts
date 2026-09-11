@@ -1,12 +1,30 @@
 import api from "api";
-import { io } from "socket.io-client";
+import { RealtimeChannel } from "./RealtimeChannel";
 
 export const ChatSocketService = {};
 
-export const clientSocket = io(
-	process.env.REACT_APP_BACKEND_URL || "http://localhost:4000",
-	{ autoConnect: false }
-);
+type ChannelInfo = {
+	topic: string;
+	supabaseUrl: string;
+	supabaseAnonKey: string;
+};
+
+// Opens a Realtime subscription to the logged-in user's private chat topic.
+export const openChatChannel = async () => {
+	const res = await api.get<{ data: ChannelInfo }>("/chats/channel");
+	const { topic, supabaseUrl, supabaseAnonKey } = res.data.data;
+	const channel = new RealtimeChannel(supabaseUrl, supabaseAnonKey, topic);
+	channel.connect();
+	return channel;
+};
+
+export const sendChatMessage = (payload: {
+	to: number;
+	message: string;
+	bookId?: number;
+}) => {
+	return api.post<any>("/chats/send", payload);
+};
 
 export const getChatHistory = (
 	userId: number,

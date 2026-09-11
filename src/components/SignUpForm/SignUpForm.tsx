@@ -12,6 +12,7 @@ import {
 	formMsgsTypeEnum,
 } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
+import GuestLoginButton from "components/GuestLoginButton";
 import Loader from "components/Loader";
 import authService from "utils/AuthService";
 import AuthDataContext from "contexts/AuthDataContext";
@@ -176,6 +177,7 @@ const SignUpForm: React.FC = () => {
 								</button>
 							)}
 						</div>
+						<GuestLoginButton />
 						<div className="my-4 text-center">
 							<div className={formMsg.type}>{formMsg.msg}</div>
 							<span className="mr-1 font-imFell">

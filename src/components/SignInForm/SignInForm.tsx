@@ -16,6 +16,7 @@ import AuthDataContext from "contexts/AuthDataContext";
 import { AuthDataActionsTypeEnum } from "types/authTypes";
 import { SignInFormData } from "types/formTypes";
 import OAuthLinks from "components/OAuthLinks";
+import GuestLoginButton from "components/GuestLoginButton";
 
 import Loader from "components/Loader";
 import useCachedLoginStatus from "hooks/useCachedLoginStatus";
@@ -154,6 +155,7 @@ const SignInForm: React.FC = () => {
 								</button>
 							)}
 						</div>
+						<GuestLoginButton />
 						<div className="my-4 text-center">
 							<div
 								className={formMsg.type}
